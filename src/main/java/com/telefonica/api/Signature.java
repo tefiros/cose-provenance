@@ -49,13 +49,13 @@ public class Signature extends XMLFileManagement implements SignatureInterface {
 		OneKey keyPair = null;
 		Parameters param = new Parameters();
 
-		char pswd[] = param.readpswd().toCharArray();
+		char pswd[] = param.getProperty("Password").toCharArray();
 		KeyStore ks;
 
 		try {
-			ks = KeyStore.getInstance(param.readInstanceKeyStore());
+			ks = KeyStore.getInstance(param.getProperty("KeyStore Instance"));
 
-			ks.load(new FileInputStream(param.readSignerKeyStore()), pswd);
+			ks.load(new FileInputStream(param.getProperty("Signer KeyStore")), pswd);
 
 			if (ks.containsAlias(kid)) {
 
@@ -130,7 +130,7 @@ public class Signature extends XMLFileManagement implements SignatureInterface {
 		} else
 			throw new COSESignatureException("No valid algorithm found");
 
-		sign1Message.addAttribute(HeaderKeys.CONTENT_TYPE, CBORObject.FromObject(param.readContentType()),
+		sign1Message.addAttribute(HeaderKeys.CONTENT_TYPE, CBORObject.FromObject(param.getProperty("Content Type")),
 				Attribute.PROTECTED);
 		// Add protected attributes with KID tag
 		sign1Message.addAttribute(HeaderKeys.KID, privateKey.get(KeyKeys.KeyId), Attribute.PROTECTED);
@@ -166,7 +166,7 @@ public class Signature extends XMLFileManagement implements SignatureInterface {
 			Namespace namespace = rootElementDocument.getNamespace();
 
 			// Get bage64 provenance signature so we can store it inside the YANG structure
-			Element signatureElement = new Element(param.readSignElement(), namespace);
+			Element signatureElement = new Element(param.getProperty("Signature Element"), namespace);
 			signatureElement.setText(signature);
 
 			// Add the new provenance-string element to the root element
@@ -198,7 +198,7 @@ public class Signature extends XMLFileManagement implements SignatureInterface {
 
 			Element notificationElement = rootElement.getChild("eventTime", namespace);
 
-			Element provenanceElement = new Element(param.readSignElement(), namespace);
+			Element provenanceElement = new Element(param.getProperty("Signature Element"), namespace);
 			provenanceElement.setText(signature);
 
 			rootElement.addContent(rootElement.indexOf(notificationElement) + 1, provenanceElement);

@@ -25,93 +25,9 @@ public class Parameters {
 		return fichero;
 
 	}
-
-	public String readpswd() {
-
-		String fichero = readFile();
-
-		Gson gson = new Gson();
-
-		// Obtener las propiedades
-		Properties properties = gson.fromJson(fichero, Properties.class);
-		// Ahora puedes acceder a las propiedades como:
-		String pswd = properties.getProperty("Password");
-
-		return pswd;
-	}
-
-	public String readInstanceKeyStore() {
-
-		String fichero = readFile();
-
-		Gson gson = new Gson();
-
-		// Obtener las propiedades
-		Properties properties = gson.fromJson(fichero, Properties.class);
-		// Ahora puedes acceder a las propiedades como:
-		String pswd = properties.getProperty("KeyStore Instance");
-
-		return pswd;
-	}
-
-	public String readSignerKeyStore() {
-
-		String fichero = readFile();
-
-		Gson gson = new Gson();
-
-		// Obtener las propiedades
-		Properties properties = gson.fromJson(fichero, Properties.class);
-		// Ahora puedes acceder a las propiedades como:
-		String pswd = properties.getProperty("Signer KeyStore");
-
-		return pswd;
-	}
-
-	public String readReceiverKeyStore() {
-
-		String fichero = readFile();
-
-		Gson gson = new Gson();
-
-		// Obtener las propiedades
-		Properties properties = gson.fromJson(fichero, Properties.class);
-		// Ahora puedes acceder a las propiedades como:
-		String pswd = properties.getProperty("Receiver KeyStore");
-
-		return pswd;
-	}
-
-	public String readKid() {
-
-		String fichero = readFile();
-
-		Gson gson = new Gson();
-
-		// Obtener las propiedades
-		Properties properties = gson.fromJson(fichero, Properties.class);
-		// Ahora puedes acceder a las propiedades como:
-		String pswd = properties.getProperty("kid");
-
-		return pswd;
-	}
-
-	public String readAlg() {
-
-		String fichero = readFile();
-
-		Gson gson = new Gson();
-
-		// Obtener las propiedades
-		Properties properties = gson.fromJson(fichero, Properties.class);
-		// Ahora puedes acceder a las propiedades como:
-		String pswd = properties.getProperty("alg");
-
-		return pswd;
-	}
 	
-	public String readContentType() {
-
+	public String getProperty(String property) {
+		
 		String fichero = readFile();
 
 		Gson gson = new Gson();
@@ -119,24 +35,123 @@ public class Parameters {
 		// Obtener las propiedades
 		Properties properties = gson.fromJson(fichero, Properties.class);
 		// Ahora puedes acceder a las propiedades como:
-		String pswd = properties.getProperty("Content Type");
+		String prop = properties.getProperty(property);
 
-		return pswd;
+		return prop;
+		
 	}
 
-
-	public String readSignElement() {
-
-		String fichero = readFile();
-
-		Gson gson = new Gson();
-
-		// Obtener las propiedades
-		Properties properties = gson.fromJson(fichero, Properties.class);
-		// Ahora puedes acceder a las propiedades como:
-		String pswd = properties.getProperty("Signature Element");
-
-		return pswd;
-	}
+//	public String readpswd() {
+//
+//		String fichero = readFile();
+//
+//		Gson gson = new Gson();
+//
+//		// Obtener las propiedades
+//		Properties properties = gson.fromJson(fichero, Properties.class);
+//		// Ahora puedes acceder a las propiedades como:
+//		String pswd = properties.getProperty("Password");
+//
+//		return pswd;
+//	}
+//
+//	public String readInstanceKeyStore() {
+//
+//		String fichero = readFile();
+//
+//		Gson gson = new Gson();
+//
+//		// Obtener las propiedades
+//		Properties properties = gson.fromJson(fichero, Properties.class);
+//		// Ahora puedes acceder a las propiedades como:
+//		String pswd = properties.getProperty("KeyStore Instance");
+//
+//		return pswd;
+//	}
+//
+//	public String readSignerKeyStore() {
+//
+//		String fichero = readFile();
+//
+//		Gson gson = new Gson();
+//
+//		// Obtener las propiedades
+//		Properties properties = gson.fromJson(fichero, Properties.class);
+//		// Ahora puedes acceder a las propiedades como:
+//		String pswd = properties.getProperty("Signer KeyStore");
+//
+//		return pswd;
+//	}
+//
+//	public String readReceiverKeyStore() {
+//
+//		String fichero = readFile();
+//
+//		Gson gson = new Gson();
+//
+//		// Obtener las propiedades
+//		Properties properties = gson.fromJson(fichero, Properties.class);
+//		// Ahora puedes acceder a las propiedades como:
+//		String pswd = properties.getProperty("Receiver KeyStore");
+//
+//		return pswd;
+//	}
+//
+//	public String readKid() {
+//
+//		String fichero = readFile();
+//
+//		Gson gson = new Gson();
+//
+//		// Obtener las propiedades
+//		Properties properties = gson.fromJson(fichero, Properties.class);
+//		// Ahora puedes acceder a las propiedades como:
+//		String pswd = properties.getProperty("kid");
+//
+//		return pswd;
+//	}
+//
+//	public String readAlg() {
+//
+//		String fichero = readFile();
+//
+//		Gson gson = new Gson();
+//
+//		// Obtener las propiedades
+//		Properties properties = gson.fromJson(fichero, Properties.class);
+//		// Ahora puedes acceder a las propiedades como:
+//		String pswd = properties.getProperty("alg");
+//
+//		return pswd;
+//	}
+//	
+//	public String readContentType() {
+//
+//		String fichero = readFile();
+//
+//		Gson gson = new Gson();
+//
+//		// Obtener las propiedades
+//		Properties properties = gson.fromJson(fichero, Properties.class);
+//		// Ahora puedes acceder a las propiedades como:
+//		String pswd = properties.getProperty("Content Type");
+//
+//		return pswd;
+//	}
+//
+//
+//	public String readSignElement() {
+//
+//		String fichero = readFile();
+//
+//		Gson gson = new Gson();
+//
+//		// Obtener las propiedades
+//		Properties properties = gson.fromJson(fichero, Properties.class);
+//		// Ahora puedes acceder a las propiedades como:
+//		String pswd = properties.getProperty("Signature Element");
+//
+//		return pswd;
+//	}
 
 }

@@ -14,7 +14,7 @@ public class Signer {
 	}
 
 	static String filepath;
-	static String path = "ietf-interfaces-signature.xml";
+	static String path = "netconf-interfaces-signature.xml";
 
 	public static void main(String[] args) throws Exception {
 		
@@ -30,7 +30,7 @@ public class Signer {
 
 		// Generate provenance signature as a Base64 string
 		String xmlFile = Files.readString(Path.of(filepath));
-		String signature = sign.signing(xmlFile, param.readKid());
+		String signature = sign.signing(xmlFile, param.getProperty("kid"));
 
 		// Enclose the previously generated signature into a YANG data provenance xml
 		Document provenanceXML = sign.enclosingMethod2(filepath, signature);

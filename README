@@ -1,7 +1,7 @@
 Commands in cmd:
 
 EXECUTE:
-	-Signer.class: mvn exec:java -Dexec.mainClass="comtelefnica.api.interfaces.Signer" -Dexec.args="<YANGDataFile>.xml"
+	-Signer.class: mvn exec:java -Dexec.mainClass="com.telefonica.api.interfaces.Signer" -Dexec.args="<YANGDataFile>.xml"
 	-Verifier.class: mvn exec:java -Dexec.mainClass="com.provenance.cose.cose_provenance.Verifier" -Dexec.args="<YANGProvenanceFile>.xml"
 	
 Remueve los .class generados (si existen), descargará las librerías según lo que se haya definido en las dependencias del pom.xml

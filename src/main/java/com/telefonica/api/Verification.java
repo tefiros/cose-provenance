@@ -50,13 +50,13 @@ public class Verification extends XMLFileManagement implements VerificationInter
 		OneKey keyPair = null;
 		Parameters param = new Parameters();
 
-		char pswd[] = param.readpswd().toCharArray();
+		char pswd[] = param.getProperty("Password").toCharArray();
 
 		KeyStore ks;
 		try {
-			ks = KeyStore.getInstance(param.readInstanceKeyStore());
+			ks = KeyStore.getInstance(param.getProperty("KeyStore Instance"));
 
-			ks.load(new FileInputStream(param.readReceiverKeyStore()), pswd);
+			ks.load(new FileInputStream(param.getProperty("Signer KeyStore")), pswd);
 
 			Certificate certificate = ks.getCertificate(kid);
 			PublicKey publicKey = certificate.getPublicKey();
@@ -113,7 +113,7 @@ public class Verification extends XMLFileManagement implements VerificationInter
 			// Get the base64 signature from the xml document and decode it
 			Element rootElement = document.getRootElement();
 			Namespace namespace = rootElement.getNamespace();
-			Element signElement = rootElement.getChild(param.readSignElement(), namespace);
+			Element signElement = rootElement.getChild(param.getProperty("Signature Element"), namespace);
 			String signString = signElement.getText();
 			signature = Base64.getDecoder().decode(signString);
 			
@@ -147,7 +147,7 @@ public class Verification extends XMLFileManagement implements VerificationInter
 			
 			Element rootElement = document.getRootElement();
 			Namespace namespace = rootElement.getNamespace();
-			rootElement.removeChild(param.readSignElement(), namespace);
+			rootElement.removeChild(param.getProperty("Signature Element"), namespace);
 			
 			StringWriter contentXML = new StringWriter();
 			saveXMLDocument(document, contentXML);
