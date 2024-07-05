@@ -40,11 +40,11 @@ src/main/resources/cose_parameters.json: Configuration file that contains the co
 ### Prerequisites
 - Java 8 o superior.
 - Bibliotecas adicionales:
- - JDOM 2
- - Gson
- - BouncyCastle
- - COSE-Java
- - XMLSEC
+  - JDOM 2
+  - Gson
+  - BouncyCastle
+  - COSE-Java
+  - XMLSEC
 
 ### Compilation
 Maven has been used as a construction system to handle dependencies
