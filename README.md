@@ -5,8 +5,6 @@ This Java project provides a set of classes and methods to handle serilized YANG
 ## Content List
 
 - [Project Structure](#project-structure)
-  - [com.telefonica.api](#com.telefonica.api)
-  - [com.telefonica.api.example](#com.telefonica.api.example)
 - [Files](#files)
 - [Use](#use)
   - [Prerequisites](#prerequisites)
@@ -14,7 +12,7 @@ This Java project provides a set of classes and methods to handle serilized YANG
   - [Execution](#execution)
     - [Signing](#signing)
     - [Verification](#verifictaion)
-- Implementation](#implementation)
+- [Implementation](#implementation)
   - [Enclosing Methods](#enclosing-methods)
   - [Signature](#signature)
   - [Verification](#verification)
@@ -42,11 +40,11 @@ src/main/resources/cose_parameters.json: Configuration file that contains the co
 ### Prerequisites
 - Java 8 o superior.
 - Bibliotecas adicionales:
-   -JDOM 2
-   -Gson
-   -BouncyCastle
-   -COSE-Java
-   -XMLSEC
+ - JDOM 2
+ - Gson
+ - BouncyCastle
+ - COSE-Java
+ - XMLSEC
 
 ### Compilation
 Maven has been used as a construction system to handle dependencies
