@@ -39,7 +39,7 @@ src/main/resources/cose_parameters.json: Configuration file that contains the co
 
 ### Prerequisites
 - Java 8 o superior.
-- Bibliotecas adicionales:
+- Additional Libraries:
   - JDOM 2
   - Gson
   - BouncyCastle
