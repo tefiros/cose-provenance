@@ -22,6 +22,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.Namespace;
 
+import com.telefonica.api.exception.COSESignatureException;
 import com.upokecenter.cbor.CBORObject;
 
 import COSE.AlgorithmID;
@@ -38,7 +39,7 @@ import COSE.Sign1Message;
  * 
  * @author idb0095
  */
-public class Verification extends XMLFileManagement implements VerificationInterface	{
+public class Verification extends XMLFileManagement implements VerificationInterface {
 
 	static {
 		// Register BouncyCastle provider
@@ -92,7 +93,8 @@ public class Verification extends XMLFileManagement implements VerificationInter
 	}
 
 	/**
-	 * This method extracts the signature from the YANG data provenance file and removes the related element
+	 * This method extracts the signature from the YANG data provenance file and
+	 * removes the related element
 	 * 
 	 * @param signatureFile xml where the signature is enclosed
 	 * @return signature as a bstr
@@ -100,12 +102,13 @@ public class Verification extends XMLFileManagement implements VerificationInter
 	 * @throws IOException
 	 */
 	@Override
-	public byte[] readSignature(String signatureFile) {
+	public byte[] readSignature(String signatureFile) throws COSESignatureException {
 
 		Parameters param = new Parameters();
 
 		Document document;
 		byte[] signature = null;
+		String signString = null;
 
 		try {
 			document = loadXMLDocument(signatureFile);
@@ -113,10 +116,19 @@ public class Verification extends XMLFileManagement implements VerificationInter
 			// Get the base64 signature from the xml document and decode it
 			Element rootElement = document.getRootElement();
 			Namespace namespace = rootElement.getNamespace();
-			Element signElement = rootElement.getChild(param.getProperty("Signature Element"), namespace);
-			String signString = signElement.getText();
+			Namespace namespace2 = rootElement.getNamespace("ypmd");
+
+			if (rootElement.getAttribute("provenance-string", namespace2) != null) {
+				signString = rootElement.getAttributeValue("provenance-string", namespace2);
+			} else if (rootElement.getChild(param.getProperty("Signature Element"), namespace) != null) {
+				Element signElement = rootElement.getChild(param.getProperty("Signature Element"), namespace);
+				signString = signElement.getText();
+			} else {
+				throw new COSESignatureException("No leaf or metadata related to a signature");
+			}
+
 			signature = Base64.getDecoder().decode(signString);
-			
+
 		} catch (JDOMException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -127,16 +139,18 @@ public class Verification extends XMLFileManagement implements VerificationInter
 	}
 
 	/**
-	 * This method reads the updated xml assuming the signature element was previously removed for verification
+	 * This method reads the updated xml assuming the signature element was
+	 * previously removed for verification
 	 * 
 	 * @param signatureFile YANG data provenance ToBeVerified
 	 * @return the ToBeVerified xml file as a String
+	 * @throws COSESignatureException
 	 * @throws JDOMException
 	 * @throws IOException
 	 */
 	@Override
-	public String readYANGFile(String signatureFile) {
-		
+	public String readYANGFile(String signatureFile) throws COSESignatureException {
+
 		Parameters param = new Parameters();
 
 		Document document;
@@ -144,14 +158,23 @@ public class Verification extends XMLFileManagement implements VerificationInter
 
 		try {
 			document = loadXMLDocument(signatureFile);
-			
+
 			Element rootElement = document.getRootElement();
 			Namespace namespace = rootElement.getNamespace();
-			rootElement.removeChild(param.getProperty("Signature Element"), namespace);
-			
+			Namespace namespace2 = rootElement.getNamespace("ypmd");
+
+			if (rootElement.getAttribute("provenance-string", namespace2) != null) {
+				rootElement.removeAttribute("provenance-string", namespace2);
+			} else if (rootElement.getChild(param.getProperty("Signature Element"), namespace) != null) {
+				rootElement.removeChild(param.getProperty("Signature Element"), namespace);
+			} else {
+				throw new COSESignatureException("No leaf or metadata related to a signature");
+			}
+
 			StringWriter contentXML = new StringWriter();
 			saveXMLDocument(document, contentXML);
 			content = contentXML.toString();
+
 		} catch (JDOMException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -160,7 +183,7 @@ public class Verification extends XMLFileManagement implements VerificationInter
 		return content;
 
 	}
-	
+
 	/**
 	 * This method creates a COSE_Sign1 object that contains a COSE signature
 	 * previously generated and verifies it with the public key related to the
@@ -190,7 +213,7 @@ public class Verification extends XMLFileManagement implements VerificationInter
 		// System.out.println(verificator.findAttribute(HeaderKeys.KID,
 		// Attribute.PROTECTED).AsString());
 		OneKey publicOnlyKey = publicKey(verificator.findAttribute(HeaderKeys.KID, Attribute.PROTECTED).AsString());
-		//OneKey publicOnlyKey = publicKey("ec2.key");
+		// OneKey publicOnlyKey = publicKey("ec2.key");
 
 		return verificator.validate(publicOnlyKey);
 

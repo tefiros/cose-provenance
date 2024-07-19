@@ -14,7 +14,7 @@ public class Signer {
 	}
 
 	static String filepath;
-	static String path = "netconf-interfaces-signature.xml";
+	static String path = "provenance-interfaces.xml";
 
 	public static void main(String[] args) throws Exception {
 		
@@ -26,6 +26,7 @@ public class Signer {
 
 		// Instantiate the Signature and Parameter classes
 		SignatureInterface sign = new Signature();
+		EnclosingMethods enclose = new EnclosingMethods();
 		Parameters param = new Parameters();
 
 		// Generate provenance signature as a Base64 string
@@ -33,7 +34,7 @@ public class Signer {
 		String signature = sign.signing(xmlFile, param.getProperty("kid"));
 
 		// Enclose the previously generated signature into a YANG data provenance xml
-		Document provenanceXML = sign.enclosingMethod2(filepath, signature);
+		Document provenanceXML = enclose.enclosingMethod4(filepath, signature);
 		sign.saveXMLDocument(provenanceXML, path);
 
 		System.out.println("Document was correctly saved in: " + path);
