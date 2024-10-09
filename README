@@ -38,14 +38,14 @@ Maven has been used as a construction system to handle dependencies
 3.3.1. Signing 
 To sign a document, execute Signer.java class with the route of the XML file to be signed as argument:
 
-	- mvn exec:java -Dexec.mainClass="com.telefonica.api.example.Signer" -Dexec.args="<YANGDataFile>.xml"
+	- mvn exec:java -Dexec.mainClass="com.telefonica.cose.provenance.example.Signer" -Dexec.args="<YANGDataFile>.xml"
 
 This will generate a file named 'provenance-interfaces.xml'	in the current directory.
 
 3.3.2. Verification
 To verify signature, execute Verifier.java class with the route of the previously signed XML document as an argument
 
-	- mvn exec:java -Dexec.mainClass="com.telefonica.api.example.Verifier" -Dexec.args="provenance-interfaces.xml"
+	- mvn exec:java -Dexec.mainClass="com.telefonica.cose.provenance.example.Verifier" -Dexec.args="provenance-interfaces.xml"
 
 This will try ti verify the signature and will return the result of the success or failure.
 
