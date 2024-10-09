@@ -54,6 +54,11 @@
 				<artifactId>gson</artifactId>
 				<version>2.10.1</version>
 			</dependency>
+			<dependency>
+				<groupId>org.apache.xml.security</groupId>
+				<artifactId>xml-security</artifactId>
+				<version>1.4.1</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<build>

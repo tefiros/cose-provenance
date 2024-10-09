@@ -1,0 +1,63 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+-classpath
+'C:/Users/idb0095/.m2/repository/com/augustcellars/cose/cose-java/1.1.0/cose-java-1.1.0.jar;C:/Users/idb0095/.m2/repository/com/upokecenter/cbor/4.0.1/cbor-4.0.1.jar;C:/Users/idb0095/.m2/repository/com/github/peteroupc/numbers/1.4.3/numbers-1.4.3.jar;C:/Users/idb0095/.m2/repository/net/i2p/crypto/eddsa/0.3.0/eddsa-0.3.0.jar;C:/Users/idb0095/.m2/repository/org/bouncycastle/bcpkix-jdk18on/1.77/bcpkix-jdk18on-1.77.jar;C:/Users/idb0095/.m2/repository/org/bouncycastle/bcprov-jdk18on/1.77/bcprov-jdk18on-1.77.jar;C:/Users/idb0095/.m2/repository/org/bouncycastle/bcutil-jdk18on/1.77/bcutil-jdk18on-1.77.jar;C:/Users/idb0095/.m2/repository/org/apache/santuario/xmlsec/4.0.2/xmlsec-4.0.2.jar;C:/Users/idb0095/.m2/repository/commons-codec/commons-codec/1.16.1/commons-codec-1.16.1.jar;C:/Users/idb0095/.m2/repository/org/jdom/jdom2/2.0.6.1/jdom2-2.0.6.1.jar;C:/Users/idb0095/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'C:/Users/idb0095/eclipse-workspace/provenance-cose/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/idb0095/eclipse-workspace/provenance-cose/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'provenance-api 0.0.1-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'provenance-api 0.0.1-SNAPSHOT API'
+com.telefonica.cose.provenance
+com.telefonica.cose.provenance.example
+com.telefonica.cose.provenance.exception
+C:\Users\idb0095\.m2\repository\com\augustcellars\cose\cose-java\1.1.0\cose-java-1.1.0.jar = 1580146792000
+C:\Users\idb0095\.m2\repository\com\upokecenter\cbor\4.0.1\cbor-4.0.1.jar = 1701160977119
+C:\Users\idb0095\.m2\repository\com\github\peteroupc\numbers\1.4.3\numbers-1.4.3.jar = 1701160977148
+C:\Users\idb0095\.m2\repository\net\i2p\crypto\eddsa\0.3.0\eddsa-0.3.0.jar = 1701160977136
+C:\Users\idb0095\.m2\repository\org\bouncycastle\bcpkix-jdk18on\1.77\bcpkix-jdk18on-1.77.jar = 1700024150000
+C:\Users\idb0095\.m2\repository\org\bouncycastle\bcprov-jdk18on\1.77\bcprov-jdk18on-1.77.jar = 1700022982000
+C:\Users\idb0095\.m2\repository\org\bouncycastle\bcutil-jdk18on\1.77\bcutil-jdk18on-1.77.jar = 1700022357000
+C:\Users\idb0095\.m2\repository\org\apache\santuario\xmlsec\4.0.2\xmlsec-4.0.2.jar = 1708069221000
+C:\Users\idb0095\.m2\repository\commons-codec\commons-codec\1.16.1\commons-codec-1.16.1.jar = 1707060667000
+C:\Users\idb0095\.m2\repository\org\jdom\jdom2\2.0.6.1\jdom2-2.0.6.1.jar = 1638830671000
+C:\Users\idb0095\.m2\repository\com\google\code\gson\gson\2.10.1\gson-2.10.1.jar = 1673019840000
+C:\Users\idb0095\eclipse-workspace\provenance-cose\src\main\java = 1728462492719
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\allclasses-index.html = 1728467617904
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\allpackages-index.html = 1728467617908
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\copy.svg = 1728467617979
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\element-list = 1728467617708
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\help-doc.html = 1728467617962
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\index-all.html = 1728467617944
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\index.html = 1728467617881
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\javadoc.bat = 1728467368509
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\link.svg = 1728467617985
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\member-search-index.js = 1728467617915
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\module-search-index.js = 1728467617910
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\overview-summary.html = 1728467617956
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\overview-tree.html = 1728467617875
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\package-search-index.js = 1728467617911
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\script.js = 1728467617975
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\search-page.js = 1728467617996
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\search.html = 1728467617949
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\search.js = 1728467617992
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\serialized-form.html = 1728467617781
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\stylesheet.css = 1728467617971
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\tag-search-index.js = 1728467617920
+C:\Users\idb0095\eclipse-workspace\provenance-cose\target\reports\apidocs\type-search-index.js = 1728467617913

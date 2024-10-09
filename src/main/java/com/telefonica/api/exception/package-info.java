@@ -1,1 +1,0 @@
-package com.telefonica.api.exception;

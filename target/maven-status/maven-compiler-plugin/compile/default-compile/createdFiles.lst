@@ -1,0 +1,13 @@
+com\telefonica\api\XMLFileManagement.class
+com\telefonica\api\example\Verifier.class
+com\telefonica\api\Parameters.class
+com\telefonica\api\Signature.class
+com\telefonica\api\Verification.class
+com\telefonica\api\EnclosingMethods.class
+com\telefonica\api\SignatureInterface.class
+com\telefonica\api\exception\package-info.class
+com\telefonica\api\example\Signer.class
+com\telefonica\api\example\package-info.class
+com\telefonica\api\exception\COSESignatureException.class
+com\telefonica\api\VerificationInterface.class
+com\telefonica\api\package-info.class
