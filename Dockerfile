@@ -1,35 +1,30 @@
-# Use a Maven image-base to compile the application
-FROM maven:4.0.0-jdk-11 AS build
+# Use the official Maven image for building
+FROM maven:3.9.5 AS build
 
-# Establish the working directory
+# Set the working directory for building
 WORKDIR /app
 
-# Copy the Maven configuration file
+# Copy pom.xml and download dependencies
 COPY pom.xml .
+RUN mvn dependency:go-offline
 
-# Download Maven dependencies
-RUN mvn dependency:go-offline -B
+# Copy the application code
+COPY . .
 
-# Copy the rest of the source code from the project
-COPY src ./src
+# Build the application
+RUN mvn clean package
 
-# Compile the project and build the package (jar)
-RUN mvn package -DskipTests
+# Use the same Maven image for runtime to run exec:java
+FROM maven:3.9.5
 
-# Use a Java image-base to execute the application
-FROM openjdk:21-jre-slim
-
-# Establish the working directory
+# Set the working directory for runtime
 WORKDIR /app
 
-# Copy the jar file from the compilation state
-COPY --from=build /app/target/provenance-api-1.0-SNAPSHOT.jar app.jar
+# Copy the built JAR and all necessary dependencies
+COPY --from=build /app/target/*.jar ./app.jar
 
-# Copy the container resources
-COPY src/main/resources ./resources
+# Copy the local dependency jars (if needed)
+COPY --from=build /root/.m2/repository /root/.m2/repository
 
-# Show the port in which the application is to be executed
-EXPOSE 8080
-
-# Specify that the container will accept arguments
-ENTRYPOINT ["java", "-cp", "app.jar"]
+# Command to run the application
+CMD ["mvn", "exec:java", "-Dexec.mainClass=com.telefonica.cose.provenance.example.Signer", "-Dexec.args='ietf-interfaces.xml'"]
