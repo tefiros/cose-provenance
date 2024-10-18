@@ -18,5 +18,8 @@ WORKDIR /app
 
 COPY . .
 
-# Command to run the application
-CMD ["mvn", "exec:java", "-Dexec.mainClass=com.telefonica.cose.provenance.example.Signer", "-Dexec.args='ietf-interfaces.xml'"]
+# Use ENTRYPOINT to define the base command for running the app
+ENTRYPOINT ["mvn", "exec:java"]
+
+# CMD will define the default arguments that can be overridden
+CMD ["-Dexec.mainClass=com.telefonica.cose.provenance.example.Signer", "-Dexec.args='ietf-interfaces.xml'"]
