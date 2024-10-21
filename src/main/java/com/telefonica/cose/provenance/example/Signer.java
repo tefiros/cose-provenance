@@ -1,19 +1,22 @@
 package com.telefonica.cose.provenance.example;
 
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
-import java.io.InputStream;
-import java.io.StringReader;
+import java.util.stream.Collectors;
 
 import org.jdom2.Document;
 import org.jdom2.input.SAXBuilder;
 
-
 import com.telefonica.cose.provenance.*;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
+import com.sun.net.httpserver.HttpExchange;
 
 public class Signer {
 
@@ -21,65 +24,72 @@ public class Signer {
 		org.apache.xml.security.Init.init();
 	}
 
-	static String filepath;
 	static String path = "provenance-interfaces.xml";
 
 	public static void main(String[] args) throws Exception {
-		
-		if (args.length != 1) {
-			System.out.println("The number of arguments is not correct.");
-		}else {
-			filepath = args[0];
-		}
+		// Start the HTTP server on port 8000
+		HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
+		server.createContext("/sign", new SignHandler());
+		server.setExecutor(null); // creates a default executor
+		System.out.println("Server is listening on port 8000...");
+		server.start();
+	}
 
-		// Check if the provided argument is a URL or a local file path
-		String xmlContent;
-		if (isValidURL(filepath)) {
-			System.out.println("Downloading XML from URL: " + filepath);
-			xmlContent = downloadXml(filepath);
-		} else {
-			System.out.println("Reading XML from file: " + filepath);
-			xmlContent = Files.readString(Path.of(filepath));
-		}
+	// Handler for processing incoming XML via POST request
+	static class SignHandler implements HttpHandler {
+		@Override
+		public void handle(HttpExchange exchange) throws IOException {
+			if ("POST".equals(exchange.getRequestMethod())) {
+				// Read the XML content from the request body
+				String xmlContent = new BufferedReader(new InputStreamReader(exchange.getRequestBody(), StandardCharsets.UTF_8))
+						.lines()
+						.collect(Collectors.joining("\n"));
 
+				// Print received XML content for debugging
+				System.out.println("Received XML content for signing: " + xmlContent);
+
+				// Process the XML data
+				try {
+					String signedXmlPath = processXmlData(xmlContent);
+					String response = "Document signed successfully! Saved at: " + signedXmlPath;
+					exchange.sendResponseHeaders(200, response.length());
+					OutputStream os = exchange.getResponseBody();
+					os.write(response.getBytes());
+					os.close();
+				} catch (Exception e) {
+					String errorResponse = "Error processing XML: " + e.getMessage();
+					exchange.sendResponseHeaders(500, errorResponse.length());
+					OutputStream os = exchange.getResponseBody();
+					os.write(errorResponse.getBytes());
+					os.close();
+				}
+			} else {
+				// Handle only POST requests
+				String response = "Only POST requests are allowed.";
+				exchange.sendResponseHeaders(405, response.length());
+				OutputStream os = exchange.getResponseBody();
+				os.write(response.getBytes());
+				os.close();
+			}
+		}
+	}
+
+	// Method to process the incoming XML data
+	private static String processXmlData(String xmlContent) throws Exception {
 		// Instantiate the Signature and Parameter classes
 		SignatureInterface sign = new Signature();
 		EnclosingMethodInterface enclose = new EnclosingMethods();
 		Parameters param = new Parameters();
 
 		// Generate provenance signature as a Base64 string
-		// String xmlFile = Files.readString(Path.of(filepath));
-		//Document doc = ver.loadXMLDocument(filepath);
 		String signature = sign.signing(xmlContent, param.getProperty("kid"));
 
-		// Enclose the previously generated signature into a YANG data provenance xml
+		// Load the XML Document
 		Document doc = loadXMLDocumentFromString(xmlContent);
 		Document provenanceXML = enclose.enclosingMethod(doc, signature);
 		sign.saveXMLDocument(provenanceXML, path);
 
-		System.out.println("Document was correctly saved in: " + path);
-	}
-
-	// Method to download XML content from a given URL
-	private static String downloadXml(String xmlUrl) throws Exception {
-		URL url = new URL(xmlUrl);
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-		connection.setRequestMethod("GET");
-
-		try (InputStream inputStream = connection.getInputStream();
-			 Scanner scanner = new Scanner(inputStream, StandardCharsets.UTF_8.name())) {
-			return scanner.useDelimiter("\\A").next();
-		}
-	}
-
-	// Helper method to check if a string is a valid URL
-	private static boolean isValidURL(String urlString) {
-		try {
-			new URL(urlString).toURI();
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
+		return path;
 	}
 
 	// Method to load XML document from a string using SAXBuilder
@@ -89,6 +99,4 @@ public class Signer {
 			return saxBuilder.build(reader);
 		}
 	}
-
-
 }
