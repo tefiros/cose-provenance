@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"><provenance-string>0oRRowNjeG1sBGdlYzIua2V5ASag9lhALX6AfBSAAmR0MTX/ROapGhc+6xcwJEGfMM0gAs/UqCNeGpF7OgjLe4a1yZvtrxGh0o/Xk8ZGDVeyiHnwEAR6Dg==</provenance-string>
+<interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"><provenance-string>0oRRowNjeG1sBGdlYzIua2V5ASag9lhAIycIBceo64Hrr75krDIg0mOuFjKW303nyYWO+S63kHL1rZbz0rOnNzw0EOMCaXWsl/+BUt9SfCm2W1T85JgDEg==</provenance-string>
     <interface>
         <name>GigabitEthernet1</name>
         <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">

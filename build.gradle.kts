@@ -36,5 +36,5 @@ publishing {
 tasks.register<JavaExec>("runExample") {
     mainClass.set("com.telefonica.cose.provenance.example.Signer")
     classpath = sourceSets.main.get().runtimeClasspath
-    args = listOf("ietf-interfaces.xml")
+    args = project.findProperty("execArgs")?.toString()?.split(",") ?: listOf()
 }
