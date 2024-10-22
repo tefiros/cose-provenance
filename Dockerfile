@@ -1,25 +1,30 @@
-# Use the official Maven image for building
-FROM maven:3.9.5 AS build
+# Use an official Gradle image with Kotlin support to build the project
+FROM gradle:7.0.2-jdk11 AS build
 
-# Set the working directory for building
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy the application code
+# Copy the entire project to the container
 COPY . .
 
-# Build the application
-RUN mvn clean package -DskipTests
+# Build the project using Gradle (including the shadowJar task)
+RUN gradle shadowJar --no-daemon
 
-# Use the same Maven image for runtime to run exec:java
-FROM maven:3.9.5
+# Use an official JDK image to run the application
+FROM openjdk:11-slim
 
-# Set the working directory for runtime
+# Set the working directory in the container
 WORKDIR /app
 
-COPY . .
+# Copy the built JAR file from the build stage
+COPY --from=build /app/build/libs/* /app/provenance-api.jar
 
-# Use ENTRYPOINT to define the base command for running the app
-ENTRYPOINT ["mvn", "exec:java"]
+# Copy the resources directory to the appropriate location in the container
+COPY src/main/resources /app/src/main/resources
 
-# CMD will define the default arguments that can be overridden
-CMD ["-Dexec.mainClass=com.telefonica.cose.provenance.example.Signer", "-Dexec.args='ietf-interfaces.xml'"]
+
+EXPOSE 8000
+
+# Set the default command to run the Kotlin main class
+ENTRYPOINT ["java", "-jar", "/app/provenance-api.jar"]
+
