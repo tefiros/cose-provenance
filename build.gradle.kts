@@ -53,7 +53,7 @@ tasks {
         archiveClassifier.set("")             // No classifier (empty means the main JAR)
         archiveVersion.set("")                // You can set this to the project version or leave it empty
         manifest {
-            attributes(mapOf("Main-Class" to "com.telefonica.cose.provenance.example.Signer")) // Specify the main class
+            attributes(mapOf("Main-Class" to "com.telefonica.cose.provenance.example.Verifier")) // Specify the main class
         }
     }
 
