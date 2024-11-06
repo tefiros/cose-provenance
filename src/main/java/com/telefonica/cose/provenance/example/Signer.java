@@ -14,16 +14,13 @@ public class Signer {
 	}
 
 	static String filepath;
-	static String path = "provenance-interfaces.xml";
+	static String path;
 
 	public static void main(String[] args) throws Exception {
 		
-		if (args.length != 1) {
-			System.out.println("The number of arguments is not correct.");
-		}else {
-			filepath = args[0];
-		}
 
+		filepath= "./ietf-interfaces.xml";
+		path= "./provenance-3.xml";
 		// Instantiate the Signature and Parameter classes
 		SignatureInterface sign = new Signature();
 		EnclosingMethodInterface enclose = new EnclosingMethods();

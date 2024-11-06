@@ -188,9 +188,14 @@ public class Verification extends XMLFileManagement implements VerificationInter
 		
 		byte[] signature = readSignature(YANGfile);
 		String message = readYANGFile(YANGfile);
+		//String check = message
+				//.replaceAll("[\\r\\n]+", "\n")     // Normalize line breaks
+				//.replaceAll(">\\s+<", ">\r\n<");      // Remove extra spaces between tags
+				//.trim();                           // Trim leading/trailing whitespace
 
 		// Verify the signature
 		Sign1Message verificator = (Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
+		//JSON serializa como XML y restituye bytes aqui
 		String content = canonicalizeXML(message);
 		verificator.SetContent(content);
 

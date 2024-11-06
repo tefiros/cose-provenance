@@ -23,12 +23,7 @@ public class Verifier {
 
 	public static void main(String[] args) throws Exception {
 		
-		if (args.length != 1) {
-			System.out.println("The number of arguments is not correct");
-		}else {
-			xmlFilePath = args[0];
-		}
-
+		xmlFilePath="./provenance-3.xml";
 		// Instantiate the Verification class
 		VerificationInterface ver = new Verification();
 		

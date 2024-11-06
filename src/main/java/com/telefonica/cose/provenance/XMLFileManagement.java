@@ -32,12 +32,14 @@ public class XMLFileManagement {
 	public String canonicalizeXML(String xmlYANG) {
 
 		byte[] content;
+		String check_string; // preprocessing for several \r\n
 		String canonicalizedFile = null;
 		try {
-			content = xmlYANG.getBytes();
+			check_string = xmlYANG.replaceAll(">\\s+<", ">\r\n<");
+			content = check_string.getBytes();
 			ByteArrayOutputStream output = new ByteArrayOutputStream();
 
-			Canonicalizer canonicalizer = Canonicalizer.getInstance(Canonicalizer.ALGO_ID_C14N_EXCL_OMIT_COMMENTS);
+			Canonicalizer canonicalizer = Canonicalizer.getInstance(Canonicalizer.ALGO_ID_C14N11_WITH_COMMENTS);
 			canonicalizer.canonicalize(content, output, false);
 
 			canonicalizedFile = new String(output.toByteArray(), "UTF-8");
