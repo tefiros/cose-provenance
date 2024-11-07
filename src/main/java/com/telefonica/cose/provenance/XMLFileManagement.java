@@ -33,8 +33,10 @@ public class XMLFileManagement {
 
 		byte[] content;
 		String canonicalizedFile = null;
+		String preprocessedXML = null;
 		try {
-			content = xmlYANG.getBytes();
+			preprocessedXML = xmlYANG.replaceAll(">\\s+<", "><");
+			content = preprocessedXML.getBytes();
 			ByteArrayOutputStream output = new ByteArrayOutputStream();
 
 			Canonicalizer canonicalizer = Canonicalizer.getInstance(Canonicalizer.ALGO_ID_C14N_EXCL_OMIT_COMMENTS);
