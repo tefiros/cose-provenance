@@ -120,7 +120,6 @@ public class Signature extends XMLFileManagement implements SignatureInterface {
 		// Creates a COSE_Sign1 object with null payload
 		Sign1Message sign1Message = new Sign1Message(true, false);
 		// Set message to sign
-		//document = document.replaceAll(">\\s+<", ">\r\n<");
 		String content = canonicalizeXML(document);
 		sign1Message.SetContent(content);
 
