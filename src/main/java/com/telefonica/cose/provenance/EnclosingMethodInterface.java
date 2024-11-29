@@ -1,5 +1,6 @@
 package com.telefonica.cose.provenance;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import org.jdom2.Document;
 
 public interface EnclosingMethodInterface {
@@ -7,20 +8,20 @@ public interface EnclosingMethodInterface {
 	/**
 	 * interface method
 	 */
-	Document enclosingMethod(Document YANGprovenance, String signature);
+	JsonNode enclosingMethod(JsonNode YANGprovenance, String signature);
 
-	/**
+/*	*//**
 	 * interface method
-	 */
+	 *//*
 	Document enclosingMethod2(Document YANGprovenance, String signature);
 
-	/**
+	*//**
 	 * interface method
-	 */
+	 *//*
 	Document enclosingMethod3(Document YANGprovenance, String signature);
 
-	/**
+	*//**
 	 * interface method
-	 */
-	Document enclosingMethod4(Document YANGprovenance, String signature);
+	 *//*
+	Document enclosingMethod4(Document YANGprovenance, String signature);*/
 }

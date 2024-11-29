@@ -4,7 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.erdtman.jcs.JsonCanonicalizer;
+
+
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,12 +25,11 @@ public class JSONFileManagement {
     /**
      * This method canonicalizes the JSON with the official JCS scheme [RFC 8785]
      *
-     * @param jsonNode file to be canonicalized
+     * @param jsonString file to be canonicalized
      * @return canonicalized json File as a String
      */
-    public String canonicalizeJSON(JsonNode jsonNode) {
+    public String canonicalizeJSON(String jsonString) throws JsonProcessingException {
         try {
-            String jsonString = jsonNode.toString();
             JsonCanonicalizer canonicalizer = new JsonCanonicalizer(jsonString);
             return canonicalizer.getEncodedString();
         } catch (IOException e) {
@@ -52,7 +54,32 @@ public class JSONFileManagement {
         return objectMapper.readTree(new File(jsonFilePath));
     }
 
+    /**
+     * This method saves the JSON as a File
+     *
+     * @param fileName JsonNode to be stored as a String
+     * @param jsonNode String of the file path where the JDOM will be stored
+     */
+    public void saveJSONnode(JsonNode jsonNode, String fileName) throws JsonProcessingException {
 
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            // Convert the JsonNode to a JSON string
+            String jsonString = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonNode);
+
+            // Write the JSON string to the specified file
+            FileWriter writer = new FileWriter(fileName);
+            writer.write(jsonString);
+            writer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+/*
     public static void main(String[] args) throws IOException {
         JSONFileManagement loader = new JSONFileManagement();
         JsonNode jsonNode = loader.loadJSONDocument("sample1.json");
@@ -66,5 +93,5 @@ public class JSONFileManagement {
         } else {
             System.out.println("Error during canonicalization.");
         }
-    }
+    }*/
 }

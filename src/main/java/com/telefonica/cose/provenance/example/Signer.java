@@ -3,6 +3,7 @@ package com.telefonica.cose.provenance.example;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import org.jdom2.Document;
 
 import com.telefonica.cose.provenance.*;
@@ -19,24 +20,24 @@ public class Signer {
 	public static void main(String[] args) throws Exception {
 		
 
-		filepath= "./sample1.json";
-		// path= "./provenance-4.xml";
+		filepath= "./JSONietf.json";
+		path= "./provenance-4.json";
 		// Instantiate the Signature and Parameter classes
 		SignatureInterface sign = new Signature();
 		EnclosingMethodInterface enclose = new EnclosingMethods();
 		Parameters param = new Parameters();
 
 		// Generate provenance signature as a Base64 string
-		String xmlFile = Files.readString(Path.of(filepath));
-		//Document doc = ver.loadXMLDocument(filepath);
-		String signature = sign.signing(xmlFile, param.getProperty("kid"));
+		String jsonFile = Files.readString(Path.of(filepath));
+		String signature = sign.signing(jsonFile, param.getProperty("kid"));
 
-		/*// Enclose the previously generated signature into a YANG data provenance xml
-		Document doc = sign.loadXMLDocument(filepath);
-		Document provenanceXML = enclose.enclosingMethod(doc, signature);
-		sign.saveXMLDocument(provenanceXML, path);
+		// Enclose the previously generated signature into a YANG data provenance xml
+		JsonNode doc = sign.loadJSONDocument(filepath);
 
-		System.out.println("Document was correctly saved in: " + path);*/
+		JsonNode JSONsigned = enclose.enclosingMethod(doc,signature);
+
+		sign.saveJSONnode(JSONsigned, path);
+		System.out.println("Document was correctly saved in: " + path);
 	}
 
 }

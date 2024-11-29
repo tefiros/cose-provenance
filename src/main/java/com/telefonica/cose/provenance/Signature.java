@@ -11,6 +11,7 @@ import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 import java.util.Base64;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import com.telefonica.cose.provenance.exception.COSESignatureException;
@@ -26,7 +27,7 @@ import COSE.Attribute;
  * @author S. Garcia
  */
 
-public class Signature extends XMLFileManagement implements SignatureInterface {
+public class Signature extends JSONFileManagement implements SignatureInterface {
 
 	static {
 		// Register BouncyCastle provider
@@ -115,12 +116,12 @@ public class Signature extends XMLFileManagement implements SignatureInterface {
 	 *                                   operations
 	 */
 	@Override
-	public String signing(String document, String kid) throws CoseException, COSESignatureException {
+	public String signing(String document, String kid) throws CoseException, COSESignatureException, JsonProcessingException {
 
 		// Creates a COSE_Sign1 object with null payload
 		Sign1Message sign1Message = new Sign1Message(true, false);
 		// Set message to sign
-		String content = canonicalizeXML(document);
+		String content = canonicalizeJSON(document);
 		sign1Message.SetContent(content);
 
 		OneKey privateKey;

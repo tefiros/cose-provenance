@@ -5,45 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fefdd05-3a00-4f6b-8d69-6e24ba5366f8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JSONietf.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crazy.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/java-json-canonicalization-1.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_11_49_[Changes]1/Signer$SignHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_11_49_[Changes]1/Signer$SignHandler.class.uniqueId1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_11_49_[Changes]1/Signer.class.uniqueId0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_11_49_[Changes]1/buildOutputCleanup.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_11_49_[Changes]1/checksums.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_11_49_[Changes]1/executionHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_11_49_[Changes]1/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_11_49_[Changes]1/file-system.probe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_11_49_[Changes]1/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_11_49_[Changes]1/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_11_49_[Changes]1/previous-compilation-data.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_11_49_[Changes]1/resourceHashesCache.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_11_49_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_10_2024_11_49__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/EnclosingMethodInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/EnclosingMethods.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/Parameters.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/Signature.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/SignatureInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/Verification.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/VerificationInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/XMLFileManagement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/example/Signer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/example/Verifier.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/exception/COSESignatureException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/provenance-3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/provenance-3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/EnclosingMethodInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/EnclosingMethodInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/EnclosingMethods.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/EnclosingMethods.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/JSONFileManagement.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/JSONFileManagement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/Signature.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/Signature.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/SignatureInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/SignatureInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/example/Signer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/example/Signer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/JSONFileManagement.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample1.json" beforeDir="false" afterPath="$PROJECT_DIR$/sample1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/EnclosingMethodInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/EnclosingMethodInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/EnclosingMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/EnclosingMethods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONFileManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONFileManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/Signature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/Signature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/SignatureInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/SignatureInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/example/Signer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/example/Signer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/example/ietf-interfaces.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/example/provenance.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +88,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "ana-mp26"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/tefiros/cose-provenance.git",
+    "accountId": "01e02c9f-6b5a-4c2b-8804-9d427f53c285"
+  }
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -129,7 +128,7 @@
     "Maven.provenance-api [install].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "json-version",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/id05294/OneDrive - Telefonica/Documentos/Serverless/firmas/cose-provenance",
     "node.js.detected.package.eslint": "true",
@@ -201,7 +200,7 @@
       <workItem from="1729763958936" duration="1304000" />
       <workItem from="1729765301575" duration="14872000" />
       <workItem from="1730298595504" duration="23310000" />
-      <workItem from="1732784590693" duration="11318000" />
+      <workItem from="1732784590693" duration="24302000" />
     </task>
     <servers />
   </component>
@@ -223,29 +222,34 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/example/Signer.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/Verification.java</url>
           <line>199</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/example/Signer.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONFileManagement.java</url>
-          <line>59</line>
+          <line>86</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONFileManagement.java</url>
-          <line>62</line>
+          <line>89</line>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/Signature.java</url>
+          <line>124</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/EnclosingMethods.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/EnclosingMethods.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

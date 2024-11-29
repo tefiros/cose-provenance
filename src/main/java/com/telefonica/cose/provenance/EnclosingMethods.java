@@ -2,6 +2,9 @@ package com.telefonica.cose.provenance;
 
 import java.io.IOException;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -16,42 +19,54 @@ import org.jdom2.Attribute;
  * 
  */
 
-public class EnclosingMethods extends XMLFileManagement implements EnclosingMethodInterface{
+public class EnclosingMethods extends JSONFileManagement implements EnclosingMethodInterface{
 
 	/**
 	 * Method related to the first enclosing method proposed
 	 * 
-	 * @param YANGprovenance xml file where the signature is to be enclosed
+	 * @param rootNode xml file where the signature is to be enclosed
 	 * @param signature      signature to include in the YANG data provenance
 	 * @return JDOM of the YANG data provenance with the new signature element
 	 *         integrated
 	 */
-	public Document enclosingMethod(Document YANGprovenance, String signature) {
+	public JsonNode enclosingMethod(JsonNode rootNode, String signature) {
 
-		Parameters param = new Parameters();
-		
-		Element rootElementDocument = YANGprovenance.getRootElement();
-		Namespace namespace = rootElementDocument.getNamespace();
+//		Parameters param = new Parameters();
+//
+//		Element rootElementDocument = YANGprovenance.getRootElement();
+//		Namespace namespace = rootElementDocument.getNamespace();
+//
+//		// Get bage64 provenance signature so we can store it inside the YANG structure
+//		Element signatureElement = new Element(param.getProperty("Signature Element"), namespace);
+//		signatureElement.setText(signature);
+//
+//		// Add the new provenance-string element to the root element
+//		rootElementDocument.addContent(0, signatureElement);
 
-		// Get bage64 provenance signature so we can store it inside the YANG structure
-		Element signatureElement = new Element(param.getProperty("Signature Element"), namespace);
-		signatureElement.setText(signature);
+		// Step 2: Add the leaf node (provenance-string)
+		if (rootNode.isObject()) {
+			ObjectNode rootObjectNode = (ObjectNode) rootNode;
+			rootObjectNode.put("provenance-string", signature);
+		} else {
+			throw new IllegalArgumentException("The root of the JSON must be an object node");
+		}
 
-		// Add the new provenance-string element to the root element
-		rootElementDocument.addContent(0, signatureElement);
 
-		return YANGprovenance;
+		return rootNode;
 
 	}
 
-	/**
+/*
+	*/
+/**
 	 * Method related to the second enclosing method proposed
 	 * 
 	 * @param YANGprovenance xml file where the signature is to be enclosed
 	 * @param signature      signature to include in the YANG data provenance
 	 * @return JDOM of the YANG data provenance with the new signature element
 	 *         integrated
-	 */
+	 *//*
+
 	public Document enclosingMethod2(Document YANGprovenance, String signature) {
 
 		Parameters param = new Parameters();
@@ -70,14 +85,16 @@ public class EnclosingMethods extends XMLFileManagement implements EnclosingMeth
 
 	}
 
-	/**
+	*/
+/**
 	 * Method related to the third enclosing method proposed
 	 * 
 	 * @param YANGprovenance xml file where the signature is to be enclosed
 	 * @param signature      signature to include in the YANG data provenance
 	 * @return JDOM of the YANG data provenance with the new signature element
 	 *         integrated
-	 */
+	 *//*
+
 	public Document enclosingMethod3(Document YANGprovenance, String signature) {
 
 		Parameters param = new Parameters();
@@ -95,14 +112,16 @@ public class EnclosingMethods extends XMLFileManagement implements EnclosingMeth
 		return YANGprovenance;
 	}
 
-	/**
+	*/
+/**
 	 * Method related to the fourth enclosing method proposed
 	 * 
 	 * @param YANGprovenance xml file where the signature is to be enclosed
 	 * @param signature      signature to include in the YANG data provenance
 	 * @return JDOM of the YANG data provenance with the new signature element
 	 *         integrated
-	 */
+	 *//*
+
 	public Document enclosingMethod4(Document YANGprovenance, String signature) {
 
 		Parameters param = new Parameters();
@@ -120,5 +139,6 @@ public class EnclosingMethods extends XMLFileManagement implements EnclosingMeth
 		return YANGprovenance;
 
 	}
+*/
 
 }
