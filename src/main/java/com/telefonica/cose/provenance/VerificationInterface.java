@@ -2,6 +2,8 @@ package com.telefonica.cose.provenance;
 
 import java.io.IOException;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
 
@@ -16,11 +18,11 @@ public interface VerificationInterface {
 	/**
 	 * interface method
 	 */
-	boolean verify(Document documento) throws Exception;
+	boolean verify(JsonNode jsonNode) throws Exception;
 
 	/**
 	 * interface method
 	 */
-	Document loadXMLDocument(String xmlFilePath)throws JDOMException, IOException ;
+	JsonNode loadJSONDocument(String jsonFilePath) throws IOException, JsonProcessingException;
 
 }

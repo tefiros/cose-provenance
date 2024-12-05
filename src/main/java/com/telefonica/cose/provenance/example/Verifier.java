@@ -1,6 +1,8 @@
 package com.telefonica.cose.provenance.example;
 
 import java.security.Security;
+
+import com.fasterxml.jackson.databind.JsonNode;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.jdom2.Document;
 
@@ -19,15 +21,15 @@ public class Verifier {
 		org.apache.xml.security.Init.init();
 	}
 
-	static String xmlFilePath;
+	static String filepath;
 
 	public static void main(String[] args) throws Exception {
 		
-		xmlFilePath="./provenance-3.xml";
+		filepath="./provenance-4.json";
 		// Instantiate the Verification class
 		VerificationInterface ver = new Verification();
 		
-		Document doc = ver.loadXMLDocument(xmlFilePath);
+		JsonNode doc = ver.loadJSONDocument(filepath);
 
 		// Verify COSE signature and content
 		try {

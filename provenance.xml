@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
-
     <provenance-string>0oRRowNjeG1sBGdlYzIua2V5ASag9lhAdG84h8/fOEUBn4+wHCVDjpmk7PFKerIBgwX4UXLEWndDK/rVDoQd89gCpxpQoX6/ZRPpcyU7e06XL5UmyDAmyQ==</provenance-string>
     <interface>
         <name>GigabitEthernet1</name>

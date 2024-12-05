@@ -1,0 +1,17 @@
+{
+  "ietf-notification:notification" : {
+    "eventTime" : "2023-02-10T08:00:11.22Z",
+    "ietf-yang-push:push-update" : {
+      "id" : 1011,
+      "datastore-contents" : {
+        "ietf-interfaces:interfaces" : [ {
+          "interface" : {
+            "name" : "eth0",
+            "oper-status" : "up"
+          }
+        } ]
+      }
+    },
+    "provenance-string" : "0oRRowNjeG1sBGdlYzIua2V5ASag9lhAvkE8Y0Od9zRLM/sNlJtau07xuO3zDArCnUhaKJpS6erVUL0MflWm7zby//k4BBQ2zBiBO6LDouoaiuGGj6EwiQ=="
+  }
+}

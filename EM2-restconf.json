@@ -1,0 +1,13 @@
+{
+  "ietf-restconf:notification" : {
+    "eventTime" : "2013-12-21T00:01:00Z",
+    "example-mod:event" : {
+      "event-class" : "fault",
+      "reporting-entity" : {
+        "card" : "Ethernet0"
+      },
+      "severity" : "major"
+    },
+    "provenance-string" : "0oRRowNjeG1sBGdlYzIua2V5ASag9lhArfYIbXGXjjg5wMF+xJnYGm0NV3ULe2triP4gT7GFeikK19g1N3gNXD5ZZbCn03aN68PgIEl+dglQ6/mobLeEvg=="
+  }
+}

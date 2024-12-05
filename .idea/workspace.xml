@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fefdd05-3a00-4f6b-8d69-6e24ba5366f8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/metadataJSON.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/netconf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restconf.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
@@ -13,24 +16,27 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/EnclosingMethodInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/EnclosingMethodInterface.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/EnclosingMethods.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/EnclosingMethods.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/JSONFileManagement.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/JSONFileManagement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/Signature.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/Signature.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/SignatureInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/SignatureInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/Verification.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/Verification.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/VerificationInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/VerificationInterface.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/example/Signer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/example/Signer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/JSONFileManagement.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/example/Verifier.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/example/Verifier.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Signer.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Signer.class.uniqueId0" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample1.json" beforeDir="false" afterPath="$PROJECT_DIR$/sample1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ietf-interfaces.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ietf-interfaces.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/provenance-2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/provenance-3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/provenance-4.json" beforeDir="false" afterPath="$PROJECT_DIR$/provenance-4.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/provenance.xml" beforeDir="false" afterPath="$PROJECT_DIR$/provenance.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/EnclosingMethodInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/EnclosingMethodInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/EnclosingMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/EnclosingMethods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONFileManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONFileManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/Signature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/Signature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/SignatureInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/SignatureInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/Verification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/Verification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/VerificationInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/VerificationInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/example/Signer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/example/Signer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/example/Verifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/example/Verifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ietf-interfaces-metadata.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ietf-interfaces-metadata.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,6 +129,7 @@
     "Docker.Dockerfile build.executor": "Run",
     "Gradle.cose-provenance [:com.telefonica.cose.provenance.JSONFileManagement.main()].executor": "Debug",
     "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.Signer.main()].executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.Verifier.main()].executor": "Run",
     "Maven.provenance-api [clean].executor": "Run",
     "Maven.provenance-api [compile].executor": "Run",
     "Maven.provenance-api [install].executor": "Run",
@@ -200,7 +207,7 @@
       <workItem from="1729763958936" duration="1304000" />
       <workItem from="1729765301575" duration="14872000" />
       <workItem from="1730298595504" duration="23310000" />
-      <workItem from="1732784590693" duration="24302000" />
+      <workItem from="1732784590693" duration="45196000" />
     </task>
     <servers />
   </component>
@@ -223,7 +230,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/Verification.java</url>
-          <line>199</line>
+          <line>197</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -235,21 +242,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONFileManagement.java</url>
           <line>89</line>
           <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/Signature.java</url>
-          <line>124</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/EnclosingMethods.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/EnclosingMethods.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

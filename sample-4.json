@@ -1,0 +1,13 @@
+{
+  "name" : "John",
+  "age" : 25,
+  "city" : "Sampleville",
+  "married" : false,
+  "hobbies" : [ "reading", "traveling", "programming" ],
+  "address" : {
+    "street" : "123 Main Street",
+    "city" : "Sample City",
+    "postal_code" : "12345"
+  },
+  "provenance-string" : "0oRRowNjeG1sBGdlYzIua2V5ASag9lhAUkyUOs+a0prFdjoYvJANpKVEPmaFrGfHCuywkGtaLwcM8dvbccDnm1z6kRrjTqw+QRaXfr5YT0d0g47quloFpA=="
+}

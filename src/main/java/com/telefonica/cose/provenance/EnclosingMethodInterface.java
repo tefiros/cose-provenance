@@ -12,10 +12,10 @@ public interface EnclosingMethodInterface {
 
 /*	*//**
 	 * interface method
-	 *//*
-	Document enclosingMethod2(Document YANGprovenance, String signature);
+	 */
+	JsonNode enclosingMethod2(JsonNode YANGprovenance, String signature);
 
-	*//**
+	/**
 	 * interface method
 	 *//*
 	Document enclosingMethod3(Document YANGprovenance, String signature);

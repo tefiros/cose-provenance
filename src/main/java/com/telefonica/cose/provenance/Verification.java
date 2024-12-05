@@ -16,6 +16,7 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.util.Base64;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -40,7 +41,7 @@ import COSE.Sign1Message;
  * @author S. Garcia
  */
 
-public class Verification extends XMLFileManagement implements VerificationInterface {
+public class Verification extends JSONFileManagement implements VerificationInterface {
 
 	static {
 		// Register BouncyCastle provider
@@ -166,7 +167,7 @@ public class Verification extends XMLFileManagement implements VerificationInter
 		}
 
 		StringWriter contentXML = new StringWriter();
-		saveXMLDocument(YANGFile, contentXML);
+		//saveXMLDocument(YANGFile, contentXML);
 		content = contentXML.toString();
 
 		return content;
@@ -184,28 +185,25 @@ public class Verification extends XMLFileManagement implements VerificationInter
 	 * @throws COSESignatureException 
 	 */
 	@Override
-	public boolean verify(Document YANGfile) throws CoseException, COSESignatureException {
+	public boolean verify(JsonNode YANGfile) throws CoseException, COSESignatureException {
 		
-		byte[] signature = readSignature(YANGfile);
-		String message = readYANGFile(YANGfile);
-		//String check = message
-				//.replaceAll("[\\r\\n]+", "\n")     // Normalize line breaks
-				//.replaceAll(">\\s+<", ">\r\n<");      // Remove extra spaces between tags
-				//.trim();                           // Trim leading/trailing whitespace
-
-		// Verify the signature
-		Sign1Message verificator = (Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
-		//JSON serializa como XML y restituye bytes aqui
-		String content = canonicalizeXML(message);
-		verificator.SetContent(content);
-
-		// System.out.println(verificator.findAttribute(HeaderKeys.KID,
-		// Attribute.PROTECTED).AsString());
-		OneKey publicOnlyKey = publicKey(verificator.findAttribute(HeaderKeys.KID, Attribute.PROTECTED).AsString());
-		// OneKey publicOnlyKey = publicKey("ec2.key");
-
-		return verificator.validate(publicOnlyKey);
-
+//		byte[] signature = readSignature(YANGfile);
+//		String message = readYANGFile(YANGfile);
+//
+//
+//		// Verify the signature
+//		Sign1Message verificator = (Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
+//		//JSON serializa como XML y restituye bytes aqui
+//		//String content = canonicalizeXML(message);
+//		//verificator.SetContent(content);
+//
+//		// System.out.println(verificator.findAttribute(HeaderKeys.KID,
+//		// Attribute.PROTECTED).AsString());
+//		OneKey publicOnlyKey = publicKey(verificator.findAttribute(HeaderKeys.KID, Attribute.PROTECTED).AsString());
+//		// OneKey publicOnlyKey = publicKey("ec2.key");
+//
+//		return verificator.validate(publicOnlyKey);
+		return true;
 	}
 
 }

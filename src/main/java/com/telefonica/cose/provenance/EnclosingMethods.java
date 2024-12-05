@@ -9,6 +9,8 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.Namespace;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 import org.jdom2.Attribute;
 
@@ -43,14 +45,13 @@ public class EnclosingMethods extends JSONFileManagement implements EnclosingMet
 //		// Add the new provenance-string element to the root element
 //		rootElementDocument.addContent(0, signatureElement);
 
-		// Step 2: Add the leaf node (provenance-string)
+		// Add the leaf node (provenance-string)
 		if (rootNode.isObject()) {
 			ObjectNode rootObjectNode = (ObjectNode) rootNode;
 			rootObjectNode.put("provenance-string", signature);
 		} else {
 			throw new IllegalArgumentException("The root of the JSON must be an object node");
 		}
-
 
 		return rootNode;
 
@@ -61,31 +62,46 @@ public class EnclosingMethods extends JSONFileManagement implements EnclosingMet
 /**
 	 * Method related to the second enclosing method proposed
 	 * 
-	 * @param YANGprovenance xml file where the signature is to be enclosed
+	 * @param rootNode xml file where the signature is to be enclosed
 	 * @param signature      signature to include in the YANG data provenance
 	 * @return JDOM of the YANG data provenance with the new signature element
 	 *         integrated
-	 *//*
+	 */
 
-	public Document enclosingMethod2(Document YANGprovenance, String signature) {
+	public JsonNode enclosingMethod2(JsonNode rootNode, String signature) {
 
-		Parameters param = new Parameters();
+		// Define the key patterns that indicate NETCONF/RESTCONF notifications
+		String[] notificationKeys = {"ietf-restconf:notification", "ietf-notification:notification"};
 
-		Element rootElement = YANGprovenance.getRootElement();
-		Namespace namespace = rootElement.getNamespace();
+		// Traverse the JSON to find the notification node
+		if (rootNode.isObject()) {
+			ObjectNode rootObjectNode = (ObjectNode) rootNode;
 
-		Element notificationElement = rootElement.getChild("eventTime", namespace);
+			// Iterate through the entries to find the notification node
+			Iterator<Entry<String, JsonNode>> fields = rootObjectNode.fields();
+			while (fields.hasNext()) {
+				Entry<String, JsonNode> field = fields.next();
+				String fieldName = field.getKey();
+				JsonNode valueNode = field.getValue();
 
-		Element provenanceElement = new Element(param.getProperty("Signature Element"), namespace);
-		provenanceElement.setText(signature);
-
-		rootElement.addContent(rootElement.indexOf(notificationElement) + 1, provenanceElement);
-
-		return YANGprovenance;
+				// Check if the current field is one of the notification keys
+				for (String notificationKey : notificationKeys) {
+					if (fieldName.equals(notificationKey) && valueNode.isObject()) {
+						ObjectNode notificationNode = (ObjectNode) valueNode;
+						// Add the provenance-string node at the same level as eventTime
+						notificationNode.put("provenance-string", signature);
+						return rootNode;
+					}
+				}
+			}
+			throw new IllegalArgumentException("The JSON does not contain a valid NETCONF/RESTCONF notification object node");
+		} else {
+			throw new IllegalArgumentException("The root of the JSON must be an object node");
+		}
 
 	}
 
-	*/
+
 /**
 	 * Method related to the third enclosing method proposed
 	 * 
@@ -110,6 +126,8 @@ public class EnclosingMethods extends JSONFileManagement implements EnclosingMet
 		rootElement.addContent(index, provenanceElement);
 
 		return YANGprovenance;
+
+		//ponerlo al nivel de content-name
 	}
 
 	*/
