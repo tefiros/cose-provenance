@@ -22,6 +22,6 @@ public interface EnclosingMethodInterface {
 
 	*//**
 	 * interface method
-	 *//*
-	Document enclosingMethod4(Document YANGprovenance, String signature);*/
+	 */
+	JsonNode enclosingMethod3(JsonNode YANGprovenance, String signature);
 }
