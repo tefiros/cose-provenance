@@ -20,8 +20,8 @@ public class Signer {
 	public static void main(String[] args) throws Exception {
 		
 
-		filepath= "./metadata.json";
-		path= "./EM3-metadata.json";
+		filepath= "./JSONietf.json";
+		path= "./EM4-mdAnnotation.json";
 		// Instantiate the Signature and Parameter classes
 		SignatureInterface sign = new Signature();
 		EnclosingMethodInterface enclose = new EnclosingMethods();
@@ -34,7 +34,7 @@ public class Signer {
 		// Enclose the previously generated signature into a YANG data provenance xml
 		JsonNode doc = sign.loadJSONDocument(filepath);
 
-		JsonNode JSONsigned = enclose.enclosingMethod3(doc,signature);
+		JsonNode JSONsigned = enclose.enclosingMethod4(doc,signature);
 
 		sign.saveJSONnode(JSONsigned, path);
 		System.out.println("Document was correctly saved in: " + path);

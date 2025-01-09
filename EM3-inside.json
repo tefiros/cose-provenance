@@ -1,0 +1,9 @@
+{
+  "ietf-yang-instance-data:instance-data-set" : {
+    "name" : "interfaces-labTID-status",
+    "contact" : "sofia.garciarincon.practicas@telefonica.com",
+    "timestamp" : "Thu Jul 18 11:42:06 CEST 2024",
+    "content-data" : {},
+    "provenance-string" : "0oRRowNjeG1sBGdlYzIua2V5ASag9lhAmop/c7wMcjRmiSPVy65F/N6O21dsGkjGQjIDRizhu3WMwi9Je+VUf5sqwlhSwQCdv5u7mRXa6Pd9dhCwdxdRCA=="
+  }
+}

@@ -11,6 +11,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.Namespace;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import org.jdom2.Attribute;
@@ -94,36 +95,6 @@ public class EnclosingMethods extends JSONFileManagement implements EnclosingMet
 /**
 	 * Method related to the third enclosing method proposed
 	 * 
-	 * @param YANGprovenance xml file where the signature is to be enclosed
-	 * @param signature      signature to include in the YANG data provenance
-	 * @return JDOM of the YANG data provenance with the new signature element
-	 *         integrated
-	 *//*
-
-	public Document enclosingMethod3(Document YANGprovenance, String signature) {
-
-		Parameters param = new Parameters();
-
-		Element rootElement = YANGprovenance.getRootElement();
-		Namespace namespace = rootElement.getNamespace();
-
-		Element provenanceElement = new Element(param.getProperty("Signature Element"), namespace);
-		provenanceElement.setText(signature);
-
-		Element content = rootElement.getChild("content-data", namespace);
-		int index = rootElement.indexOf(content);
-		rootElement.addContent(index, provenanceElement);
-
-		return YANGprovenance;
-
-		//ponerlo al nivel de content-name
-	}
-
-	*/
-/**
- * This method in JSON would have been the same as method 1. In JSON there is not an specific translation for an annotation
-	 * Method related to the fourth enclosing method proposed
-	 * 
 	 * @param rootNode xml file where the signature is to be enclosed
 	 * @param signature      signature to include in the YANG data provenance
 	 * @return JDOM of the YANG data provenance with the new signature element
@@ -139,12 +110,67 @@ public class EnclosingMethods extends JSONFileManagement implements EnclosingMet
 
 			// Create the metadata object
 			ObjectNode metadataNode = objectMapper.createObjectNode();
-			metadataNode.put("ypmd:provenance-string", signature);
+			metadataNode.put("provenance-string", signature);
 
 			// Add the metadata object to the root node
 			rootObjectNode.set("@", metadataNode);
 		} else {
 			throw new IllegalArgumentException("The root of the JSON must be an object node");
+		}
+
+//		if (rootNode.isObject()) {
+//			ObjectNode rootObjectNode = (ObjectNode) rootNode;
+//
+//			// Check if "ietf-yang-instance-data:instance-data-set" exists
+//			if (rootObjectNode.has("ietf-yang-instance-data:instance-data-set")) {
+//				// Access the "ietf-yang-instance-data:instance-data-set" object
+//				ObjectNode instanceDataSetNode = (ObjectNode) rootObjectNode.get("ietf-yang-instance-data:instance-data-set");
+//
+//				// Add the "provenance-string" inside "ietf-yang-instance-data:instance-data-set"
+//				instanceDataSetNode.put("provenance-string", signature);
+//			} else {
+//				throw new IllegalArgumentException("The JSON must contain the 'ietf-yang-instance-data:instance-data-set' key");
+//			}
+//		} else {
+//			throw new IllegalArgumentException("The root of the JSON must be an object node");
+//		}
+
+		return rootNode;
+
+	}
+
+
+
+	/**
+	 * Method related to the fourth enclosing method proposed
+	 *
+	 * @param rootNode xml file where the signature is to be enclosed
+	 * @param signature      signature to include in the YANG data provenance
+	 * @return JDOM of the YANG data provenance with the new signature element
+	 *         integrated
+	 */
+
+	// private static final ObjectMapper objectMapper = new ObjectMapper();
+
+	public JsonNode enclosingMethod4(JsonNode rootNode, String signature) {
+		// Ensure the root node is an object
+		if (!rootNode.isObject()) {
+			throw new IllegalArgumentException("The root of the JSON must be an object node.");
+		}
+
+		ObjectNode rootObjectNode = (ObjectNode) rootNode;
+
+		// Iterate through all fields of the root node
+		Iterator<Map.Entry<String, JsonNode>> fields = rootObjectNode.fields();
+		while (fields.hasNext()) {
+			Map.Entry<String, JsonNode> field = fields.next();
+			JsonNode value = field.getValue();
+
+			// If the field value is an object node, add the metadata
+			if (value.isObject()) {
+				ObjectNode targetObjectNode = (ObjectNode) value;
+				targetObjectNode.put("@ypmd:provenance-string", signature);
+			}
 		}
 
 		return rootNode;

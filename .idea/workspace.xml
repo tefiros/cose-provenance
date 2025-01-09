@@ -6,12 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="5fefdd05-3a00-4f6b-8d69-6e24ba5366f8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EM3-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/EM3-metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/EnclosingMethodInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/EnclosingMethodInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/EnclosingMethods.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/EnclosingMethods.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/example/Signer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/example/Signer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Signer.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Signer.class.uniqueId0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/EnclosingMethodInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/EnclosingMethodInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/EnclosingMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/EnclosingMethods.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/example/Signer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/example/Signer.java" afterDir="false" />
@@ -187,7 +195,8 @@
       <workItem from="1730298595504" duration="23310000" />
       <workItem from="1732784590693" duration="45563000" />
       <workItem from="1734346743292" duration="604000" />
-      <workItem from="1734600624535" duration="11928000" />
+      <workItem from="1734600624535" duration="13821000" />
+      <workItem from="1736327536596" duration="20777000" />
     </task>
     <servers />
   </component>

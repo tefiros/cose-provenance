@@ -17,11 +17,11 @@ public interface EnclosingMethodInterface {
 
 	/**
 	 * interface method
-	 *//*
-	Document enclosingMethod3(Document YANGprovenance, String signature);
-
-	*//**
-	 * interface method
 	 */
 	JsonNode enclosingMethod3(JsonNode YANGprovenance, String signature);
+
+	/**
+	 * interface method
+	 */
+	JsonNode enclosingMethod4(JsonNode YANGprovenance, String signature);
 }

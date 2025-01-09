@@ -19,7 +19,8 @@
       "name" : "lo1",
       "type" : "iana-if-type:softwareLoopback",
       "enabled" : true
-    } ]
+    } ],
+    "@ypmd:provenance-string" : "0oRRowNjeG1sBGdlYzIua2V5ASag9lhAh02Gdjl4dlCv4pIPDF1SA9tEzn0feHg4P8KCBosTlu/PRJMwOXOmxzMfElj228fK74hHxq3vamEyqnnXXwowiw=="
   },
   "ietf-interfaces:interfaces-state" : {
     "interface" : [ {
@@ -72,9 +73,7 @@
       "statistics" : {
         "discontinuity-time" : "2013-04-01T03:00:00+00:00"
       }
-    } ]
-  },
-  "@" : {
-    "provenance-string" : "0oRRowNjeG1sBGdlYzIua2V5ASag9lhA4RH4CSJCZLvVOXHF6/bj1Uw9hiXNuRer0X6DfSEi3ho0s6rF76J7CvEskeDkftG9zw70Rbd4Tgg2jgIbnFq5SQ=="
+    } ],
+    "@ypmd:provenance-string" : "0oRRowNjeG1sBGdlYzIua2V5ASag9lhAh02Gdjl4dlCv4pIPDF1SA9tEzn0feHg4P8KCBosTlu/PRJMwOXOmxzMfElj228fK74hHxq3vamEyqnnXXwowiw=="
   }
 }
