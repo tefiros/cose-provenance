@@ -17,7 +17,9 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.util.Base64;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.jdom2.Document;
@@ -221,37 +223,68 @@ public class Verification extends JSONFileManagement implements VerificationInte
 
 
 
+//	/**
+//	 * This method reads the updated xml assuming the signature element was
+//	 * previously removed for verification
+//	 *
+//	 * @param YANGFile JDOM document with YANG data and the signature enclosed
+//	 * @return the ToBeVerified xml file as a String
+//	 */
+//	String readYANGFile(Document YANGFile) throws COSESignatureException {
+//
+//		Parameters param = new Parameters();
+//
+//		String content = null;
+//
+//		Element rootElement = YANGFile.getRootElement();
+//		Namespace namespace = rootElement.getNamespace();
+//		Namespace namespace2 = rootElement.getNamespace("ypmd");
+//
+//		if (rootElement.getAttribute("provenance-string", namespace2) != null) {
+//			rootElement.removeAttribute("provenance-string", namespace2);
+//		} else if (rootElement.getChild(param.getProperty("Signature Element"), namespace) != null) {
+//			rootElement.removeChild(param.getProperty("Signature Element"), namespace);
+//		} else {
+//			throw new COSESignatureException("No leaf or metadata related to a signature");
+//		}
+//
+//		StringWriter contentXML = new StringWriter();
+//		//saveXMLDocument(YANGFile, contentXML);
+//		content = contentXML.toString();
+//
+//		return content;
+//
+//	}
+
+
 	/**
-	 * This method reads the updated xml assuming the signature element was
-	 * previously removed for verification
-	 * 
-	 * @param YANGFile JDOM document with YANG data and the signature enclosed
-	 * @return the ToBeVerified xml file as a String
+	 * This method reads the JSON document, removes the "provenance-string" field if present,
+	 * and returns the updated JSON content as a string.
+	 *
+	 * @param yangFile The JsonNode representing the JSON document.
+	 * @return The content of the JSON document as a string after removing the "provenance-string".
+	 * @throws COSESignatureException If no "provenance-string" is found in the JSON document.
 	 */
-	String readYANGFile(Document YANGFile) throws COSESignatureException {
+	String readYANGFile(JsonNode yangFile) throws COSESignatureException {
+		ObjectMapper objectMapper = new ObjectMapper();
 
-		Parameters param = new Parameters();
+//		// Check for "@ypmd:provenance-string" or "provenance-string"
+//		if (yangFile.has("@ypmd:provenance-string")) {
+//			// Remove the "@ypmd:provenance-string" field
+//			((ObjectNode) yangFile).remove("@ypmd:provenance-string");
+//		} else if (yangFile.has("provenance-string")) {
+//			// Remove the "provenance-string" field
+//			((ObjectNode) yangFile).remove("provenance-string");
+//		} else {
+//			throw new COSESignatureException("No provenance-string found in the JSON document");
+//		}
 
-		String content = null;
-
-		Element rootElement = YANGFile.getRootElement();
-		Namespace namespace = rootElement.getNamespace();
-		Namespace namespace2 = rootElement.getNamespace("ypmd");
-
-		if (rootElement.getAttribute("provenance-string", namespace2) != null) {
-			rootElement.removeAttribute("provenance-string", namespace2);
-		} else if (rootElement.getChild(param.getProperty("Signature Element"), namespace) != null) {
-			rootElement.removeChild(param.getProperty("Signature Element"), namespace);
-		} else {
-			throw new COSESignatureException("No leaf or metadata related to a signature");
+		try {
+			// Convert the updated JSON document back to a string
+			return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(yangFile);
+		} catch (JsonProcessingException e) {
+			throw new COSESignatureException("Failed to serialize the JSON document.", e);
 		}
-
-		StringWriter contentXML = new StringWriter();
-		//saveXMLDocument(YANGFile, contentXML);
-		content = contentXML.toString();
-
-		return content;
-
 	}
 
 	/**
@@ -265,26 +298,25 @@ public class Verification extends JSONFileManagement implements VerificationInte
 	 * @throws COSESignatureException 
 	 */
 	@Override
-	public boolean verify(JsonNode YANGfile) throws CoseException, COSESignatureException {
+	public boolean verify(JsonNode YANGfile) throws CoseException, COSESignatureException, JsonProcessingException {
 		
 		byte[] signature = readSignature(YANGfile);
 
-//		String message = readYANGFile(YANGfile);
-//
-//
-//		// Verify the signature
-//		Sign1Message verificator = (Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
-//		//JSON serializa como XML y restituye bytes aqui
-//		//String content = canonicalizeXML(message);
-//		//verificator.SetContent(content);
-//
-//		// System.out.println(verificator.findAttribute(HeaderKeys.KID,
-//		// Attribute.PROTECTED).AsString());
-//		OneKey publicOnlyKey = publicKey(verificator.findAttribute(HeaderKeys.KID, Attribute.PROTECTED).AsString());
-//		// OneKey publicOnlyKey = publicKey("ec2.key");
-//
-//		return verificator.validate(publicOnlyKey);
-		return true;
+		String message = readYANGFile(YANGfile);
+
+
+		// Verify the signature
+		Sign1Message verificator = (Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
+		//JSON serializa como XML y restituye bytes aqui
+		String content = canonicalizeJSON(message);
+		verificator.SetContent(content);
+
+		// System.out.println(verificator.findAttribute(HeaderKeys.KID,
+		// Attribute.PROTECTED).AsString());
+		OneKey publicOnlyKey = publicKey(verificator.findAttribute(HeaderKeys.KID, Attribute.PROTECTED).AsString());
+		// OneKey publicOnlyKey = publicKey("ec2.key");
+
+		return verificator.validate(publicOnlyKey);
 	}
 
 }

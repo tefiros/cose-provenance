@@ -25,7 +25,7 @@ public class Verifier {
 
 	public static void main(String[] args) throws Exception {
 		
-		filepath="./EM3-metadata.json";
+		filepath="./EM2-netconf.json";
 		// Instantiate the Verification class
 		VerificationInterface ver = new Verification();
 		
