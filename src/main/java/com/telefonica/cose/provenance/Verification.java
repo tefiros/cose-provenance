@@ -5,6 +5,7 @@ package com.telefonica.cose.provenance;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Iterator;
 import java.io.StringWriter;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -17,11 +18,14 @@ import java.security.cert.CertificateException;
 import java.util.Base64;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.Namespace;
+
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import com.telefonica.cose.provenance.exception.COSESignatureException;
 import com.upokecenter.cbor.CBORObject;
@@ -107,39 +111,115 @@ public class Verification extends JSONFileManagement implements VerificationInte
 
 	}
 
+//	/**
+//	 * This method extracts the signature from the YANG data provenance file and
+//	 * removes the related element
+//	 *
+//	 * @param YANGFile JDOM document with YANG data and the signature enclosed
+//	 * @return signature as a bstr
+//	 */
+//	byte[] readSignature(JsonNode YANGFile) throws COSESignatureException {
+//
+//		// CHECK INSIDE NETCONF
+//		byte[] signature = null;
+//
+//		// Check for "provenance-string" annotation or metadata
+//		if (YANGFile.has("@ypmd:provenance-string")) {
+//			// Get the signature value
+//			String signString = YANGFile.get("@ypmd:provenance-string").asText();
+//
+//			// Remove the "provenance-string" field
+//			((ObjectNode) YANGFile).remove("@ypmd:provenance-string");
+//
+//			// Decode the Base64 signature
+//			signature = Base64.getDecoder().decode(signString);
+//		} else if (YANGFile.has("provenance-string")) {
+//			// Handle case where "provenance-string" is a regular field
+//			String signString = YANGFile.get("provenance-string").asText();
+//
+//			// Remove the "provenance-string" field
+//			((ObjectNode) YANGFile).remove("provenance-string");
+//
+//			// Decode the Base64 signature
+//			signature = Base64.getDecoder().decode(signString);
+//		} else {
+//			throw new COSESignatureException("No provenance-string found in the JSON document");
+//		}
+//
+//		return signature;
+//
+//	}
+//
+
 	/**
-	 * This method extracts the signature from the YANG data provenance file and
-	 * removes the related element
-	 * 
-	 * @param YANGFile JDOM document with YANG data and the signature enclosed
-	 * @return signature as a bstr
+	 * This method extracts the signature from a JSON document and removes the related element,
+	 * whether it's at the root level or nested inside other nodes.
+	 *
+	 * @param node JsonNode with YANG data and the signature enclosed.
+	 * @return signature as a byte array.
+	 * @throws COSESignatureException if no signature is found.
 	 */
-	byte[] readSignature(Document YANGFile) throws COSESignatureException {
+	public byte[] readSignature(JsonNode node) throws COSESignatureException {
+		// Wrapper to hold the signature (for recursive modification)
+		final byte[][] signatureWrapper = { null };
 
-		Parameters param = new Parameters();
+		// Recursive helper method to find and remove the signature
+		extractSignatureRecursively(node, signatureWrapper);
 
-		byte[] signature = null;
-		String signString = null;
-
-		// Get the base64 signature from the xml document and decode it
-		Element rootElement = YANGFile.getRootElement();
-		Namespace namespace = rootElement.getNamespace();
-		Namespace namespace2 = rootElement.getNamespace("ypmd");
-
-		if (rootElement.getAttribute("provenance-string", namespace2) != null) {
-			signString = rootElement.getAttributeValue("provenance-string", namespace2);
-		} else if (rootElement.getChild(param.getProperty("Signature Element"), namespace) != null) {
-			Element signElement = rootElement.getChild(param.getProperty("Signature Element"), namespace);
-			signString = signElement.getText();
-		} else {
-			throw new COSESignatureException("No leaf or metadata related to a signature");
+		// If no signature was found, throw an exception
+		if (signatureWrapper[0] == null) {
+			throw new COSESignatureException("No provenance-string found in the JSON document");
 		}
 
-		signature = Base64.getDecoder().decode(signString);
-
-		return signature;
-
+		return signatureWrapper[0];
 	}
+
+	/**
+	 * Helper method to recursively extract the signature from a JSON node.
+	 *
+	 * @param currentNode the current node being traversed.
+	 * @param signatureWrapper a wrapper to store the extracted signature.
+	 */
+	private void extractSignatureRecursively(JsonNode currentNode, byte[][] signatureWrapper) {
+		if (currentNode.isObject()) {
+			ObjectNode objectNode = (ObjectNode) currentNode;
+
+			// Check for "@ypmd:provenance-string" or "provenance-string" in this object
+			if (objectNode.has("@ypmd:provenance-string")) {
+				String signString = objectNode.get("@ypmd:provenance-string").asText();
+				signatureWrapper[0] = Base64.getDecoder().decode(signString);
+				objectNode.remove("@ypmd:provenance-string");
+				return; // Found, stop further recursion
+			} else if (objectNode.has("provenance-string")) {
+				String signString = objectNode.get("provenance-string").asText();
+				signatureWrapper[0] = Base64.getDecoder().decode(signString);
+				objectNode.remove("provenance-string");
+				return; // Found, stop further recursion
+			}
+
+			// Recursively check all fields of the object
+			for (Iterator<String> it = objectNode.fieldNames(); it.hasNext();) {
+				String fieldName = it.next();
+				JsonNode childNode = objectNode.get(fieldName);
+				extractSignatureRecursively(childNode, signatureWrapper);
+				if (signatureWrapper[0] != null) {
+					return; // Stop recursion if signature is already found
+				}
+			}
+		} else if (currentNode.isArray()) {
+			// If the node is an array, iterate over its elements
+			ArrayNode arrayNode = (ArrayNode) currentNode;
+			for (int i = 0; i < arrayNode.size(); i++) {
+				JsonNode arrayElement = arrayNode.get(i);
+				extractSignatureRecursively(arrayElement, signatureWrapper);
+				if (signatureWrapper[0] != null) {
+					return; // Stop recursion if signature is already found
+				}
+			}
+		}
+	}
+
+
 
 	/**
 	 * This method reads the updated xml assuming the signature element was
@@ -187,7 +267,8 @@ public class Verification extends JSONFileManagement implements VerificationInte
 	@Override
 	public boolean verify(JsonNode YANGfile) throws CoseException, COSESignatureException {
 		
-//		byte[] signature = readSignature(YANGfile);
+		byte[] signature = readSignature(YANGfile);
+
 //		String message = readYANGFile(YANGfile);
 //
 //
