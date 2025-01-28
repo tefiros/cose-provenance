@@ -35,8 +35,8 @@ public class XMLFileManagement {
 		String check_string; // preprocessing for several \r\n
 		String canonicalizedFile = null;
 		try {
-			check_string = xmlYANG.replaceAll(">\\s+<", ">\r\n<");
-			content = check_string.getBytes();
+			// check_string = xmlYANG.replaceAll(">\\s+<", ">\r\n<");
+			content = xmlYANG.getBytes();
 			ByteArrayOutputStream output = new ByteArrayOutputStream();
 
 			Canonicalizer canonicalizer = Canonicalizer.getInstance(Canonicalizer.ALGO_ID_C14N11_WITH_COMMENTS);

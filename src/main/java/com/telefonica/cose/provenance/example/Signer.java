@@ -20,7 +20,7 @@ public class Signer {
 		
 
 		filepath= "./ietf-interfaces.xml";
-		path= "./provenance-3.xml";
+		path= "./provenance_canonic.xml";
 		// Instantiate the Signature and Parameter classes
 		SignatureInterface sign = new Signature();
 		EnclosingMethodInterface enclose = new EnclosingMethods();
