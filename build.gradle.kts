@@ -17,6 +17,11 @@ dependencies {
     api(libs.org.apache.santuario.xmlsec)
     api(libs.org.jdom.jdom2)
     api(libs.com.google.code.gson.gson)
+
+    // OpenFaaS dependencies
+    implementation("com.openfaas:model:0.1.1")
+    implementation("com.openfaas:entrypoint:0.1.0")
+
 }
 
 group = "com.telefonica.api"
