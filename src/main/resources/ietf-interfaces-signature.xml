@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
-
-
-
-
     <signature-string>0oRRowNjeG1sBGdlYzIua2V5ASag9lhAmQwxDXj47wX+z1XMcN7s2LgxXes2HWnoWAkjioiR6eyz1IMDHSliCM0GMY2YckaYF/OPIQn9+lCKBiiVB2Ds4A==</signature-string>
-
-
     <interface>
         <name>GigabitEthernet1</name>
         <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">

@@ -19,7 +19,7 @@ import org.jdom2.Attribute;
 /**
  * Procedures to enclose the signature in the data structure
  * 
- * @author S. Garcia
+ * @author A. Mendez
  * 
  */
 
@@ -34,18 +34,25 @@ public class EnclosingMethods extends JSONFileManagement implements EnclosingMet
 	 *         integrated
 	 */
 	public JsonNode enclosingMethod(JsonNode rootNode, String signature) {
-
-		// Add the leaf node (provenance-string)
-		if (rootNode.isObject()) {
-			ObjectNode rootObjectNode = (ObjectNode) rootNode;
-			rootObjectNode.put("provenance-string", signature);
-		} else {
+		if (!rootNode.isObject()) {
 			throw new IllegalArgumentException("The root of the JSON must be an object node");
 		}
 
-		return rootNode;
+		ObjectNode rootObjectNode = (ObjectNode) rootNode;
 
+		// Find the first inner object node inside root
+		for (Iterator<Map.Entry<String, JsonNode>> it = rootObjectNode.fields(); it.hasNext(); ) {
+			Map.Entry<String, JsonNode> entry = it.next();
+			if (entry.getValue().isObject()) {
+				((ObjectNode) entry.getValue()).put("provenance-string", signature);
+				return rootNode;
+			}
+		}
+
+		// If no inner object exists, throw an error
+		throw new IllegalArgumentException("No inner object found to add the provenance-string");
 	}
+
 
 /*
 	*/
@@ -105,35 +112,35 @@ public class EnclosingMethods extends JSONFileManagement implements EnclosingMet
 
 	public JsonNode enclosingMethod3(JsonNode rootNode, String signature) {
 
-		if (rootNode.isObject()) {
-			ObjectNode rootObjectNode = (ObjectNode) rootNode;
-
-			// Create the metadata object
-			ObjectNode metadataNode = objectMapper.createObjectNode();
-			metadataNode.put("provenance-string", signature);
-
-			// Add the metadata object to the root node
-			rootObjectNode.set("@", metadataNode);
-		} else {
-			throw new IllegalArgumentException("The root of the JSON must be an object node");
-		}
-
 //		if (rootNode.isObject()) {
 //			ObjectNode rootObjectNode = (ObjectNode) rootNode;
 //
-//			// Check if "ietf-yang-instance-data:instance-data-set" exists
-//			if (rootObjectNode.has("ietf-yang-instance-data:instance-data-set")) {
-//				// Access the "ietf-yang-instance-data:instance-data-set" object
-//				ObjectNode instanceDataSetNode = (ObjectNode) rootObjectNode.get("ietf-yang-instance-data:instance-data-set");
+//			// Create the metadata object
+//			ObjectNode metadataNode = objectMapper.createObjectNode();
+//			metadataNode.put("provenance-string", signature);
 //
-//				// Add the "provenance-string" inside "ietf-yang-instance-data:instance-data-set"
-//				instanceDataSetNode.put("provenance-string", signature);
-//			} else {
-//				throw new IllegalArgumentException("The JSON must contain the 'ietf-yang-instance-data:instance-data-set' key");
-//			}
+//			// Add the metadata object to the root node
+//			rootObjectNode.set("@", metadataNode);
 //		} else {
 //			throw new IllegalArgumentException("The root of the JSON must be an object node");
 //		}
+
+		if (rootNode.isObject()) {
+			ObjectNode rootObjectNode = (ObjectNode) rootNode;
+
+			// Check if "ietf-yang-instance-data:instance-data-set" exists
+			if (rootObjectNode.has("ietf-yang-instance-data:instance-data-set")) {
+				// Access the "ietf-yang-instance-data:instance-data-set" object
+				ObjectNode instanceDataSetNode = (ObjectNode) rootObjectNode.get("ietf-yang-instance-data:instance-data-set");
+
+				// Add the "provenance-string" inside "ietf-yang-instance-data:instance-data-set"
+				instanceDataSetNode.put("provenance-string", signature);
+			} else {
+				throw new IllegalArgumentException("The JSON must contain the 'ietf-yang-instance-data:instance-data-set' key");
+			}
+		} else {
+			throw new IllegalArgumentException("The root of the JSON must be an object node");
+		}
 
 		return rootNode;
 

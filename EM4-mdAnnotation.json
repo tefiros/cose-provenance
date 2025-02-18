@@ -1,79 +1,31 @@
 {
-  "ietf-interfaces:interfaces" : {
-    "interface" : [ {
-      "name" : "eth0",
-      "type" : "iana-if-type:ethernetCsmacd",
-      "enabled" : false
-    }, {
-      "name" : "eth1",
-      "type" : "iana-if-type:ethernetCsmacd",
-      "enabled" : true,
-      "ex-vlan:vlan-tagging" : true
-    }, {
-      "name" : "eth1.10",
-      "type" : "iana-if-type:l2vlan",
-      "enabled" : true,
-      "ex-vlan:base-interface" : "eth1",
-      "ex-vlan:vlan-id" : 10
-    }, {
-      "name" : "lo1",
-      "type" : "iana-if-type:softwareLoopback",
-      "enabled" : true
-    } ],
-    "@ypmd:provenance-string" : "0oRRowNjeG1sBGdlYzIua2V5ASag9lhADfJTwu3/XZSSbiyTaNNCtRNYBx0kp5ycKEDOb5ZleNwjhVwTx0NzNmSOEquF09R01gjKMU09hg0FqNSYnhfhVQ=="
-  },
   "ietf-interfaces:interfaces-state" : {
-    "interface" : [ {
-      "name" : "eth0",
-      "type" : "iana-if-type:ethernetCsmacd",
-      "admin-status" : "down",
-      "oper-status" : "down",
-      "if-index" : 2,
-      "phys-address" : "00:01:02:03:04:05",
-      "statistics" : {
-        "discontinuity-time" : "2013-04-01T03:00:00+00:00"
-      }
-    }, {
-      "name" : "eth1",
-      "type" : "iana-if-type:ethernetCsmacd",
+    "interface" : {
+      "name" : "GigabitEthernet1",
+      "iana-if-type:type" : "ianaift:ethernetCsmacd",
       "admin-status" : "up",
       "oper-status" : "up",
-      "if-index" : 7,
-      "phys-address" : "00:01:02:03:04:06",
-      "higher-layer-if" : [ "eth1.10" ],
-      "statistics" : {
-        "discontinuity-time" : "2013-04-01T03:00:00+00:00"
-      }
-    }, {
-      "name" : "eth1.10",
-      "type" : "iana-if-type:l2vlan",
-      "admin-status" : "up",
-      "oper-status" : "up",
-      "if-index" : 9,
-      "lower-layer-if" : [ "eth1" ],
-      "statistics" : {
-        "discontinuity-time" : "2013-04-01T03:00:00+00:00"
-      }
-    }, {
-      "name" : "eth2",
-      "type" : "iana-if-type:ethernetCsmacd",
-      "admin-status" : "down",
-      "oper-status" : "down",
-      "if-index" : 8,
-      "phys-address" : "00:01:02:03:04:07",
-      "statistics" : {
-        "discontinuity-time" : "2013-04-01T03:00:00+00:00"
-      }
-    }, {
-      "name" : "lo1",
-      "type" : "iana-if-type:softwareLoopback",
-      "admin-status" : "up",
-      "oper-status" : "up",
+      "last-change" : "2024-02-03T11:22:41.081+00:00",
       "if-index" : 1,
+      "phys-address" : "0c:00:00:37:d6:00",
+      "speed" : 1000000000,
       "statistics" : {
-        "discontinuity-time" : "2013-04-01T03:00:00+00:00"
+        "discontinuity-time" : "2024-02-03T11:20:38+00:00",
+        "in-octets" : 8157,
+        "in-unicast-pkts" : 94,
+        "in-broadcast-pkts" : 0,
+        "in-multicast-pkts" : 0,
+        "in-discards" : 0,
+        "in-errors" : 0,
+        "in-unknown-protos" : 0,
+        "out-octets" : 89363,
+        "out-unicast-pkts" : 209,
+        "out-broadcast-pkts" : 0,
+        "out-multicast-pkts" : 0,
+        "out-discards" : 0,
+        "out-errors" : 0
       }
-    } ],
-    "@ypmd:provenance-string" : "0oRRowNjeG1sBGdlYzIua2V5ASag9lhADfJTwu3/XZSSbiyTaNNCtRNYBx0kp5ycKEDOb5ZleNwjhVwTx0NzNmSOEquF09R01gjKMU09hg0FqNSYnhfhVQ=="
+    },
+    "@ypmd:provenance-string" : "0oRRowNjeG1sBGdlYzIua2V5ASag9lhAQkcwIyrKIEVHFnpPFQfPbtQOj9PJJGeJR2IIFEF9VJihAwmXILz5qi07dQo/5eGXXWdUdG8h86MQqizKNgeN+Q=="
   }
 }

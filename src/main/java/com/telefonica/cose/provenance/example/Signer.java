@@ -45,11 +45,11 @@ public class Signer {
 		Scanner scanner = new Scanner(System.in);
 
 		// Interactive input for file paths
-		System.out.print("Enter the input file path (e.g., ./ietf-interfaces.xml): ");
-		String filepath = scanner.nextLine();
+		//System.out.print("Enter the input file path (e.g., ./ietf-interfaces.xml): ");
+		String filepath = "./netconf.json";
 
-		System.out.print("Enter the output file path (e.g., ./provenance_canonic.xml): ");
-		String path = scanner.nextLine();
+		//System.out.print("Enter the output file path (e.g., ./provenance_canonic.xml): ");
+		String path = "./EM3-instance.json";
 
 		// Display enclosing method options
 		System.out.println("Select an enclosing method:");
