@@ -22,6 +22,15 @@ dependencies {
     implementation("com.openfaas:model:0.1.1")
     implementation("com.openfaas:entrypoint:0.1.0")
 
+    // Add Jackson libraries
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+    implementation("com.fasterxml.jackson.core:jackson-core:2.15.2")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:2.15.2")
+
+
+    // To canonicalize in JCS schema JSON
+    implementation(files("libs/java-json-canonicalization-1.1.jar"))
+
 }
 
 group = "com.telefonica.api"

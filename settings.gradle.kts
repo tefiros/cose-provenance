@@ -3,4 +3,4 @@
  */
 
 rootProject.name = "provenance-api"
-enableFeaturePreview("VERSION_CATALOGS")
+//enableFeaturePreview("VERSION_CATALOGS")

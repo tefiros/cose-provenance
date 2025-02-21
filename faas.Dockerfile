@@ -18,6 +18,8 @@ COPY --from=build /app/build/libs/* /app/provenance-api.jar
 
 # Copy the resources directory to the appropriate location in the container
 COPY src/main/resources /app/src/main/resources
+COPY libs /app/lib
+
 
 # Install the OpenFaaS watchdog binary
 COPY --from=ghcr.io/openfaas/classic-watchdog:0.3.1 /fwatchdog /usr/bin/fwatchdog
