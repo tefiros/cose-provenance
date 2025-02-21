@@ -79,19 +79,25 @@ public class JSONFileManagement {
 
 	}
 
-/*
-    public static void main(String[] args) throws IOException {
-        JSONFileManagement loader = new JSONFileManagement();
-        JsonNode jsonNode = loader.loadJSONDocument("sample1.json");
 
-        String canonicalizedJSON = loader.canonicalizeJSON(jsonNode);
-
-        // Output the result
-        if (canonicalizedJSON != null) {
-            System.out.println("Canonicalized JSON:");
-            System.out.println(canonicalizedJSON);
-        } else {
-            System.out.println("Error during canonicalization.");
-        }
-    }*/
+//	public static void main(String[] args) throws IOException {
+//		JSONFileManagement loader = new JSONFileManagement();
+//		JsonNode jsonNode = loader.loadJSONDocument("sample1.json");
+//
+//		// Convert JsonNode to String
+//		String jsonString = new ObjectMapper().writeValueAsString(jsonNode);
+//		System.out.println("Original JSON String:");
+//		System.out.println(jsonString);
+//
+//		// Canonicalize JSON
+//		String canonicalizedJSON = loader.canonicalizeJSON(jsonString);
+//
+//		// Output the result
+//		if (canonicalizedJSON != null) {
+//			System.out.println("Canonicalized JSON:");
+//			System.out.println(canonicalizedJSON);
+//		} else {
+//			System.out.println("Error during canonicalization.");
+//		}
+//	}
 }

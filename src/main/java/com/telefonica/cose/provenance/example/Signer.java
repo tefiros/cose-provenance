@@ -6,8 +6,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jdom2.Document;
-import org.jdom2.input.SAXBuilder;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.telefonica.cose.provenance.*;
 
@@ -21,7 +21,7 @@ public class Signer {
 		try {
 			// Read the XML content from standard input (stdin)
 			InputStream inputStream = System.in;
-			String xmlContent = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+			String JSONContent = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
 
 			// Retrieve and debug query parameters
 			Map<String, String> queryParams = getQueryParamsFromEnvironment();
@@ -38,29 +38,30 @@ public class Signer {
 			Parameters param = new Parameters();
 
 			// Generate signature
-			String signature = sign.signing(xmlContent, param.getProperty("kid"));
+			String signature = sign.signing(JSONContent, param.getProperty("kid"));
 
-			// Load XML document
-			Document doc = loadXMLDocumentFromString(xmlContent);
+			// Load JSON document
+			JsonNode doc = loadJsonNodeFromString(JSONContent);
 
 			// Select appropriate enclosing method based on the query parameter
-			Document provenanceXML;
+			JsonNode provenanceJSON;
 			if ("enclosingMethod2".equalsIgnoreCase(methodType)) {
-				provenanceXML = enclose.enclosingMethod2(doc, signature);
+				provenanceJSON = enclose.enclosingMethod2(doc, signature);
 			} else if ("enclosingMethod3".equalsIgnoreCase(methodType)) {
-				provenanceXML = enclose.enclosingMethod3(doc, signature);
+				provenanceJSON = enclose.enclosingMethod3(doc, signature);
 			} else if ("enclosingMethod4".equalsIgnoreCase(methodType)) {
-				provenanceXML = enclose.enclosingMethod4(doc, signature);
+				provenanceJSON = enclose.enclosingMethod4(doc, signature);
 			} else {
-				provenanceXML = enclose.enclosingMethod(doc, signature); // Default method
+				provenanceJSON = enclose.enclosingMethod(doc, signature); // Default method
 			}
 
 			// Convert signed XML back to string
-			String signedXmlContent = new org.jdom2.output.XMLOutputter().outputString(provenanceXML);
+			String signedJsonContent = new ObjectMapper().writeValueAsString(provenanceJSON);
+
 
 			// Write the signed XML to standard output (stdout)
 			OutputStream outputStream = System.out;
-			outputStream.write(signedXmlContent.getBytes(StandardCharsets.UTF_8));
+			outputStream.write(signedJsonContent.getBytes(StandardCharsets.UTF_8));
 			outputStream.flush();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,10 +69,11 @@ public class Signer {
 		}
 	}
 
-	// Method to load XML document from a string using SAXBuilder
-	private static Document loadXMLDocumentFromString(String xmlContent) throws Exception {
-		SAXBuilder saxBuilder = new SAXBuilder();
-		return saxBuilder.build(new java.io.StringReader(xmlContent));
+
+	//method to make string to JsonNode
+	public static JsonNode loadJsonNodeFromString(String jsonContent) throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper();
+		return objectMapper.readTree(jsonContent);
 	}
 
 	// Retrieves query parameters from OpenFaaS environment
