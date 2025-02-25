@@ -19,10 +19,10 @@ public class Signer {
 
 	public static void main(String[] args) {
 		try {
-			// Read the XML content from standard input (stdin)
+			// Read the JSON content from standard input (stdin)
 			InputStream inputStream = System.in;
 			String JSONContent = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-
+			// System.err.println("DEBUG: JSONContent = " + JSONContent);
 			// Retrieve and debug query parameters
 			Map<String, String> queryParams = getQueryParamsFromEnvironment();
 			// System.err.println("DEBUG: Raw Http_Query = " + System.getenv("Http_Query")); // Print raw query
@@ -42,7 +42,7 @@ public class Signer {
 
 			// Load JSON document
 			JsonNode doc = loadJsonNodeFromString(JSONContent);
-
+			// System.err.println("DEBUG: JSONNode = " + doc);
 			// Select appropriate enclosing method based on the query parameter
 			JsonNode provenanceJSON;
 			if ("enclosingMethod2".equalsIgnoreCase(methodType)) {
@@ -55,8 +55,9 @@ public class Signer {
 				provenanceJSON = enclose.enclosingMethod(doc, signature); // Default method
 			}
 
-			// Convert signed XML back to string
-			String signedJsonContent = new ObjectMapper().writeValueAsString(provenanceJSON);
+			// Convert signed JSON back to string
+			ObjectMapper objectMapper = new ObjectMapper();
+			String signedJsonContent = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(provenanceJSON);
 
 
 			// Write the signed XML to standard output (stdout)
