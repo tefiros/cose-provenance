@@ -1,38 +1,39 @@
 {
-  "ietf-yang-instance-data:instance-data-set" : {
-    "name" : "interfaces-labTID-status",
-    "contact" : "sofia.garciarincon.practicas@telefonica.com",
-    "timestamp" : "Thu Jul 18 11:42:06 CEST 2024",
-    "content-data" : {
-      "ietf-interfaces:interfaces-state" : {
-        "interface" : {
-          "name" : "GigabitEthernet1",
-          "iana-if-type:type" : "ianaift:ethernetCsmacd",
-          "admin-status" : "up",
-          "oper-status" : "up",
-          "last-change" : "2024-02-03T11:22:41.081+00:00",
-          "if-index" : 1,
-          "phys-address" : "0c:00:00:37:d6:00",
-          "speed" : 1000000000,
-          "statistics" : {
-            "discontinuity-time" : "2024-02-03T11:20:38+00:00",
-            "in-octets" : 8157,
-            "in-unicast-pkts" : 94,
-            "in-broadcast-pkts" : 0,
-            "in-multicast-pkts" : 0,
-            "in-discards" : 0,
-            "in-errors" : 0,
-            "in-unknown-protos" : 0,
-            "out-octets" : 89363,
-            "out-unicast-pkts" : 209,
-            "out-broadcast-pkts" : 0,
-            "out-multicast-pkts" : 0,
-            "out-discards" : 0,
-            "out-errors" : 0
+  "ietf-notification:notification" : {
+    "eventTime" : "2024-02-03T11:37:25.94Z",
+    "ietf-yang-push:push-update" : {
+      "id" : 2147483648,
+      "datastore-contents" : {
+        "ietf-interfaces:interfaces" : [ {
+          "interface" : {
+            "name" : "GigabitEthernet1",
+            "iana-if-type:type" : "ianaift:ethernetCsmacd",
+            "admin-status" : "up",
+            "oper-status" : "up",
+            "last-change" : "2024-02-03T11:22:41.081+00:00",
+            "if-index" : 1,
+            "phys-address" : "0c:00:00:37:d6:00",
+            "speed" : 1000000000,
+            "statistics" : {
+              "discontinuity-time" : "2024-02-03T11:20:38+00:00",
+              "in-octets" : 8157,
+              "in-unicast-pkts" : 94,
+              "in-broadcast-pkts" : 0,
+              "in-multicast-pkts" : 0,
+              "in-discards" : 0,
+              "in-errors" : 0,
+              "in-unknown-protos" : 0,
+              "out-octets" : 89363,
+              "out-unicast-pkts" : 209,
+              "out-broadcast-pkts" : 0,
+              "out-multicast-pkts" : 0,
+              "out-discards" : 0,
+              "out-errors" : 0
+            }
           }
-        }
+        } ]
       }
     },
-    "provenance-string" : "0oRRowNjeG1sBGdlYzIua2V5ASag9lhA0iFPNBQmmwSJS0jjRyErvXOdhQDqjR0e3mwHycBSjxOlI1tBjS7W6dBzX5jWcenYNpfkxXyeCdLrNSCjuT1oZw=="
+    "notification-provenance" : "0oRRowNjeG1sBGdlYzIua2V5ASag9lhAQBTo2i1OIuic2HHJMevTjbmwYGwlxtxPpl0kwoDoy1I50WO/hda1GpZC72vpkE9o5h6qjRqIg/8z6tsmTG1v0g=="
   }
 }

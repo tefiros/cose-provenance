@@ -86,7 +86,7 @@ public class EnclosingMethods extends JSONFileManagement implements EnclosingMet
 					if (fieldName.equals(notificationKey) && valueNode.isObject()) {
 						ObjectNode notificationNode = (ObjectNode) valueNode;
 						// Add the provenance-string node at the same level as eventTime
-						notificationNode.put("provenance-string", signature);
+						notificationNode.put("notification-provenance", signature);
 						return rootNode;
 					}
 				}

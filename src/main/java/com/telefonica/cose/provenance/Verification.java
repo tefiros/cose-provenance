@@ -186,7 +186,7 @@ public class Verification extends JSONFileManagement implements VerificationInte
 		if (currentNode.isObject()) {
 			ObjectNode objectNode = (ObjectNode) currentNode;
 
-			// Check for "@ypmd:provenance-string" or "provenance-string" in this object
+			// Check for "@ypmd:provenance-string", "provenance-string", or "notification-provenance"
 			if (objectNode.has("@ypmd:provenance-string")) {
 				String signString = objectNode.get("@ypmd:provenance-string").asText();
 				signatureWrapper[0] = Base64.getDecoder().decode(signString);
@@ -196,6 +196,11 @@ public class Verification extends JSONFileManagement implements VerificationInte
 				String signString = objectNode.get("provenance-string").asText();
 				signatureWrapper[0] = Base64.getDecoder().decode(signString);
 				objectNode.remove("provenance-string");
+				return; // Found, stop further recursion
+			} else if (objectNode.has("notification-provenance")) {
+				String signString = objectNode.get("notification-provenance").asText();
+				signatureWrapper[0] = Base64.getDecoder().decode(signString);
+				objectNode.remove("notification-provenance");
 				return; // Found, stop further recursion
 			}
 
