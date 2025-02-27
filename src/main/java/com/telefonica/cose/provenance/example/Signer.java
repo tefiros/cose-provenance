@@ -19,8 +19,8 @@ public class Signer {
 	public static void main(String[] args) throws Exception {
 		
 
-		filepath= "./ietf-interfaces.xml";
-		path= "./provenance_canonic.xml";
+		filepath= "./netconf-interfaces.xml";
+		path= "./provenance_netconf.xml";
 		// Instantiate the Signature and Parameter classes
 		SignatureInterface sign = new Signature();
 		EnclosingMethodInterface enclose = new EnclosingMethods();
@@ -33,7 +33,7 @@ public class Signer {
 
 		// Enclose the previously generated signature into a YANG data provenance xml
 		Document doc = sign.loadXMLDocument(filepath);
-		Document provenanceXML = enclose.enclosingMethod(doc, signature);
+		Document provenanceXML = enclose.enclosingMethod2(doc, signature);
 		sign.saveXMLDocument(provenanceXML, path);
 
 		System.out.println("Document was correctly saved in: " + path);

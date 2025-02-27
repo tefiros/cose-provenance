@@ -23,7 +23,7 @@ public class Verifier {
 
 	public static void main(String[] args) throws Exception {
 		
-		xmlFilePath="./provenance_canonic.xml";
+		xmlFilePath="./provenance_netconf.xml";
 		// Instantiate the Verification class
 		VerificationInterface ver = new Verification();
 		

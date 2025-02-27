@@ -38,6 +38,7 @@ import COSE.Sign1Message;
  * This class implements the method for verifying a signature created with COSE.
  * 
  * @author S. Garcia
+ * @author A. Mendez
  */
 
 public class Verification extends XMLFileManagement implements VerificationInterface {
@@ -130,6 +131,9 @@ public class Verification extends XMLFileManagement implements VerificationInter
 		} else if (rootElement.getChild(param.getProperty("Signature Element"), namespace) != null) {
 			Element signElement = rootElement.getChild(param.getProperty("Signature Element"), namespace);
 			signString = signElement.getText();
+		} else if (rootElement.getChild(param.getProperty("Notification Element"), namespace) != null) {
+			Element signElement = rootElement.getChild(param.getProperty("Notification Element"), namespace);
+			signString = signElement.getText();
 		} else {
 			throw new COSESignatureException("No leaf or metadata related to a signature");
 		}
@@ -161,6 +165,8 @@ public class Verification extends XMLFileManagement implements VerificationInter
 			rootElement.removeAttribute("provenance-string", namespace2);
 		} else if (rootElement.getChild(param.getProperty("Signature Element"), namespace) != null) {
 			rootElement.removeChild(param.getProperty("Signature Element"), namespace);
+		} else if (rootElement.getChild(param.getProperty("Notification Element"), namespace) != null) {
+			rootElement.removeChild(param.getProperty("Notification Element"), namespace);
 		} else {
 			throw new COSESignatureException("No leaf or metadata related to a signature");
 		}

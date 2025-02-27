@@ -1,2 +1,2 @@
 
-{"KeyStore Instance":"PKCS12","kid":"ec2.key","Content Type":"xml","Signer KeyStore":"./src/main/resources/sender_keystore.p12","alg":"","Signature Element":"provenance-string","Password":"18marzo01","Receiver KeyStore":"./src/main/resources/receiver_keystore.p12"}
+{"KeyStore Instance":"PKCS12","kid":"ec2.key","Content Type":"xml","Signer KeyStore":"./src/main/resources/sender_keystore.p12","alg":"","Signature Element":"provenance-string","Notification Element":"notification-provenance", "Password":"18marzo01","Receiver KeyStore":"./src/main/resources/receiver_keystore.p12"}
