@@ -61,7 +61,7 @@ public class EnclosingMethods extends XMLFileManagement implements EnclosingMeth
 
 		Element notificationElement = rootElement.getChild("eventTime", namespace);
 
-		Element provenanceElement = new Element(param.getProperty("Signature Element"), namespace);
+		Element provenanceElement = new Element(param.getProperty("Notification Element"), namespace);
 		provenanceElement.setText(signature);
 
 		rootElement.addContent(rootElement.indexOf(notificationElement) + 1, provenanceElement);
