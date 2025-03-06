@@ -193,7 +193,13 @@ public class Verification extends JSONFileManagement implements VerificationInte
 				signatureWrapper[0] = Base64.getDecoder().decode(signString);
 				objectNode.remove("provenance-string");
 				return; // Found, stop further recursion
+			} else if (objectNode.has("notification-provenance")) {
+				String signString = objectNode.get("notification-provenance").asText();
+				signatureWrapper[0] = Base64.getDecoder().decode(signString);
+				objectNode.remove("notification-provenance");
+				return; // Found, stop further recursion
 			}
+
 
 			// Recursively check all fields of the object
 			for (Iterator<String> it = objectNode.fieldNames(); it.hasNext();) {

@@ -29,7 +29,7 @@ public class Signer {
 			// System.err.println("DEBUG: Parsed query parameters = " + queryParams); // Print parsed parameters
 
 			// Get the enclosure type from query parameters
-			String methodType = queryParams.getOrDefault("enclosureType", "enclosingMethod");
+			String methodType = queryParams.getOrDefault("enclosing", "leaf");
 			// System.err.println("DEBUG: Selected enclosureType = " + methodType); // Debug selected method
 
 			// Instantiate classes
@@ -45,11 +45,11 @@ public class Signer {
 			// System.err.println("DEBUG: JSONNode = " + doc);
 			// Select appropriate enclosing method based on the query parameter
 			JsonNode provenanceJSON;
-			if ("enclosingMethod2".equalsIgnoreCase(methodType)) {
+			if ("notification".equalsIgnoreCase(methodType)) {
 				provenanceJSON = enclose.enclosingMethod2(doc, signature);
-			} else if ("enclosingMethod3".equalsIgnoreCase(methodType)) {
+			} else if ("instance".equalsIgnoreCase(methodType)) {
 				provenanceJSON = enclose.enclosingMethod3(doc, signature);
-			} else if ("enclosingMethod4".equalsIgnoreCase(methodType)) {
+			} else if ("annotation".equalsIgnoreCase(methodType)) {
 				provenanceJSON = enclose.enclosingMethod4(doc, signature);
 			} else {
 				provenanceJSON = enclose.enclosingMethod(doc, signature); // Default method
