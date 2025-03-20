@@ -1,8 +1,6 @@
 package com.telefonica.cose.provenance;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 
 import com.google.gson.Gson;
@@ -10,7 +8,7 @@ import com.google.gson.Gson;
 /**
 * Class to handle parameters to be configured
 * 
-* @author S. Garcia
+* @author A.Méndez
 * 
 */
 
@@ -21,18 +19,21 @@ public class Parameters {
 	 */
 	private static String readFile() {
 
-		String fichero = "";
+		StringBuilder fichero = new StringBuilder();
 
-		try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/cose_parameters.json"))) {
+		try (InputStream inputStream = Parameters.class.getClassLoader().getResourceAsStream("cose_parameters.json");
+             BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+
 			String linea;
 			while ((linea = br.readLine()) != null) {
-				fichero += linea;
+				fichero.append(linea);
 			}
-		} catch (IOException ex) {
-			System.out.println(ex.getMessage());
+
+		} catch (IOException | NullPointerException ex) {
+			System.out.println("Error reading resource: " + ex.getMessage());
 		}
 
-		return fichero;
+		return fichero.toString();
 
 	}
 	

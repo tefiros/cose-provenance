@@ -1,7 +1,9 @@
 package com.telefonica.cose.provenance;
 
-import java.io.FileInputStream;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -62,7 +64,13 @@ public class Signature extends XMLFileManagement implements SignatureInterface {
 		try {
 			ks = KeyStore.getInstance(param.getProperty("KeyStore Instance"));
 
-			ks.load(new FileInputStream(param.getProperty("Signer KeyStore")), pswd);
+			// Load Keystore from resources inside JAR
+			InputStream keystoreStream = getClass().getClassLoader().getResourceAsStream("sender_keystore.p12");
+			if (keystoreStream == null) {
+				throw new FileNotFoundException("Keystore not found in resources");
+			}
+
+			ks.load(keystoreStream, pswd);
 
 			if (ks.containsAlias(kid)) {
 
@@ -92,8 +100,8 @@ public class Signature extends XMLFileManagement implements SignatureInterface {
 				throw new COSESignatureException("There is no key with this ID: " + kid);
 			}
 
-		} catch (KeyStoreException | NoSuchAlgorithmException | CertificateException | IOException
-				| COSESignatureException | CoseException | UnrecoverableKeyException e) {
+		} catch (KeyStoreException | NoSuchAlgorithmException | IOException | COSESignatureException | CoseException |
+                 UnrecoverableKeyException | CertificateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
