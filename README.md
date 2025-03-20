@@ -1,6 +1,6 @@
 # Reference Implementation of COSE Signatures for YANG Data Provenance
  
-This Java project provides a set of classes and methods to handle serilized YANG files, to generate signatures and verify them making use of the COSE (CBRO Object Signing and Ecryption) library. Signatures are enclosed within the serialized YANG data as elements, and can be verified to guarantee the integrity and authenticity of the data.
+This Java project provides a set of classes and methods to handle serilized YANG files, to generate signatures and verify them making use of the COSE (CBOR Object Signing and Encryption) library. Signatures are enclosed within the serialized YANG data as elements, and can be verified to guarantee the integrity and authenticity of the data.
 
 ### 1. Project Structure
 
@@ -28,7 +28,7 @@ Configuration file that contains the configuration parameters.
 3.1. Prerequisites
 
 - Java 8 o superior.
-- Bibliotecas adicionales:
+- Dependencies:
    - JDOM 2
    - Gson
    - BouncyCastle
@@ -37,7 +37,7 @@ Configuration file that contains the configuration parameters.
 
 3.2. Compilation
 
-Maven has been used as a construction system to handle dependencies
+Gradle has been used as a construction system to handle dependencies
 
 3.3. Execution
 
@@ -46,7 +46,9 @@ Maven has been used as a construction system to handle dependencies
 To sign a document, execute Signer.java class with the route of the XML file to be signed as argument:
 
 ```
-mvn exec:java -Dexec.mainClass="com.telefonica.cose.provenance.example.Signer" -Dexec.args="<YANGDataFile>.xml"
+//mvn exec:java -Dexec.mainClass="com.telefonica.cose.provenance.example.Signer" -Dexec.args="<YANGDataFile>.xml"
+
+gradle run 
 ```
 
 This will generate a file named 'provenance-interfaces.xml'	in the current directory.
@@ -97,3 +99,7 @@ Compiles the code. Generates .class out of the .java.
 Generate jar or war files, depending on what has been defined in the pom.xml
 
 `mvn install` 
+
+### 5. Library
+
+A packet .jar of the project as dependency for other projects has been released.
