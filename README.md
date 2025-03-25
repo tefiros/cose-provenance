@@ -17,7 +17,7 @@ This Java project provides a set of classes and methods to handle serilized YANG
 - Signer: Use case to sign XML YANG files.
 - Verifier: Use case to verify signatures.
 
-### 2. Archivos
+### 2. Files
 
 2.1. src/main/resources/cose_parameters.json: 
 
@@ -102,4 +102,20 @@ Generate jar or war files, depending on what has been defined in the pom.xml
 
 ### 5. Library
 
-A packet .jar of the project as dependency for other projects has been released.
+A packet .jar of the project as dependency for other projects has been released. The javadoc.jar has been tagged along.
+
+### 6. License
+
+   Copyright 2025 Telefonica (TID)
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
