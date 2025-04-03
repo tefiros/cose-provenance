@@ -16,12 +16,30 @@ dependencies {
     api(libs.org.apache.santuario.xmlsec)
     api(libs.org.jdom.jdom2)
     api(libs.com.google.code.gson.gson)
+
+    // Add Jackson libraries correctly (without parentheses)
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+    implementation("com.fasterxml.jackson.core:jackson-core:2.15.2")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:2.15.2")
+
+    // To canonicalize in JCS schema JSON
+    // implementation(files("libs/java-json-canonicalization-1.1.jar"))
+
+    // https://mvnrepository.com/artifact/io.github.erdtman/java-json-canonicalization
+    implementation("io.github.erdtman:java-json-canonicalization:1.1")
 }
 
 group = "com.telefonica.api" // Define your group (package) structure here
 version = "0.0.2" // Version of your library
 description = "Provenance API Library" // Brief description of the library
 java.sourceCompatibility = JavaVersion.VERSION_1_8 // Make sure the source compatibility matches your Java version
+
+
+java {
+    withJavadocJar()  // Automatically generates and includes a Javadoc JAR
+}
+
+
 
 // This block will generate a JAR file that can be used as a library
 publishing {
@@ -33,7 +51,6 @@ publishing {
             artifactId = "provenance-api" // Artifact ID (name) of your library
             version = "0.0.2" // Version of your library (same as defined above)
 
-            // You can also add additional metadata or custom configuration to the published artifact if needed
             pom {
                 name.set("Provenance API Library") // Name of the library
                 description.set("A library for COSE Provenance Signatures") // Description
@@ -46,5 +63,6 @@ publishing {
         // You can add remote repositories if you plan to publish it to a remote Maven repo later
     }
 }
+
 
 
