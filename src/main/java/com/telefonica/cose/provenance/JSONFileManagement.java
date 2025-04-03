@@ -1,6 +1,5 @@
 package com.telefonica.cose.provenance;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.erdtman.jcs.JsonCanonicalizer;
@@ -42,12 +41,10 @@ public class JSONFileManagement {
      *
      * @param jsonFilePath file path String of the json to be loaded
      * @return JsonNode
-     * @throws JsonProcessingException exception that occurs in the Jackson library, which is
-     *                       used for manipulating JSON data in Java
      * @throws IOException   exception that occurs during Input/Output (I/O)
      *                       operations
      */
-    public JsonNode loadJSONDocument(String jsonFilePath) throws IOException, JsonProcessingException {
+    public JsonNode loadJSONDocument(String jsonFilePath) throws IOException {
         // Use an ObjectMapper to load the JSON document
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readTree(new File(jsonFilePath));
@@ -59,7 +56,7 @@ public class JSONFileManagement {
      * @param fileName JsonNode to be stored as a String
      * @param jsonNode String of the file path where the JDOM will be stored
      */
-    public void saveJSONnode(JsonNode jsonNode, String fileName) throws JsonProcessingException {
+    public void saveJSONnode(JsonNode jsonNode, String fileName) {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -79,6 +76,7 @@ public class JSONFileManagement {
     }
 
 /*
+    // run example
     public static void main(String[] args) throws IOException {
         JSONFileManagement loader = new JSONFileManagement();
         // JsonNode jsonNode = loader.loadJSONDocument("sample1.json");

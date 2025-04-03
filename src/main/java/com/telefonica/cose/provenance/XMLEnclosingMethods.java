@@ -13,7 +13,7 @@ import org.jdom2.Attribute;
  * 
  */
 
-public class XMLEnclosingMethods extends XMLFileManagement implements EnclosingMethodInterface{
+public class XMLEnclosingMethods extends XMLFileManagement implements XMLEnclosingMethodInterface{
 
 	/**
 	 * Method related to the first enclosing method proposed
