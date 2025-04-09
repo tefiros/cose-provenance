@@ -114,7 +114,7 @@
       <recent name="C:\Users\id05294\OneDrive - Telefonica\Documentos\Serverless\firmas\cose-provenance\src\main\java\com\telefonica\cose\provenance\example" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.JSONFileManagement">
     <configuration name="JSONFileManagement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.telefonica.cose.provenance.JSONFileManagement" />
       <module name="provenance-api.main" />
@@ -196,6 +196,7 @@
       <workItem from="1743499754260" duration="1822000" />
       <workItem from="1743584583467" duration="25760000" />
       <workItem from="1743685836716" duration="6716000" />
+      <workItem from="1744185832652" duration="978000" />
     </task>
     <servers />
   </component>

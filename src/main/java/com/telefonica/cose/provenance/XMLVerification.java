@@ -3,9 +3,7 @@
  */
 package com.telefonica.cose.provenance;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.StringWriter;
+import java.io.*;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -70,7 +68,13 @@ public class XMLVerification extends XMLFileManagement implements XMLVerificatio
 		try {
 			ks = KeyStore.getInstance(param.getProperty("KeyStore Instance"));
 
-			ks.load(new FileInputStream(param.getProperty("Signer KeyStore")), pswd);
+			// Load Keystore from resources inside JAR
+			InputStream keystoreStream = getClass().getClassLoader().getResourceAsStream("sender_keystore.p12");
+			if (keystoreStream == null) {
+				throw new FileNotFoundException("Keystore not found in resources");
+			}
+
+			ks.load(keystoreStream, pswd);
 
 			Certificate certificate = ks.getCertificate(kid);
 			PublicKey publicKey = certificate.getPublicKey();
