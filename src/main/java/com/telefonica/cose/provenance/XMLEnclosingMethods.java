@@ -54,9 +54,9 @@ public class XMLEnclosingMethods extends XMLFileManagement implements XMLEnclosi
 		Parameters param = new Parameters();
 
 		Element rootElement = YANGprovenance.getRootElement();
-		Namespace namespace = rootElement.getNamespace();
+		Namespace namespace = Namespace.getNamespace("urn:ietf:params:xml:ns:yang:ietf-yp-provenance");
 
-		Element notificationElement = rootElement.getChild("eventTime", namespace);
+		Element notificationElement = rootElement.getChild("event-time", namespace);
 
 		Element provenanceElement = new Element(param.getProperty("Notification Element"), namespace);
 		provenanceElement.setText(signature);
@@ -64,7 +64,6 @@ public class XMLEnclosingMethods extends XMLFileManagement implements XMLEnclosi
 		rootElement.addContent(rootElement.indexOf(notificationElement) + 1, provenanceElement);
 
 		return YANGprovenance;
-
 	}
 
 	/**

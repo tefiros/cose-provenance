@@ -65,8 +65,8 @@ public class JSONEnclosingMethods extends JSONFileManagement implements JSONEncl
 
     public JsonNode enclosingMethod2JSON(JsonNode rootNode, String signature) {
 
-        // Define the key patterns that indicate NETCONF/RESTCONF notifications
-        String[] notificationKeys = {"ietf-restconf:notification", "ietf-notification:notification"};
+        // Define the key patterns that indicate Extensible YANG Model for YANG-Push Notifications (Envelopes)
+        String[] notificationKeys = {"ietf-yp-provenance:provenance"};
 
         // Traverse the JSON to find the notification node
         if (rootNode.isObject()) {
@@ -84,12 +84,12 @@ public class JSONEnclosingMethods extends JSONFileManagement implements JSONEncl
                     if (fieldName.equals(notificationKey) && valueNode.isObject()) {
                         ObjectNode notificationNode = (ObjectNode) valueNode;
                         // Add the provenance-string node at the same level as eventTime
-                        notificationNode.put("notification-provenance", signature);
+                        notificationNode.put("ietf-yp-provenance:provenance", signature);
                         return rootNode;
                     }
                 }
             }
-            throw new IllegalArgumentException("The JSON does not contain a valid NETCONF/RESTCONF notification object node");
+            throw new IllegalArgumentException("The JSON does not contain a valid notification envelope object node");
         } else {
             throw new IllegalArgumentException("The root of the JSON must be an object node");
         }

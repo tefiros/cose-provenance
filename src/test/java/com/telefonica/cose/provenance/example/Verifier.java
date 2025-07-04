@@ -28,12 +28,12 @@ public class Verifier {
 
 	public static void main(String[] args) throws Exception {
 		
-		xmlFilePath="./provenance_netconf.xml";
+		xmlFilePath="./provenance_output.xml";
 		// Instantiate the Verification class
 		XMLVerificationInterface ver = new XMLVerification();
 		//JSONVerificationInterface ver2 = new JSONVerification();
 		
-		// Document doc = ver.loadXMLDocument(xmlFilePath);
+		Document doc = ver.loadXMLDocument(xmlFilePath);
 //		String jsonString = "{\n" +
 //				"    \"name\": \"Alice\",\n" +
 //				"    \"age\": 30,\n" +
@@ -48,29 +48,44 @@ public class Verifier {
 //		ObjectMapper objectMapper = new ObjectMapper();
 //		JsonNode rootNode = objectMapper.readTree(jsonString);
 
-		String xmlString = "<root><provenance-string>0oRRowNjeG1sBGdlYzIua2V5ASag9lhAV5VXJEclLyo8EIlN4oPiNW74MwJ3kYxPqTq3pPGnjSi2fOlRyUmXrORUeAE9pJPP/cgQrRY2HYOyjZt9dxeqMg==</provenance-string>\n" +
-				"    <name>Alice</name>\n" +
-				"    <age>30</age>\n" +
-				"    <city>New York</city>\n" +
-				"    <hobbies>\n" +
-				"        <hobby>reading</hobby>\n" +
-				"        <hobby>traveling</hobby>\n" +
-				"        <hobby>coding</hobby>\n" +
-				"    </hobbies>\n" +
-				"</root>";
+
+		String xmlString = "<envelope xmlns=\"urn:ietf:params:xml:ns:yang:ietf-yp-notification\">\n" +
+				"    <event-time>2024-10-10T10:59:55.32Z</event-time>\n" +
+				"    <provenance xmlns=\"urn:ietf:params:xml:ns:yang:ietf-yp-provenance\">" +
+				"0oRRowNjeG1sBGdlYzIua2V5ASag9lhAYAx6zZMtPCRwJ9wBTR2d50ixOlqVMaqAIFA93SFAXmWj+jfaUq+BXXQ4Qx0pXjMUnhIesvB18xvuuUmanBuSFQ==" +
+				"</provenance>\n" +
+				"    <contents>\n" +
+				"        <push-update xmlns=\"urn:ietf:params:xml:ns:yang:ietf-yang-push\">\n" +
+				"            <id>1011</id>\n" +
+				"            <datastore-contents>\n" +
+				"                <interfaces xmlns=\"urn:ietf:params:xml:ns:yang:ietf-interfaces\">\n" +
+				"                    <interface>\n" +
+				"                        <name>eth0</name>\n" +
+				"                        <oper-status>up</oper-status>\n" +
+				"                    </interface>\n" +
+				"                </interfaces>\n" +
+				"            </datastore-contents>\n" +
+				"        </push-update>\n" +
+				"    </contents>\n" +
+				"</envelope>";
+
+
+
 
 		SAXBuilder saxBuilder = new SAXBuilder();
 		Document document = saxBuilder.build(new StringReader(xmlString));
 
 		// Verify COSE signature and content
 		try {
-			if (ver.verify(document)) {
+			if (ver.verify(doc)) {
 				System.out.println("\033[1m" + "Signature verified");
 			} else {
 				System.err.println("\033[1m" + "Invalid signature.");
 			}
 		} catch (CoseException e) {
+			System.err.println("Signature verification failed: " + e.getMessage());
 			e.printStackTrace();
+			System.exit(1);
 		}
 	}
 }

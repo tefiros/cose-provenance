@@ -159,10 +159,10 @@ public class JSONVerification extends JSONFileManagement implements JSONVerifica
                 signatureWrapper[0] = Base64.getDecoder().decode(signString);
                 objectNode.remove("provenance-string");
                 return; // Found, stop further recursion
-            } else if (objectNode.has("notification-provenance")) {
+            } else if (objectNode.has("ietf-yp-provenance:provenance")) {
                 String signString = objectNode.get("notification-provenance").asText();
                 signatureWrapper[0] = Base64.getDecoder().decode(signString);
-                objectNode.remove("notification-provenance");
+                objectNode.remove("ietf-yp-provenance:provenance");
                 return; // Found, stop further recursion
             }
 
