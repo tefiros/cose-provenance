@@ -46,18 +46,43 @@ public class Signer {
 //				+ "\"nested\": {\"key1\": \"value1\", \"key2\": \"value2\"}"
 //				+ "}";
 
-		String xmlString = "<envelope xmlns=\"urn:ietf:params:xml:ns:yang:ietf-yp-notification\">\n" +
-				"    <event-time>2024-10-10T10:59:55.32Z</event-time>\n" +
+		String xmlString = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+				"<envelope xmlns=\"urn:ietf:params:xml:ns:yang:ietf-yp-notification\">\n" +
+				"    <event-time>2024-02-03T11:37:25.94Z</event-time>\n" +
 				"    <contents>\n" +
 				"        <push-update xmlns=\"urn:ietf:params:xml:ns:yang:ietf-yang-push\">\n" +
-				"            <id>1011</id>\n" +
+				"            <subscription-id>2147483648</subscription-id>\n" +
 				"            <datastore-contents>\n" +
-				"                <interfaces xmlns=\"urn:ietf:params:xml:ns:yang:ietf-interfaces\">\n" +
+				"                <interfaces-state xmlns=\"urn:ietf:params:xml:ns:yang:ietf-interfaces\">\n" +
 				"                    <interface>\n" +
-				"                        <name>eth0</name>\n" +
+				"                        <name>GigabitEthernet1</name>\n" +
+				"                        <type xmlns:ianaift=\"urn:ietf:params:xml:ns:yang:iana-if-type\">\n" +
+				"                            ianaift:ethernetCsmacd\n" +
+				"                        </type>\n" +
+				"                        <admin-status>up</admin-status>\n" +
 				"                        <oper-status>up</oper-status>\n" +
+				"                        <last-change>2024-02-03T11:22:41.081+00:00</last-change>\n" +
+				"                        <if-index>1</if-index>\n" +
+				"                        <phys-address>0c:00:00:37:d6:00</phys-address>\n" +
+				"                        <speed>1000000000</speed>\n" +
+				"                        <statistics>\n" +
+				"                            <discontinuity-time>2024-02-03T11:20:38+00:00</discontinuity-time>\n" +
+				"                            <in-octets>8157</in-octets>\n" +
+				"                            <in-unicast-pkts>94</in-unicast-pkts>\n" +
+				"                            <in-broadcast-pkts>0</in-broadcast-pkts>\n" +
+				"                            <in-multicast-pkts>0</in-multicast-pkts>\n" +
+				"                            <in-discards>0</in-discards>\n" +
+				"                            <in-errors>0</in-errors>\n" +
+				"                            <in-unknown-protos>0</in-unknown-protos>\n" +
+				"                            <out-octets>89363</out-octets>\n" +
+				"                            <out-unicast-pkts>209</out-unicast-pkts>\n" +
+				"                            <out-broadcast-pkts>0</out-broadcast-pkts>\n" +
+				"                            <out-multicast-pkts>0</out-multicast-pkts>\n" +
+				"                            <out-discards>0</out-discards>\n" +
+				"                            <out-errors>0</out-errors>\n" +
+				"                        </statistics>\n" +
 				"                    </interface>\n" +
-				"                </interfaces>\n" +
+				"                </interfaces-state>\n" +
 				"            </datastore-contents>\n" +
 				"        </push-update>\n" +
 				"    </contents>\n" +

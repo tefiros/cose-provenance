@@ -66,7 +66,7 @@ public class JSONEnclosingMethods extends JSONFileManagement implements JSONEncl
     public JsonNode enclosingMethod2JSON(JsonNode rootNode, String signature) {
 
         // Define the key patterns that indicate Extensible YANG Model for YANG-Push Notifications (Envelopes)
-        String[] notificationKeys = {"ietf-yp-provenance:provenance"};
+        String[] notificationKeys = {"ietf-yp-notification:envelope"};
 
         // Traverse the JSON to find the notification node
         if (rootNode.isObject()) {
