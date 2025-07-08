@@ -125,14 +125,15 @@ public class Verification extends XMLFileManagement implements VerificationInter
 		Element rootElement = YANGFile.getRootElement();
 		Namespace namespace = rootElement.getNamespace();
 		Namespace namespace2 = rootElement.getNamespace("ypmd");
+		Namespace namespace3 = Namespace.getNamespace("urn:ietf:params:xml:ns:yang:ietf-yp-provenance"); // nuevo
 
 		if (rootElement.getAttribute("provenance-string", namespace2) != null) {
 			signString = rootElement.getAttributeValue("provenance-string", namespace2);
 		} else if (rootElement.getChild(param.getProperty("Signature Element"), namespace) != null) {
 			Element signElement = rootElement.getChild(param.getProperty("Signature Element"), namespace);
 			signString = signElement.getText();
-		} else if (rootElement.getChild(param.getProperty("Notification Element"), namespace) != null) {
-			Element signElement = rootElement.getChild(param.getProperty("Notification Element"), namespace);
+		} else if (rootElement.getChild(param.getProperty("Notification Element"), namespace3) != null) {
+			Element signElement = rootElement.getChild(param.getProperty("Notification Element"), namespace3);
 			signString = signElement.getText();
 		} else {
 			throw new COSESignatureException("No leaf or metadata related to a signature");
@@ -160,13 +161,15 @@ public class Verification extends XMLFileManagement implements VerificationInter
 		Element rootElement = YANGFile.getRootElement();
 		Namespace namespace = rootElement.getNamespace();
 		Namespace namespace2 = rootElement.getNamespace("ypmd");
+		Namespace namespace3 = Namespace.getNamespace("urn:ietf:params:xml:ns:yang:ietf-yp-provenance"); // nuevo
+
 
 		if (rootElement.getAttribute("provenance-string", namespace2) != null) {
 			rootElement.removeAttribute("provenance-string", namespace2);
 		} else if (rootElement.getChild(param.getProperty("Signature Element"), namespace) != null) {
 			rootElement.removeChild(param.getProperty("Signature Element"), namespace);
-		} else if (rootElement.getChild(param.getProperty("Notification Element"), namespace) != null) {
-			rootElement.removeChild(param.getProperty("Notification Element"), namespace);
+		} else if (rootElement.getChild(param.getProperty("Notification Element"), namespace3) != null) {
+			rootElement.removeChild(param.getProperty("Notification Element"), namespace3);
 		} else {
 			throw new COSESignatureException("No leaf or metadata related to a signature");
 		}
