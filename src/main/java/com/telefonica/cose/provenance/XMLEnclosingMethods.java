@@ -47,7 +47,7 @@ public class XMLEnclosingMethods extends XMLFileManagement implements XMLEnclosi
 	 * @param YANGprovenance xml file where the signature is to be enclosed
 	 * @param signature      signature to include in the YANG data provenance
 	 * @return JDOM of the YANG data provenance with the new signature element
-	 *         integrated
+	 *         integrated into a notification envelope doc
 	 */
 	public Document enclosingMethod2(Document YANGprovenance, String signature) {
 

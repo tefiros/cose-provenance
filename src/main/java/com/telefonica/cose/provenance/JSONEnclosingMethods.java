@@ -60,7 +60,7 @@ public class JSONEnclosingMethods extends JSONFileManagement implements JSONEncl
      * @param rootNode json file where the signature is to be enclosed
      * @param signature      signature to include in the YANG data provenance
      * @return JsonNode of the YANG data provenance with the new signature element
-     *         integrated
+     *         integrated in a notification envelope type
      */
 
     public JsonNode enclosingMethod2JSON(JsonNode rootNode, String signature) {
