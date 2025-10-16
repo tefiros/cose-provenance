@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<envelope xmlns="urn:ietf:params:xml:ns:yang:ietf-yp-notification">
+  <provenance xmlns="urn:ietf:params:xml:ns:yang:ietf-yp-provenance">0oRRowNjeG1sBGdlYzIua2V5ASag9lhAxkNh1WDkN/dlW3G6e664uNT9JsNPfvdpB4heXLbzTGAwzboYPqU01E1xyv8klC+R+Kapdn4oN+fxwXJMosS8dQ==</provenance>
+  <event-time>2024-02-03T11:37:25.94Z</event-time>
+  <contents>
+    <push-update xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-push">
+      <subscription-id>2147483648</subscription-id>
+      <datastore-contents>
+        <interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+          <interface>
+            <name>GigabitEthernet1</name>
+            <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+            <admin-status>up</admin-status>
+            <oper-status>up</oper-status>
+            <last-change>2024-02-03T11:22:41.081+00:00</last-change>
+            <if-index>1</if-index>
+            <phys-address>0c:00:00:37:d6:00</phys-address>
+            <speed>1000000000</speed>
+          </interface>
+        </interfaces-state>
+      </datastore-contents>
+    </push-update>
+  </contents>
+</envelope>

@@ -2,6 +2,9 @@ package com.telefonica.cose.provenance;
 
 import org.jdom2.Document;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  * This interface defines a contract for processing XML documents
  * using the JDOM2 library. It provides methods that accept an XML document and a signature
@@ -28,12 +31,16 @@ public interface XMLEnclosingMethodInterface {
 	 */
 	Document enclosingMethod(Document YANGprovenance, String signature);
 
+
+	Document enclosingMethodParam(Document YANGprovenance, String signature, String signatureElement, String signatureNS);
+	Document enclosingMethodYANG(Document YANGprovenance, String signature, File yangModule) throws IOException;
 	/**
 	 * Method related to the second enclosing method proposed
 	 *
 	 * @param YANGprovenance xml file where the signature is to be enclosed
 	 * @param signature      signature to include in the YANG data provenance
 	 * @return JDOM of the YANG data provenance with the new signature element
+	 *
 	 *         integrated
 	 */
 	Document enclosingMethod2(Document YANGprovenance, String signature);

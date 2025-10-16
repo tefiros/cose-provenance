@@ -6,6 +6,9 @@ import org.jdom2.Namespace;
 
 import org.jdom2.Attribute;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  * Procedures to enclose the signature in the XML data structure
  * 
@@ -40,6 +43,26 @@ public class XMLEnclosingMethods extends XMLFileManagement implements XMLEnclosi
 		return YANGprovenance;
 
 	}
+
+	public Document enclosingMethodParam(Document YANGprovenance, String signature, String signatureElement, String signatureNS) {
+		Element rootElementDocument = YANGprovenance.getRootElement();
+		Namespace signatureNamespace = Namespace.getNamespace(signatureNS);
+
+		Element sigElement = new Element(signatureElement, signatureNamespace);
+		sigElement.setText(signature);
+		rootElementDocument.addContent(0, sigElement);
+
+		return YANGprovenance;
+	}
+
+
+
+	public Document enclosingMethodYANG(Document YANGprovenance, String signature, File yangModule) throws IOException {
+		YANGMetadata metadata = YANGModuleProcessor.extractSignatureMetadata(yangModule);
+		return enclosingMethodParam(YANGprovenance, signature, metadata.getLeafName(), metadata.getNamespace());
+	}
+
+
 
 	/**
 	 * Method related to the second enclosing method proposed
