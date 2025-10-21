@@ -1,0 +1,15 @@
+{
+  "ietf-interfaces:interfaces" : {
+    "interface" : [ {
+      "name" : "GigabitEthernet1",
+      "type" : "ianaift:ethernetCsmacd",
+      "admin-status" : "up",
+      "oper-status" : "up",
+      "last-change" : "2024-02-03T11:22:41.081+00:00",
+      "if-index" : 1,
+      "phys-address" : "0c:00:00:37:d6:00",
+      "speed" : 1000000000
+    } ],
+    "provenance:ietf-yp-provenance" : "0oRRowNjeG1sBGdlYzIua2V5ASag9lhA/rzOH3rrtPIRVET6WXQoWGwfJ9zABo2qje323r51tDEUJunQKvnMPBsVHirmFle+RDpwnS9gPcbFRwFua0t/mA=="
+  }
+}

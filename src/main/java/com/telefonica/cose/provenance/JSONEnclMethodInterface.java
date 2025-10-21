@@ -2,6 +2,9 @@ package com.telefonica.cose.provenance;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  * This interface defines a contract for processing JSON documents
  * using the Jackson library. It provides methods that accept an JSON document and a signature
@@ -25,6 +28,9 @@ public interface JSONEnclMethodInterface {
      * @return A JsonNode representing the result of the operation.
      */
     JsonNode enclosingMethodJSON(JsonNode YANGprovenance, String signature);
+
+    JsonNode enclosingMethodParam(JsonNode yangProvenance, String signature, String moduleName, String leafName);
+    JsonNode enclosingMethodYANG(JsonNode YANGprovenance, String signature, File yangModule) throws IOException;
 
     /**
      * Processes the given JSON document with the specified signature.

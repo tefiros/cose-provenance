@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <envelope xmlns="urn:ietf:params:xml:ns:yang:ietf-yp-notification">
-  <provenance xmlns="urn:ietf:params:xml:ns:yang:ietf-yp-provenance">0oRRowNjeG1sBGdlYzIua2V5ASag9lhAxkNh1WDkN/dlW3G6e664uNT9JsNPfvdpB4heXLbzTGAwzboYPqU01E1xyv8klC+R+Kapdn4oN+fxwXJMosS8dQ==</provenance>
+  <provenance xmlns="urn:ietf:params:xml:ns:yang:ietf-yp-provenance">0oRRowNjeG1sBGdlYzIua2V5ASag9lhA4BXlnEH1vfo0XVDOak2xLbMc+vobYZzsHC1uYdp99+BYEtkuMg5eXERXcpRnBRVYq6/rbouSxxYAHX7gElZC0A==</provenance>
   <event-time>2024-02-03T11:37:25.94Z</event-time>
   <contents>
     <push-update xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-push">

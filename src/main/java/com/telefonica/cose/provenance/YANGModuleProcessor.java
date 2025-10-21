@@ -34,4 +34,30 @@ public class YANGModuleProcessor {
 
         return new YANGMetadata(namespace, leafName);
     }
+
+    /**
+     * Extrae el nombre del módulo YANG (la palabra que sigue a 'module').
+     *
+     * @param yangFile Archivo YANG del cual se quiere obtener el nombre del módulo
+     * @return Nombre del módulo (por ejemplo, "ietf-yp-provenance")
+     * @throws IOException si ocurre un error de lectura o el formato no es válido
+     */
+    public static String extractModuleName(File yangFile) throws IOException {
+        if (yangFile == null || !yangFile.exists()) {
+            throw new FileNotFoundException("Archivo YANG no encontrado: " + yangFile);
+        }
+
+        String content = Files.readString(yangFile.toPath());
+
+        // Expresión regular para capturar el nombre después de "module"
+        Pattern modulePattern = Pattern.compile("\\bmodule\\s+([a-zA-Z0-9\\-]+)\\s*\\{");
+        Matcher moduleMatcher = modulePattern.matcher(content);
+
+        if (moduleMatcher.find()) {
+            return moduleMatcher.group(1);
+        } else {
+            throw new IllegalArgumentException("No se encontró el nombre del módulo en el archivo YANG: " + yangFile.getName());
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.telefonica.cose.provenance;
 
+import java.io.File;
 import java.io.IOException;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -51,6 +52,47 @@ public class JSONEnclosingMethods extends JSONFileManagement implements JSONEncl
 
         // If no inner object exists, throw an error
         throw new IllegalArgumentException("No inner object found to add the provenance-string");
+    }
+
+    /**
+     * Inserta una firma en un documento JSON YANG, usando el formato module:leaf.
+     *
+     * @param yangProvenance Documento JSON original (como árbol Jackson)
+     * @param signature Firma base64 a insertar
+     * @param moduleName Nombre del módulo YANG (por ejemplo "interfaces-provenance-augmented")
+     * @param leafName Nombre del leaf augmentado (por ejemplo "interfaces-provenance")
+     * @return Documento JSON con la firma insertada
+     */
+    public JsonNode enclosingMethodParam(JsonNode yangProvenance, String signature, String moduleName, String leafName) {
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode rootCopy = yangProvenance.deepCopy();
+
+        // Supongamos que el root tiene un único top-level como "ietf-interfaces:interfaces"
+        String rootKey = rootCopy.fieldNames().next();
+        JsonNode innerNode = rootCopy.get(rootKey);
+
+        if (innerNode.isObject()) {
+            ObjectNode innerObject = (ObjectNode) innerNode;
+
+            // Creamos el nombre completo del campo para la firma
+            String signatureField = moduleName + ":" + leafName;
+
+            // Añadimos la firma al nivel superior del bloque principal
+            innerObject.put(signatureField, signature);
+
+            // Volvemos a insertar el objeto modificado
+            rootCopy.set(rootKey, innerObject);
+        } else {
+            System.err.println("El documento JSON no tiene la estructura esperada (objeto raíz dentro de otro).");
+        }
+
+        return rootCopy;
+    }
+
+    public JsonNode enclosingMethodYANG(JsonNode YANGprovenance, String signature, File yangModule) throws IOException {
+        YANGMetadata metadata = YANGModuleProcessor.extractSignatureMetadata(yangModule);
+        String moduleName = YANGModuleProcessor.extractModuleName(yangModule);
+        return enclosingMethodParam(YANGprovenance, signature, metadata.getLeafName(), moduleName);
     }
 
 
