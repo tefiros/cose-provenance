@@ -31,8 +31,24 @@ public interface XMLEnclosingMethodInterface {
 	 */
 	Document enclosingMethod(Document YANGprovenance, String signature);
 
-
+	/**
+	 * Processes the given XML document with the specified signature.
+	 * For yang modules
+	 *
+	 * @param YANGprovenance The XML document to be processed.
+	 * @param signature The signature used in the operation.
+	 * @return A JDOM representing the result of the operation.
+	 */
 	Document enclosingMethodParam(Document YANGprovenance, String signature, String signatureElement, String signatureNS);
+
+	/**
+	 * Processes the given XML document with the specified signature.
+	 * For yang modules files
+	 *
+	 * @param YANGprovenance The XML document to be processed.
+	 * @param signature The signature used in the operation.
+	 * @return A JDOM representing the result of the operation.
+	 */
 	Document enclosingMethodYANG(Document YANGprovenance, String signature, File yangModule) throws IOException;
 	/**
 	 * Method related to the second enclosing method proposed

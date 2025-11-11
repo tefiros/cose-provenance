@@ -17,12 +17,12 @@ public class JSONSigner {
 
     public static void main(String[] args) throws Exception {
 
-        // 📦 Instanciamos los manejadores de firma y de enclavamiento
+        // Instanciamos los manejadores de firma y de enclavamiento
         JSONSignatureInterface sign = new JSONSignature();
         JSONEnclMethodInterface enclose = new JSONEnclosingMethods();
         Parameters param = new Parameters();
 
-        // 📝 JSON YANG de ejemplo (simula un fragmento de ietf-interfaces)
+        // JSON YANG de ejemplo (simula un fragmento de ietf-interfaces)
         String jsonString = "{\n" +
                 "  \"ietf-interfaces:interfaces\": {\n" +
                 "    \"interface\": [\n" +
@@ -40,22 +40,22 @@ public class JSONSigner {
                 "  }\n" +
                 "}";
 
-        // 🔐 Generamos la firma base64 (simulada o real)
+        // Generamos la firma base64 (simulada o real)
         String signature = sign.signing(jsonString, param.getProperty("kid"));
 
-        // 🔍 Parseamos el JSON original
+        // Parseamos el JSON original
         ObjectMapper mapper = new ObjectMapper();
         JsonNode file = mapper.readTree(jsonString);
 
-        // ⚙️ Definimos el módulo y el leaf según el YANG
+        // Definimos el módulo y el leaf según el YANG
 //        String moduleName = "interfaces-provenance-augmented";
 //        String leafName = "interfaces-provenance";
         File yangModule = new File("./ietf-yp-provenance@2025-05-09.yang");
-        // 🧩 Insertamos la firma usando el método paramétrico
+        // Insertamos la firma usando el metodo paramétrico
 //        JsonNode provenanceJSON = enclose.enclosingMethodParam(file, signature, moduleName, leafName);
         JsonNode provenanceJSON = enclose.enclosingMethodYANG(file,signature,yangModule);
 
-        // 💾 Mostramos el resultado y guardamos
+        // Mostramos el resultado y guardamos
         String output = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(provenanceJSON);
         System.out.println("Documento firmado con provenance:");
         System.out.println(output);

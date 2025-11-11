@@ -24,10 +24,13 @@ dependencies {
     // canonicalization JCS
     // https://mvnrepository.com/artifact/io.github.erdtman/java-json-canonicalization
     implementation("io.github.erdtman:java-json-canonicalization:1.1")
+    //canonical cbor
+    // https://mvnrepository.com/artifact/com.upokecenter/cbor
+    implementation("com.upokecenter:cbor:4.5.6")
 }
 
 group = "com.telefonica.api" // Define your group (package) structure here
-version = "0.0.4" // Version of your library
+version = "0.0.5" // Version of your library
 description = "Provenance API Library" // Brief description of the library
 java.sourceCompatibility = JavaVersion.VERSION_1_8 // Make sure the source compatibility matches your Java version
 
@@ -46,7 +49,7 @@ publishing {
             from(components["java"]) // This tells Gradle to publish the Java components (i.e., the JAR) of the project
             groupId = "com.telefonica.api" // Group ID of your library
             artifactId = "provenance-api" // Artifact ID (name) of your library
-            version = "0.0.4" // Version of your library (same as defined above)
+            version = "0.0.5" // Version of your library (same as defined above)
 
             pom {
                 name.set("Provenance API Library") // Name of the library

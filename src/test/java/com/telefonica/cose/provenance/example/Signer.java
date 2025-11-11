@@ -27,12 +27,12 @@ public class Signer {
 		filepath = "./netconf-interfaces.xml";
 		path = "./provenance_netconf.xml";
 
-		// 🔐 Instanciamos las clases de firma y de enclavamiento
+		// Instanciamos las clases de firma y de enclavamiento
 		XMLSignatureInterface sign = new XMLSignature();
 		XMLEnclosingMethodInterface enclose = new XMLEnclosingMethods();
 		Parameters param = new Parameters();
 
-		// 📝 XML de ejemplo
+		// XML de ejemplo
 		String xmlString = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
 				"<envelope xmlns=\"urn:ietf:params:xml:ns:yang:ietf-yp-notification\">\n" +
 				"    <event-time>2024-02-03T11:37:25.94Z</event-time>\n" +

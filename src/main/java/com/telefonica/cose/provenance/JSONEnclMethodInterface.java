@@ -29,7 +29,24 @@ public interface JSONEnclMethodInterface {
      */
     JsonNode enclosingMethodJSON(JsonNode YANGprovenance, String signature);
 
+    /**
+     * Processes the given JSON document with the specified signature.
+     * For yang modules
+     *
+     * @param yangProvenance The JSON document to be processed.
+     * @param signature The signature used in the operation.
+     * @return A JsonNode representing the result of the operation.
+     */
     JsonNode enclosingMethodParam(JsonNode yangProvenance, String signature, String moduleName, String leafName);
+
+    /**
+     * Processes the given JSON document with the specified signature.
+     * For yang modules files
+     *
+     * @param YANGprovenance The JSON document to be processed.
+     * @param signature The signature used in the operation.
+     * @return A JsonNode representing the result of the operation.
+     */
     JsonNode enclosingMethodYANG(JsonNode YANGprovenance, String signature, File yangModule) throws IOException;
 
     /**
