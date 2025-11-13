@@ -200,10 +200,7 @@ public class XMLVerification extends XMLFileManagement implements XMLVerificatio
 		
 		byte[] signature = readSignature(YANGfile);
 		String message = readYANGFile(YANGfile);
-		//String check = message
-				//.replaceAll("[\\r\\n]+", "\n")     // Normalize line breaks
-				//.replaceAll(">\\s+<", ">\r\n<");      // Remove extra spaces between tags
-				//.trim();                           // Trim leading/trailing whitespace
+
 
 		// Verify the signature
 		Sign1Message verificator = (Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
@@ -220,4 +217,62 @@ public class XMLVerification extends XMLFileManagement implements XMLVerificatio
 
 	}
 
+	/**
+	 * UPDATE FOR YANG DOCUMENTS
+	 */
+	byte[] readSignatureYANG(Document YANGFile, String signatureElement, String signatureNS) throws COSESignatureException {
+		byte[] signature = null;
+		String signString = null;
+
+		Element rootElement = YANGFile.getRootElement();
+		Namespace signatureNamespace = Namespace.getNamespace(signatureNS);
+		Element signElement = rootElement.getChild(signatureElement, signatureNamespace);
+
+		if (signElement != null) {
+			signString = signElement.getText();
+		} else {
+			throw new COSESignatureException("No se encontró el elemento de firma esperado: "
+					+ signatureElement + " en el namespace " + signatureNS);
+		}
+
+		signature = Base64.getDecoder().decode(signString);
+		System.out.println("Found new-style signature:\n" + signString);
+		return signature;
+	}
+	String readYANGFileYANG(Document YANGFile, String signatureElement, String signatureNS)
+			throws COSESignatureException {
+
+		Element root = YANGFile.getRootElement();
+		Namespace ns = Namespace.getNamespace(signatureNS);
+
+		// Eliminar la firma
+		if (root.getChild(signatureElement, ns) != null) {
+			root.removeChild(signatureElement, ns);
+		} else {
+			throw new COSESignatureException("No signature element found in namespace " + signatureNS);
+		}
+
+		// Normalizar XML antes de devolver
+		StringWriter contentXML = new StringWriter();
+		saveXMLDocument(YANGFile, contentXML);
+		String content = contentXML.toString();
+
+
+		return content;
+	}
+
+
+	public boolean verifyYANG(Document YANGfile, String signatureElement, String signatureNS)
+			throws CoseException, COSESignatureException {
+
+		byte[] signature = readSignatureYANG(YANGfile, signatureElement, signatureNS);
+		String message = readYANGFileYANG(YANGfile, signatureElement, signatureNS);
+
+		Sign1Message verificator = (Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
+		String content = canonicalizeXML(message);
+		verificator.SetContent(content);
+
+		OneKey publicOnlyKey = publicKey(verificator.findAttribute(HeaderKeys.KID, Attribute.PROTECTED).AsString());
+		return verificator.validate(publicOnlyKey);
+	}
 }

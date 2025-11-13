@@ -2,6 +2,8 @@ package com.telefonica.cose.provenance;
 
 import java.io.IOException;
 
+import COSE.CoseException;
+import com.telefonica.cose.provenance.exception.COSESignatureException;
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
 
@@ -31,5 +33,8 @@ public interface XMLVerificationInterface {
 	 * @throws IOException If an I/O error occurs while reading the file.
 	 */
 	Document loadXMLDocument(String xmlFilePath)throws JDOMException, IOException ;
+
+
+	boolean verifyYANG(Document YANGfile, String signatureElement, String signatureNS) throws CoseException, COSESignatureException;
 
 }

@@ -28,56 +28,44 @@ public class Verifier {
 
 	public static void main(String[] args) throws Exception {
 		
-		xmlFilePath="./provenance_output.xml";
+		xmlFilePath="./provenance_output2.xml";
+
 		// Instantiate the Verification class
-		XMLVerificationInterface ver = new XMLVerification();
+		XMLVerificationInterface verifier = new XMLVerification();
 		//JSONVerificationInterface ver2 = new JSONVerification();
-		
-		Document doc = ver.loadXMLDocument(xmlFilePath);
-//		String jsonString = "{\n" +
-//				"    \"name\": \"Alice\",\n" +
-//				"    \"age\": 30,\n" +
-//				"    \"city\": \"New York\",\n" +
-//				"    \"hobbies\": [\"reading\", \"traveling\", \"coding\"],\n" +
-//				"    \"nested\": {\n" +
-//				"        \"key1\": \"value1\",\n" +
-//				"        \"key2\": \"value2\",\n" +
-//				"        \"provenance-string\": \"0oRRowNjeG1sBGdlYzIua2V5ASag9lhA2z4DnOVfMCs21Qm21+A6wZCvE9S7S7hsh1MzDKNw4/ch8pvLMxBXDNM2wdgyVnZqu0CVxnYVuDI2VZx1xmNi9w==\"\n" +
-//				"    }\n" +
-//				"}";
-//		ObjectMapper objectMapper = new ObjectMapper();
-//		JsonNode rootNode = objectMapper.readTree(jsonString);
+		Document docFromFile = verifier.loadXMLDocument(xmlFilePath);
 
-
-		String xmlString = "<envelope xmlns=\"urn:ietf:params:xml:ns:yang:ietf-yp-notification\">\n" +
-				"    <event-time>2024-10-10T10:59:55.32Z</event-time>\n" +
-				"    <provenance xmlns=\"urn:ietf:params:xml:ns:yang:ietf-yp-provenance\">" +
-				"0oRRowNjeG1sBGdlYzIua2V5ASag9lhAYAx6zZMtPCRwJ9wBTR2d50ixOlqVMaqAIFA93SFAXmWj+jfaUq+BXXQ4Qx0pXjMUnhIesvB18xvuuUmanBuSFQ==" +
-				"</provenance>\n" +
-				"    <contents>\n" +
-				"        <push-update xmlns=\"urn:ietf:params:xml:ns:yang:ietf-yang-push\">\n" +
-				"            <id>1011</id>\n" +
-				"            <datastore-contents>\n" +
-				"                <interfaces xmlns=\"urn:ietf:params:xml:ns:yang:ietf-interfaces\">\n" +
-				"                    <interface>\n" +
-				"                        <name>eth0</name>\n" +
-				"                        <oper-status>up</oper-status>\n" +
-				"                    </interface>\n" +
-				"                </interfaces>\n" +
-				"            </datastore-contents>\n" +
-				"        </push-update>\n" +
-				"    </contents>\n" +
-				"</envelope>";
-
-
-
-
-		SAXBuilder saxBuilder = new SAXBuilder();
-		Document document = saxBuilder.build(new StringReader(xmlString));
-
+//
+//		String xmlString = "<envelope xmlns=\"urn:ietf:params:xml:ns:yang:ietf-yp-notification\">\n" +
+//				"    <event-time>2024-10-10T10:59:55.32Z</event-time>\n" +
+//				"    <provenance xmlns=\"urn:ietf:params:xml:ns:yang:ietf-yp-provenance\">" +
+//				"0oRRowNjeG1sBGdlYzIua2V5ASag9lhAYAx6zZMtPCRwJ9wBTR2d50ixOlqVMaqAIFA93SFAXmWj+jfaUq+BXXQ4Qx0pXjMUnhIesvB18xvuuUmanBuSFQ==" +
+//				"</provenance>\n" +
+//				"    <contents>\n" +
+//				"        <push-update xmlns=\"urn:ietf:params:xml:ns:yang:ietf-yang-push\">\n" +
+//				"            <id>1011</id>\n" +
+//				"            <datastore-contents>\n" +
+//				"                <interfaces xmlns=\"urn:ietf:params:xml:ns:yang:ietf-interfaces\">\n" +
+//				"                    <interface>\n" +
+//				"                        <name>eth0</name>\n" +
+//				"                        <oper-status>up</oper-status>\n" +
+//				"                    </interface>\n" +
+//				"                </interfaces>\n" +
+//				"            </datastore-contents>\n" +
+//				"        </push-update>\n" +
+//				"    </contents>\n" +
+//				"</envelope>";
+//
+//
+//
+//
+//		SAXBuilder saxBuilder = new SAXBuilder();
+//		Document document = saxBuilder.build(new StringReader(xmlString));
+		String signatureElement = "interfaces-provenance";
+		String signatureNS = "urn:example:interfaces-provenance-augmented";
 		// Verify COSE signature and content
 		try {
-			if (ver.verify(doc)) {
+			if (verifier.verifyYANG(docFromFile, signatureElement, signatureNS)) {
 				System.out.println("\033[1m" + "Signature verified");
 			} else {
 				System.err.println("\033[1m" + "Invalid signature.");

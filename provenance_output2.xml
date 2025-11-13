@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<envelope xmlns="urn:ietf:params:xml:ns:yang:ietf-yp-notification"><provenance xmlns="urn:ietf:params:xml:ns:yang:ietf-yp-provenance">0oRRowEmA2N4bWwEZ2VjMi5rZXmg9lhABPyd4szbLsZDt5hyL7EG9eYobHVuOaK5iA7oxnSr/IrgabNvqqnegq0jj6wWpvqdmRXLIItbjXwRfuLZD2tkLA==</provenance>
+<envelope xmlns="urn:ietf:params:xml:ns:yang:ietf-yp-notification"><interfaces-provenance xmlns="urn:example:interfaces-provenance-augmented">0oRRowEmA2N4bWwEZ2VjMi5rZXmg9lhAocyMrE7Lc1ohwir6Ma/korah7c+ukq9n6Vt9zr5J1GXxXnp/j88HG0NwnJVW6NVKMdqhjURUclLcB/XmKaGsZw==</interfaces-provenance>
     <event-time>2024-02-03T11:37:25.94Z</event-time>
     <contents>
         <push-update xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-push">
