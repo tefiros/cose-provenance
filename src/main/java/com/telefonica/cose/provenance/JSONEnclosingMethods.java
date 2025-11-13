@@ -92,7 +92,7 @@ public class JSONEnclosingMethods extends JSONFileManagement implements JSONEncl
     public JsonNode enclosingMethodYANG(JsonNode YANGprovenance, String signature, File yangModule) throws IOException {
         YANGMetadata metadata = YANGModuleProcessor.extractSignatureMetadata(yangModule);
         String moduleName = YANGModuleProcessor.extractModuleName(yangModule);
-        return enclosingMethodParam(YANGprovenance, signature, metadata.getLeafName(), moduleName);
+        return enclosingMethodParam(YANGprovenance, signature, moduleName, metadata.getLeafName());
     }
 
 

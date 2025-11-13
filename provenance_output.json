@@ -10,6 +10,6 @@
       "phys-address" : "0c:00:00:37:d6:00",
       "speed" : 1000000000
     } ],
-    "provenance:ietf-yp-provenance" : "0oRRowNjeG1sBGdlYzIua2V5ASag9lhA/rzOH3rrtPIRVET6WXQoWGwfJ9zABo2qje323r51tDEUJunQKvnMPBsVHirmFle+RDpwnS9gPcbFRwFua0t/mA=="
+    "ietf-yp-provenance:provenance" : "0oRRowEmA2N4bWwEZ2VjMi5rZXmg9lhAvFpxjcYYfz0mRkidzp7dZ98YNGh9OYHjtaWhg96ibSOcOUnIVrhkRzUgERXsFnPqRASoz7X7EKDgMtmdLZcXRA=="
   }
 }

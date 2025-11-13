@@ -2,8 +2,10 @@ package com.telefonica.cose.provenance;
 
 import java.io.IOException;
 
+import COSE.CoseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.telefonica.cose.provenance.exception.COSESignatureException;
 
 
 /**
@@ -34,5 +36,7 @@ public interface JSONVerificationInterface {
      * @throws JsonProcessingException If the file contains invalid JSON syntax
      */
     JsonNode loadJSONDocument(String jsonFilePath) throws IOException, JsonProcessingException;
+
+    boolean verifyYANG(JsonNode yangJson, String moduleName, String signatureField) throws CoseException, COSESignatureException;
 
 }

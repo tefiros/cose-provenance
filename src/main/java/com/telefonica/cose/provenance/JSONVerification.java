@@ -201,18 +201,6 @@ public class JSONVerification extends JSONFileManagement implements JSONVerifica
      */
     String readYANGFile(JsonNode yangFile) throws COSESignatureException {
         ObjectMapper objectMapper = new ObjectMapper();
-
-//		// Check for "@ypmd:provenance-string" or "provenance-string"
-//		if (yangFile.has("@ypmd:provenance-string")) {
-//			// Remove the "@ypmd:provenance-string" field
-//			((ObjectNode) yangFile).remove("@ypmd:provenance-string");
-//		} else if (yangFile.has("provenance-string")) {
-//			// Remove the "provenance-string" field
-//			((ObjectNode) yangFile).remove("provenance-string");
-//		} else {
-//			throw new COSESignatureException("No provenance-string found in the JSON document");
-//		}
-
         try {
             // Convert the updated JSON document back to a string
             return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(yangFile);
@@ -249,6 +237,123 @@ public class JSONVerification extends JSONFileManagement implements JSONVerifica
         OneKey publicOnlyKey = publicKey(verificator.findAttribute(HeaderKeys.KID, Attribute.PROTECTED).AsString());
         // OneKey publicOnlyKey = publicKey("ec2.key");
 
+        return verificator.validate(publicOnlyKey);
+    }
+
+
+    /**
+     * UPDATE FOr YANG MODULES
+     */
+    /**
+     * Extracts the Base64 COSE signature from a YANG JSON document.
+     * It looks for a field named "<moduleName>:<signatureField>" anywhere in the JSON.
+     *
+     * @param yangJson        the JSON document (as JsonNode)
+     * @param moduleName      the YANG module name (e.g., "ietf-yp-provenance")
+     * @param signatureField  the leaf name used for the signature (e.g., "provenance")
+     * @return the decoded COSE signature as a byte array
+     * @throws COSESignatureException if no signature field is found
+     */
+    public byte[] readSignatureYANG(JsonNode yangJson, String moduleName, String signatureField)
+            throws COSESignatureException {
+
+        final byte[][] signatureWrapper = { null };
+
+        extractSignatureRecursivelyYANG(yangJson, moduleName, signatureField, signatureWrapper);
+
+        if (signatureWrapper[0] == null) {
+            throw new COSESignatureException(
+                    "No signature field found for module '" + moduleName +
+                            "' and field '" + signatureField + "' in JSON document");
+        }
+
+        System.out.println("Found JSON signature: " + moduleName + ":" + signatureField);
+        return signatureWrapper[0];
+    }
+
+    /**
+     * Recursively searches for any field named "<moduleName>:<signatureField>"
+     * and removes it from the JSON tree once found.
+     */
+    private void extractSignatureRecursivelyYANG(JsonNode currentNode,
+                                                 String moduleName,
+                                                 String signatureField,
+                                                 byte[][] signatureWrapper) {
+        if (currentNode.isObject()) {
+            ObjectNode obj = (ObjectNode) currentNode;
+
+            String fullName = moduleName + ":" + signatureField;
+
+            // Direct match: <moduleName>:<signatureField>
+            if (obj.has(fullName)) {
+                String signString = obj.get(fullName).asText();
+                signatureWrapper[0] = Base64.getDecoder().decode(signString);
+                obj.remove(fullName);
+                return;
+            }
+
+            // Fallbacks for alternative naming (compatibilidad con versiones antiguas)
+            if (obj.has(signatureField)) {
+                String signString = obj.get(signatureField).asText();
+                signatureWrapper[0] = Base64.getDecoder().decode(signString);
+                obj.remove(signatureField);
+                return;
+            } else if (obj.has("@ypmd:provenance-string")) {
+                String signString = obj.get("@ypmd:provenance-string").asText();
+                signatureWrapper[0] = Base64.getDecoder().decode(signString);
+                obj.remove("@ypmd:provenance-string");
+                return;
+            }
+
+            // Recurse into child fields
+            Iterator<String> fieldNames = obj.fieldNames();
+            while (fieldNames.hasNext()) {
+                String field = fieldNames.next();
+                extractSignatureRecursivelyYANG(obj.get(field), moduleName, signatureField, signatureWrapper);
+                if (signatureWrapper[0] != null) return;
+            }
+
+        } else if (currentNode.isArray()) {
+            ArrayNode arr = (ArrayNode) currentNode;
+            for (JsonNode element : arr) {
+                extractSignatureRecursivelyYANG(element, moduleName, signatureField, signatureWrapper);
+                if (signatureWrapper[0] != null) return;
+            }
+        }
+    }
+
+    /**
+     * Serializes the updated JSON document (without the signature) back into a string.
+     */
+    String readYANGFileYANG(JsonNode yangJson) throws COSESignatureException {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(yangJson);
+        } catch (JsonProcessingException e) {
+            throw new COSESignatureException("Failed to serialize the JSON document.", e);
+        }
+    }
+
+    /**
+     * Verifies a COSE signature embedded in a YANG JSON document.
+     *
+     * @param yangJson        the JSON document
+     * @param moduleName      the YANG module name (namespace)
+     * @param signatureField  the signature field name
+     * @return true if signature is valid
+     */
+    public boolean verifyYANG(JsonNode yangJson, String moduleName, String signatureField)
+            throws CoseException, COSESignatureException {
+
+        byte[] signature = readSignatureYANG(yangJson, moduleName, signatureField);
+        String message = readYANGFileYANG(yangJson);
+
+        Sign1Message verificator = (Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
+        String content = canonicalizeJSON(message);
+        verificator.SetContent(content);
+
+        OneKey publicOnlyKey = publicKey(
+                verificator.findAttribute(HeaderKeys.KID, Attribute.PROTECTED).AsString());
         return verificator.validate(publicOnlyKey);
     }
 
