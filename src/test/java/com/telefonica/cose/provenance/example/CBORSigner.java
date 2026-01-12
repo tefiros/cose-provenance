@@ -2,23 +2,13 @@ package com.telefonica.cose.provenance.example;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.telefonica.cose.provenance.JSONEnclosingMethods;
-import com.telefonica.cose.provenance.JSONEnclMethodInterface;
-import com.telefonica.cose.provenance.Parameters;
-import com.telefonica.cose.provenance.JSONSignatureInterface;
-import com.telefonica.cose.provenance.JSONSignature;
+import com.telefonica.cose.provenance.*;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-
-public class JSONSigner {
+public class CBORSigner {
 
     public static void main(String[] args) throws Exception {
-
         // Instanciamos los manejadores de firma y de enclosing
-        JSONSignatureInterface sign = new JSONSignature();
+        CBORSignatureInterface sign = new CBORSignature();
         JSONEnclMethodInterface enclose = new JSONEnclosingMethods();
         Parameters param = new Parameters();
 
@@ -43,30 +33,18 @@ public class JSONSigner {
         // Generamos la firma base64 (simulada o real)
         String signature = sign.signing(jsonString, param.getProperty("kid"));
 
+        System.out.println(signature);
+
         // Parseamos el JSON original
         ObjectMapper mapper = new ObjectMapper();
         JsonNode file = mapper.readTree(jsonString);
 
-        // Definimos el módulo y el leaf según el YANG
-//        String moduleName = "interfaces-provenance-augmented";
-//        String leafName = "interfaces-provenance";
-        File yangModule = new File("./ietf-yp-provenance@2025-05-09.yang");
-        // Insertamos la firma usando el metodo paramétrico
-//        JsonNode provenanceJSON = enclose.enclosingMethodParam(file, signature, moduleName, leafName);
-        JsonNode provenanceJSON = enclose.enclosingMethodYANG(file,signature,yangModule);
+        JsonNode provenanceJson = enclose.enclosingMethodJSON(file, signature);
 
-        // Mostramos el resultado y guardamos
-        String output = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(provenanceJSON);
+        String output = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(provenanceJson);
         System.out.println("Documento firmado con provenance:");
         System.out.println(output);
 
-        try (FileOutputStream fos = new FileOutputStream("provenance_output.json")) {
-            fos.write(output.getBytes());
-            System.out.println("Documento guardado en provenance_output.json");
-        } catch (IOException e) {
-            System.err.println("Error al guardar el JSON: " + e.getMessage());
-            e.printStackTrace();
-        }
     }
-}
 
+}

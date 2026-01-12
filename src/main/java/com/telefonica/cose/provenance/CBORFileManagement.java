@@ -51,6 +51,11 @@ public class CBORFileManagement {
 //        System.out.println("¿Bytes iguales? " + java.util.Arrays.equals(canonical1, canonical2));
 //    }
 
+    public byte[] canonicalizeCbor(Object input) {
+        CBORObject cbor = CBORObject.FromObject(input);
+        return cbor.EncodeToBytes(CBOREncodeOptions.DefaultCtap2Canonical);
+    }
+
     public static void main(String[] args) {
         // Creamos un mapa con claves de distintas longitudes y tipos
         Map<Object, Object> map = new LinkedHashMap<>();
