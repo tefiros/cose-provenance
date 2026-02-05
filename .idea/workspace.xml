@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fefdd05-3a00-4f6b-8d69-6e24ba5366f8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORSignature.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORSignatureInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/CBORSigner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORVerification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORVerificationInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/CBORVerifier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
@@ -17,14 +17,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/CBORFileManagement.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/CBORFileManagement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/JSONVerification.class.uniqueId1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/JSONVerificationInterface.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/CBORFileManagement.class.uniqueId0" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/compileTransaction/stash-dir/JSONVerifier.class.uniqueId0" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORFileManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORFileManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/JSONSigner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/JSONSigner.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,8 +54,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -107,9 +102,9 @@
     "Gradle.Build cose-provenance.executor": "Run",
     "Gradle.cose-provenance [:com.telefonica.cose.provenance.CBORFileManagement.main()].executor": "Debug",
     "Gradle.cose-provenance [:com.telefonica.cose.provenance.JSONFileManagement.main()].executor": "Run",
-    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORSigner.main()].executor": "Debug",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORSigner.main()].executor": "Run",
     "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.JSONSigner.main()].executor": "Run",
-    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.JSONVerifier.main()].executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.JSONVerifier.main()].executor": "Debug",
     "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.Signer.main()].executor": "Run",
     "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.Verifier.main()].executor": "Run",
     "JAR Application.gradle-wrapper.jar.executor": "Run",
@@ -145,7 +140,7 @@
       <recent name="com.telefonica.cose.provenance.example" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CBORSigner">
+  <component name="RunManager">
     <configuration name="CBORSigner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.telefonica.cose.provenance.example.CBORSigner" />
       <module name="provenance-api.test" />
@@ -278,7 +273,9 @@
       <workItem from="1762515939983" duration="9000" />
       <workItem from="1762858748733" duration="25731000" />
       <workItem from="1764087211717" duration="23711000" />
-      <workItem from="1767962442091" duration="15743000" />
+      <workItem from="1767962442091" duration="17227000" />
+      <workItem from="1768292229172" duration="3716000" />
+      <workItem from="1769081101431" duration="38336000" />
     </task>
     <servers />
   </component>
@@ -598,12 +595,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/CBORSigner.java</url>
-          <line>31</line>
+          <line>33</line>
           <option name="timeStamp" value="132" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/CBORSigner.java</url>
-          <line>33</line>
+          <line>35</line>
           <option name="timeStamp" value="133" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -645,6 +642,96 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORSignature.java</url>
           <line>166</line>
           <option name="timeStamp" value="141" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/JSONSigner.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="142" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
+          <line>137</line>
+          <option name="timeStamp" value="143" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
+          <line>223</line>
+          <option name="timeStamp" value="144" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
+          <line>225</line>
+          <option name="timeStamp" value="145" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
+          <line>229</line>
+          <option name="timeStamp" value="146" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
+          <line>231</line>
+          <option name="timeStamp" value="147" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
+          <line>232</line>
+          <option name="timeStamp" value="148" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
+          <line>236</line>
+          <option name="timeStamp" value="149" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
+          <line>239</line>
+          <option name="timeStamp" value="150" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/JSONVerifier.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="151" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
+          <line>347</line>
+          <option name="timeStamp" value="152" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
+          <line>348</line>
+          <option name="timeStamp" value="153" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
+          <line>350</line>
+          <option name="timeStamp" value="154" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
+          <line>351</line>
+          <option name="timeStamp" value="155" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
+          <line>352</line>
+          <option name="timeStamp" value="156" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
+          <line>354</line>
+          <option name="timeStamp" value="157" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
+          <line>355</line>
+          <option name="timeStamp" value="158" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
+          <line>356</line>
+          <option name="timeStamp" value="159" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
