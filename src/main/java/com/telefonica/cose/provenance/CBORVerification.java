@@ -116,6 +116,23 @@ public class CBORVerification  extends  CBORFileManagement implements  CBORVerif
                 return;
             }
 
+            // @ypmd:provenance-string
+            if (obj.has("@ypmd:provenance-string")) {
+                holder[0] = Base64.getDecoder()
+                        .decode(obj.get("@ypmd:provenance-string").asText());
+                obj.remove("@ypmd:provenance-string");
+                return;
+            }
+
+            // ietf-yp-provenance:provenance
+            if (obj.has("ietf-yp-provenance:provenance")) {
+                holder[0] = Base64.getDecoder()
+                        .decode(obj.get("ietf-yp-provenance:provenance").asText());
+                obj.remove("ietf-yp-provenance:provenance");
+                return;
+            }
+
+
             Iterator<String> it = obj.fieldNames();
             while (it.hasNext()) {
                 extractSignatureRecursive(obj.get(it.next()), holder);
@@ -167,13 +184,116 @@ public class CBORVerification  extends  CBORFileManagement implements  CBORVerif
 
             OneKey publicKey = publicKey(kid);
 
-            // 5️⃣ Verificar
+
             return sign1.validate(publicKey);
 
         } catch (IOException e) {
             throw new COSESignatureException("Invalid JSON input", e);
         }
     }
+
+    // YANG MODULES
+
+
+    private void extractSignatureRecursivelyYANG(JsonNode currentNode, String moduleName, String signatureField, byte[][] signatureWrapper) {
+        if (currentNode.isObject()) {
+            ObjectNode obj = (ObjectNode) currentNode;
+
+            String fullName = moduleName + ":" + signatureField;
+
+            // Direct match: <moduleName>:<signatureField>
+            if (obj.has(fullName)) {
+                String signString = obj.get(fullName).asText();
+                signatureWrapper[0] = Base64.getDecoder().decode(signString);
+                obj.remove(fullName);
+                return;
+            }
+
+            // Fallbacks for alternative naming (compatibilidad con versiones antiguas)
+            if (obj.has(signatureField)) {
+                String signString = obj.get(signatureField).asText();
+                signatureWrapper[0] = Base64.getDecoder().decode(signString);
+                obj.remove(signatureField);
+                return;
+            } else if (obj.has("@ypmd:provenance-string")) {
+                String signString = obj.get("@ypmd:provenance-string").asText();
+                signatureWrapper[0] = Base64.getDecoder().decode(signString);
+                obj.remove("@ypmd:provenance-string");
+                return;
+            }
+
+            // Recurse into child fields
+            Iterator<String> fieldNames = obj.fieldNames();
+            while (fieldNames.hasNext()) {
+                String field = fieldNames.next();
+                extractSignatureRecursivelyYANG(obj.get(field), moduleName, signatureField, signatureWrapper);
+                if (signatureWrapper[0] != null) return;
+            }
+
+        } else if (currentNode.isArray()) {
+            ArrayNode arr = (ArrayNode) currentNode;
+            for (JsonNode element : arr) {
+                extractSignatureRecursivelyYANG(element, moduleName, signatureField, signatureWrapper);
+                if (signatureWrapper[0] != null) return;
+            }
+        }
+    }
+
+    public byte[] readSignatureYANG(JsonNode yangJson, String moduleName, String signatureField)
+            throws COSESignatureException {
+
+        final byte[][] signatureHolder = { null };
+
+        extractSignatureRecursivelyYANG(yangJson, moduleName, signatureField, signatureHolder);
+
+        if (signatureHolder[0] == null) {
+            throw new COSESignatureException(
+                    "No signature field found for module '" +
+                            moduleName + ":" + signatureField + "'");
+        }
+
+        return signatureHolder[0];
+    }
+
+    public boolean verifyYANG(JsonNode yangJson, String moduleName, String signatureField)
+            throws CoseException, COSESignatureException {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        // Extraer y eliminar firma
+        byte[] signature = readSignatureYANG(yangJson, moduleName, signatureField);
+
+        try {
+            //Reconstruir EXACTAMENTE el CBOR canónico firmado
+            Object jsonObject = mapper.readValue(
+                    mapper.writeValueAsBytes(yangJson),
+                    Object.class
+            );
+
+            byte[] canonicalCbor = canonicalizeCbor(jsonObject);
+
+            // Decodificar COSE_Sign1
+            Sign1Message sign1 =
+                    (Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
+
+            sign1.SetContent(canonicalCbor);
+
+            // Obtener KID y validar
+            String kid = sign1
+                    .findAttribute(HeaderKeys.KID, Attribute.PROTECTED)
+                    .AsString();
+
+            OneKey publicKey = publicKey(kid);
+
+            return sign1.validate(publicKey);
+
+        } catch (IOException e) {
+            throw new COSESignatureException("Invalid YANG CBOR input", e);
+        }
+    }
+
+
+
 
 
 }

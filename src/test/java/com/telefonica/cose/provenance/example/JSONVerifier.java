@@ -26,7 +26,7 @@ public class JSONVerifier {
 
 	public static void main(String[] args) throws Exception {
 		
-		xmlFilePath="./provenance_output.json";
+		xmlFilePath="./provenance_output_cbor.json";
 
 		// Instantiate the Verification class
 		JSONVerificationInterface ver2 = new JSONVerification();

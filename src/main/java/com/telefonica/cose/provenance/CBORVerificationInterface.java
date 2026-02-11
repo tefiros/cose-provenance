@@ -43,6 +43,6 @@ public interface CBORVerificationInterface {
 //     */
 //    JsonNode loadJSONDocument(String jsonFilePath) throws IOException, JsonProcessingException;
 //
-//    boolean verifyYANG(JsonNode yangJson, String moduleName, String signatureField) throws CoseException, COSESignatureException;
+    boolean verifyYANG(JsonNode yangJson, String moduleName, String signatureField) throws CoseException, COSESignatureException;
 
 }

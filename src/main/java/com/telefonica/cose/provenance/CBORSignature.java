@@ -166,4 +166,50 @@ public class CBORSignature extends CBORFileManagement implements CBORSignatureIn
 
         return signatureString;
     }
+
+    /**
+     * Signs a generic CBOR object.
+     *
+     * @param cbor CBORObject to sign
+     * @param kid  key ID to use for signing
+     * @return Base64-encoded COSE_Sign1 signature
+     * @throws COSESignatureException on COSE signing errors
+     * @throws CoseException          on COSE library errors
+     */
+    public String signingCBOR(CBORObject cbor, String kid) throws COSESignatureException, CoseException {
+        // Crea un mensaje COSE_Sign1 con payload nulo
+        Sign1Message sign1Message = new Sign1Message(true, false);
+
+        // Canonicaliza CBOR usando tu método existente
+        byte[] canonicalCbor = canonicalizeCbor(cbor);
+
+        // Asigna el contenido
+        sign1Message.SetContent(canonicalCbor);
+
+        // Obtiene la clave privada
+        OneKey privateKey = privateKey(kid);
+
+        // Añade atributos protegidos de algoritmo
+        if (privateKey.HasAlgorithmID(AlgorithmID.ECDSA_256)) {
+            sign1Message.addAttribute(HeaderKeys.Algorithm, AlgorithmID.ECDSA_256.AsCBOR(), Attribute.PROTECTED);
+        } else if (privateKey.HasAlgorithmID(AlgorithmID.RSA_PSS_512)) {
+            sign1Message.addAttribute(HeaderKeys.Algorithm, AlgorithmID.RSA_PSS_512.AsCBOR(), Attribute.PROTECTED);
+        } else if (privateKey.HasAlgorithmID(AlgorithmID.EDDSA)) {
+            throw new COSESignatureException("EdDSA algorithm not supported in this library version");
+        } else {
+            throw new COSESignatureException("No valid algorithm found");
+        }
+
+        // Añade content type y KID
+        Parameters param = new Parameters();
+        sign1Message.addAttribute(HeaderKeys.CONTENT_TYPE, CBORObject.FromObject(param.getProperty("Content Type")), Attribute.PROTECTED);
+        sign1Message.addAttribute(HeaderKeys.KID, privateKey.get(KeyKeys.KeyId), Attribute.PROTECTED);
+
+        // Firma el mensaje
+        sign1Message.sign(privateKey);
+
+        // Devuelve Base64
+        return Base64.getEncoder().encodeToString(sign1Message.EncodeToBytes());
+    }
+
 }
