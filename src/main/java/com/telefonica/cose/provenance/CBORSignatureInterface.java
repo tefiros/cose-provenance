@@ -1,5 +1,8 @@
 package com.telefonica.cose.provenance;
 
+import COSE.CoseException;
+import com.telefonica.cose.provenance.exception.COSESignatureException;
+import com.upokecenter.cbor.CBORObject;
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
 
@@ -28,6 +31,18 @@ public interface CBORSignatureInterface {
      * @throws Exception If an error occurs during the signing process.
      */
     String signing(String document, String kid) throws Exception;
+
+    /**
+     * Signs a generic CBOR object.
+     *
+     * @param cbor CBORObject to sign
+     * @param kid  key ID to use for signing
+     * @return Base64-encoded COSE_Sign1 signature
+     * @throws COSESignatureException on COSE signing errors
+     * @throws CoseException          on COSE library errors
+     */
+
+    byte[] signingCBOR(CBORObject cbor, String kid) throws COSESignatureException, CoseException;
 
 
 

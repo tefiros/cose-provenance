@@ -176,11 +176,11 @@ public class CBORSignature extends CBORFileManagement implements CBORSignatureIn
      * @throws COSESignatureException on COSE signing errors
      * @throws CoseException          on COSE library errors
      */
-    public String signingCBOR(CBORObject cbor, String kid) throws COSESignatureException, CoseException {
+    public byte[] signingCBOR(CBORObject cbor, String kid) throws COSESignatureException, CoseException {
         // Crea un mensaje COSE_Sign1 con payload nulo
         Sign1Message sign1Message = new Sign1Message(true, false);
 
-        // Canonicaliza CBOR usando tu método existente
+        // Canonicaliza CBOR usando tu metodo existente
         byte[] canonicalCbor = canonicalizeCbor(cbor);
 
         // Asigna el contenido
@@ -208,8 +208,8 @@ public class CBORSignature extends CBORFileManagement implements CBORSignatureIn
         // Firma el mensaje
         sign1Message.sign(privateKey);
 
-        // Devuelve Base64
-        return Base64.getEncoder().encodeToString(sign1Message.EncodeToBytes());
+        // Devuelve bytes
+        return sign1Message.EncodeToBytes();
     }
 
 }

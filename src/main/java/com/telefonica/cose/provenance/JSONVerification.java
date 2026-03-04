@@ -246,7 +246,7 @@ public class JSONVerification extends JSONFileManagement implements JSONVerifica
      */
     /**
      * Extracts the Base64 COSE signature from a YANG JSON document.
-     * It looks for a field named "<moduleName>:<signatureField>" anywhere in the JSON.
+     * It looks for a field named "moduleName:signatureField" anywhere in the JSON.
      *
      * @param yangJson        the JSON document (as JsonNode)
      * @param moduleName      the YANG module name (e.g., "ietf-yp-provenance")

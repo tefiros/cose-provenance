@@ -21,7 +21,7 @@ public class CBORVerifier {
 
     public static void main(String[] args) throws Exception {
 
-        // 📂 Archivo CBOR firmado previamente
+        //Archivo CBOR firmado previamente
         String filePath = "./provenance_output_cbor.json";
 
         // Instanciar verificador CBOR
@@ -34,7 +34,7 @@ public class CBORVerifier {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode doc = mapper.readTree(cborBytes);
 
-        // 🔎 Parámetros YANG
+        // parámetros YANG
         String moduleName = "ietf-yp-provenance";
         String leafName = "provenance";
 

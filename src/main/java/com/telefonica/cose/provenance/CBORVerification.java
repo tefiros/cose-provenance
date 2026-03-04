@@ -159,7 +159,7 @@ public class CBORVerification  extends  CBORFileManagement implements  CBORVerif
 
         ObjectMapper mapper = new ObjectMapper();
 
-        // 1️ Extraer y eliminar la firma
+        // Extraer y eliminar la firma
         byte[] signature = extractSignature(signedJson);
 
         //  Reconstruir EXACTAMENTE el CBOR canónico firmado
