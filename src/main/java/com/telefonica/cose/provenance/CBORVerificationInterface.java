@@ -25,11 +25,11 @@ public interface CBORVerificationInterface {
     /**
      * Validates whether the given JSON node meets specific, integrity is preserved.
      *
-     * @param jsonNode The JSON data to verify, represented as a JsonNode
+     * @param signedCbor The JSON data to verify, represented as a JsonNode
      * @return true if the JSON is valid, false otherwise
      * @throws Exception If validation fails due to structural issues or I/O errors
      */
-    boolean verify(JsonNode jsonNode) throws Exception;
+    boolean verify(CBORObject signedCbor) throws Exception;
 
 //    boolean verifyCBOR(CBORObject cbor) throws Exception;
 //

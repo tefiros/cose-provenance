@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.telefonica.cose.provenance.exception.COSESignatureException;
 import com.upokecenter.cbor.CBORObject;
+import com.upokecenter.cbor.CBORType;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import java.io.FileNotFoundException;
@@ -92,60 +93,47 @@ public class CBORVerification  extends  CBORFileManagement implements  CBORVerif
 
 
     /**
-     * Signature extraction in legible document (JSON)
+     * Signature extraction in CBORObject format --> bytes encoded to CBOR
      */
 
-    private byte[] extractSignature(JsonNode node) throws COSESignatureException {
-        final byte[][] signatureHolder = { null };
-        extractSignatureRecursive(node, signatureHolder);
+    private byte[] extractSignatureCBOR(CBORObject node) throws COSESignatureException {
 
-        if (signatureHolder[0] == null) {
-            throw new COSESignatureException("No provenance-string found in JSON");
-        }
-        return signatureHolder[0];
-    }
+        if (node.getType() == CBORType.Map) {
 
-    private void extractSignatureRecursive(JsonNode node, byte[][] holder) {
-        if (node.isObject()) {
-            ObjectNode obj = (ObjectNode) node;
+            for (CBORObject key : node.getKeys()) {
 
-            if (obj.has("provenance-string")) {
-                holder[0] = Base64.getDecoder()
-                        .decode(obj.get("provenance-string").asText());
-                obj.remove("provenance-string");
-                return;
-            }
+                String field = key.AsString();
 
-            // @ypmd:provenance-string
-            if (obj.has("@ypmd:provenance-string")) {
-                holder[0] = Base64.getDecoder()
-                        .decode(obj.get("@ypmd:provenance-string").asText());
-                obj.remove("@ypmd:provenance-string");
-                return;
-            }
+                // detectar campo de firma
+                if (field.contains("provenance")) {
 
-            // ietf-yp-provenance:provenance
-            if (obj.has("ietf-yp-provenance:provenance")) {
-                holder[0] = Base64.getDecoder()
-                        .decode(obj.get("ietf-yp-provenance:provenance").asText());
-                obj.remove("ietf-yp-provenance:provenance");
-                return;
-            }
+                    CBORObject value = node.get(key);
 
+                    node.Remove(key); // quitar la firma del objeto
 
-            Iterator<String> it = obj.fieldNames();
-            while (it.hasNext()) {
-                extractSignatureRecursive(obj.get(it.next()), holder);
-                if (holder[0] != null) return;
-            }
+                    return value.GetByteString();
+                }
 
-        } else if (node.isArray()) {
-            ArrayNode arr = (ArrayNode) node;
-            for (JsonNode element : arr) {
-                extractSignatureRecursive(element, holder);
-                if (holder[0] != null) return;
+                // recursion
+                byte[] result = extractSignatureCBOR(node.get(key));
+                if (result != null) {
+                    return result;
+                }
             }
         }
+
+        else if (node.getType() == CBORType.Array) {
+
+            for (CBORObject element : node.getValues()) {
+
+                byte[] result = extractSignatureCBOR(element);
+                if (result != null) {
+                    return result;
+                }
+            }
+        }
+
+        return null;
     }
 
 
@@ -154,42 +142,34 @@ public class CBORVerification  extends  CBORFileManagement implements  CBORVerif
      * ============================================================ */
 
 
-    public boolean verify(JsonNode signedJson)
-            throws CoseException, COSESignatureException {
-
-        ObjectMapper mapper = new ObjectMapper();
-
-        // Extraer y eliminar la firma
-        byte[] signature = extractSignature(signedJson);
-
-        //  Reconstruir EXACTAMENTE el CBOR canónico firmado
-        try {
-            Object jsonObject = mapper.readValue(
-                    mapper.writeValueAsBytes(signedJson),
-                    Object.class
-            );
-
-            byte[] canonicalCbor = canonicalizeCbor(jsonObject);
-
-            //  Decodificar COSE_Sign1
-            Sign1Message sign1 =
-                    (Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
-
-            sign1.SetContent(canonicalCbor);
-
-            // Cargar clave pública usando KID
-            String kid = sign1
-                    .findAttribute(HeaderKeys.KID, Attribute.PROTECTED)
-                    .AsString();
-
-            OneKey publicKey = publicKey(kid);
 
 
-            return sign1.validate(publicKey);
 
-        } catch (IOException e) {
-            throw new COSESignatureException("Invalid JSON input", e);
+    public boolean verify(CBORObject signedCbor) throws CoseException, COSESignatureException {
+
+        // extraer firma
+        byte[] signature = extractSignatureCBOR(signedCbor);
+
+        if (signature == null) {
+            throw new COSESignatureException("No provenance signature found");
         }
+
+        // canonicalizar contenido restante
+        byte[] canonical = canonicalizeCbor(signedCbor);
+
+        // decodificar COSE
+        Sign1Message sign1 =
+                (Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
+
+        sign1.SetContent(canonical);
+
+        String kid = sign1
+                .findAttribute(HeaderKeys.KID, Attribute.PROTECTED)
+                .AsString();
+
+        OneKey publicKey = publicKey(kid);
+
+        return sign1.validate(publicKey);
     }
 
     // YANG MODULES
@@ -291,9 +271,6 @@ public class CBORVerification  extends  CBORFileManagement implements  CBORVerif
             throw new COSESignatureException("Invalid YANG CBOR input", e);
         }
     }
-
-
-
 
 
 }

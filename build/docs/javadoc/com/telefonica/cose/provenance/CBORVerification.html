@@ -117,7 +117,7 @@ implements <a href="CBORVerificationInterface.html" title="interface in com.tele
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;signatureField)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#verify(com.fasterxml.jackson.databind.JsonNode)" class="member-name-link">verify</a><wbr>(com.fasterxml.jackson.databind.JsonNode&nbsp;signedJson)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#verify(com.upokecenter.cbor.CBORObject)" class="member-name-link">verify</a><wbr>(com.upokecenter.cbor.CBORObject&nbsp;signedCbor)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Validates whether the given JSON node meets specific, integrity is preserved.</div>
 </div>
@@ -131,7 +131,7 @@ implements <a href="CBORVerificationInterface.html" title="interface in com.tele
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-com.telefonica.cose.provenance.CBORFileManagement">Methods inherited from class&nbsp;com.telefonica.cose.provenance.<a href="CBORFileManagement.html" title="class in com.telefonica.cose.provenance">CBORFileManagement</a></h3>
-<code><a href="CBORFileManagement.html#canonicalizeCbor(java.lang.Object)">canonicalizeCbor</a>, <a href="CBORFileManagement.html#main(java.lang.String%5B%5D)">main</a></code></div>
+<code><a href="CBORFileManagement.html#canonicalizeCbor(java.lang.Object)">canonicalizeCbor</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -161,18 +161,18 @@ implements <a href="CBORVerificationInterface.html" title="interface in com.tele
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="verify(com.fasterxml.jackson.databind.JsonNode)">
+<section class="detail" id="verify(com.upokecenter.cbor.CBORObject)">
 <h3>verify</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">verify</span><wbr><span class="parameters">(com.fasterxml.jackson.databind.JsonNode&nbsp;signedJson)</span>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">verify</span><wbr><span class="parameters">(com.upokecenter.cbor.CBORObject&nbsp;signedCbor)</span>
                throws <span class="exceptions">COSE.CoseException,
 <a href="exception/COSESignatureException.html" title="class in com.telefonica.cose.provenance.exception">COSESignatureException</a></span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="CBORVerificationInterface.html#verify(com.fasterxml.jackson.databind.JsonNode)">CBORVerificationInterface</a></code></span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="CBORVerificationInterface.html#verify(com.upokecenter.cbor.CBORObject)">CBORVerificationInterface</a></code></span></div>
 <div class="block">Validates whether the given JSON node meets specific, integrity is preserved.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="CBORVerificationInterface.html#verify(com.fasterxml.jackson.databind.JsonNode)">verify</a></code>&nbsp;in interface&nbsp;<code><a href="CBORVerificationInterface.html" title="interface in com.telefonica.cose.provenance">CBORVerificationInterface</a></code></dd>
+<dd><code><a href="CBORVerificationInterface.html#verify(com.upokecenter.cbor.CBORObject)">verify</a></code>&nbsp;in interface&nbsp;<code><a href="CBORVerificationInterface.html" title="interface in com.telefonica.cose.provenance">CBORVerificationInterface</a></code></dd>
 <dt>Parameters:</dt>
-<dd><code>signedJson</code> - The JSON data to verify, represented as a JsonNode</dd>
+<dd><code>signedCbor</code> - The JSON data to verify, represented as a JsonNode</dd>
 <dt>Returns:</dt>
 <dd>true if the JSON is valid, false otherwise</dd>
 <dt>Throws:</dt>

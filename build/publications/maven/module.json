@@ -64,11 +64,11 @@
         {
           "name": "provenance-api-0.0.6.jar",
           "url": "provenance-api-0.0.6.jar",
-          "size": 50823,
-          "sha512": "f5d8f5092c1fcada6da06d6f4e4564b8d8beaa1177c9a5a309a648b2572914946dcc56d26a45e149dbc28eea50f8c2290840172f3f0e3e017b8d6ef623086970",
-          "sha256": "b7eca4a112be2338916517fc34a93f3c175825c25d1abb006901a163b574adc4",
-          "sha1": "6ba874d6165a63377980b8687fb348fc0cfde512",
-          "md5": "3a34acaa3240a36a8720d0d793086b51"
+          "size": 50428,
+          "sha512": "b53b93dad50e52ac0ac2c7d4e6760786fbaa4321d336ed87825f3e24c13ce2a2f12a133e0686fb0472b389da513df2097284d4e32cd8361b9ceca9de00542991",
+          "sha256": "5193a092707960a68ff3d819266367004f4ea15e57f070dbfba7f08d79ad1e44",
+          "sha1": "c8c4688f8e3f0ef47ed3da05b78e3e7c372d6ae7",
+          "md5": "04105131662123fb0def87319857b3db"
         }
       ]
     },
@@ -157,11 +157,11 @@
         {
           "name": "provenance-api-0.0.6.jar",
           "url": "provenance-api-0.0.6.jar",
-          "size": 50823,
-          "sha512": "f5d8f5092c1fcada6da06d6f4e4564b8d8beaa1177c9a5a309a648b2572914946dcc56d26a45e149dbc28eea50f8c2290840172f3f0e3e017b8d6ef623086970",
-          "sha256": "b7eca4a112be2338916517fc34a93f3c175825c25d1abb006901a163b574adc4",
-          "sha1": "6ba874d6165a63377980b8687fb348fc0cfde512",
-          "md5": "3a34acaa3240a36a8720d0d793086b51"
+          "size": 50428,
+          "sha512": "b53b93dad50e52ac0ac2c7d4e6760786fbaa4321d336ed87825f3e24c13ce2a2f12a133e0686fb0472b389da513df2097284d4e32cd8361b9ceca9de00542991",
+          "sha256": "5193a092707960a68ff3d819266367004f4ea15e57f070dbfba7f08d79ad1e44",
+          "sha1": "c8c4688f8e3f0ef47ed3da05b78e3e7c372d6ae7",
+          "md5": "04105131662123fb0def87319857b3db"
         }
       ]
     },
@@ -177,11 +177,11 @@
         {
           "name": "provenance-api-0.0.6-javadoc.jar",
           "url": "provenance-api-0.0.6-javadoc.jar",
-          "size": 154132,
-          "sha512": "b2931bac18ef458852ea57aa0a72d1ebb4404f210e7d3946dcb61645ff461fdb9908c6ad578eb8ccc34d8672099c14d16f763bcb77d8bc0bf7effc5c85b56792",
-          "sha256": "5f0d2f6f72d931b0f437497252d17b458a1959853076f99fcbf63120ae45c866",
-          "sha1": "9a5c79e289a81c082ea563c7b5694ceac03d2e36",
-          "md5": "9a8cd28d84b4a25107bb0a5c9ce0872c"
+          "size": 153893,
+          "sha512": "20ff3cc98c1c6c6fc6591d1444e92a4099c52ffbb7bf4a121ef12acf06bb75b376775f3f8e16605b213cc7daae138c846346f2ebb6836e51548b921e2cacfa37",
+          "sha256": "ce713bced51db161fbdf9cdd374d3b8699453aeee74e62b05c6034972e9ed25d",
+          "sha1": "907901f9328852e425dfe952ee9cf1b2d8bf2b41",
+          "md5": "3c7755590e248bb7c6524f25d050f814"
         }
       ]
     }

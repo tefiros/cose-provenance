@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fefdd05-3a00-4f6b-8d69-6e24ba5366f8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBOREnclosingMethods.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBOREnclosingMethodsInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/checksums/sha1-checksums.bin" afterDir="false" />
@@ -18,10 +16,10 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/CBOREnclosingMethods.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/CBOREnclosingMethodsInterface.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/CBORFileManagement.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/CBORSignature.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/CBORSignatureInterface.class" beforeDir="false" />
@@ -52,20 +50,86 @@
       <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/telefonica/cose/provenance/example/JSONVerifier.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/telefonica/cose/provenance/example/Signer.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/telefonica/cose/provenance/example/Verifier.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/allclasses-index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/allpackages-index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/CBOREnclosingMethods.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/CBOREnclosingMethodsInterface.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/CBORFileManagement.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/CBORSignature.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/CBORSignatureInterface.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/CBORVerification.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/CBORVerificationInterface.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/JSONEnclMethodInterface.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/JSONEnclosingMethods.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/JSONFileManagement.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/JSONSignature.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/JSONSignatureInterface.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/JSONVerification.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/JSONVerificationInterface.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/Parameters.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/XMLEnclosingMethodInterface.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/XMLEnclosingMethods.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/XMLFileManagement.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/XMLSignature.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/XMLSignatureInterface.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/XMLVerification.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/XMLVerificationInterface.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/YANGMetadata.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/YANGModuleProcessor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/exception/COSESignatureException.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/exception/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/exception/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/element-list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/help-doc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/index-all.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/jquery-ui.overrides.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/legal/COPYRIGHT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/legal/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/legal/jquery.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/legal/jqueryUI.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/member-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/module-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/overview-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/overview-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/package-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/resources/glass.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/resources/x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/script-dir/jquery-3.6.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/script-dir/jquery-ui.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/script-dir/jquery-ui.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/serialized-form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/tag-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/type-search-index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/provenance-api-0.0.6-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/provenance-api-0.0.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/publications/maven/module.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/publications/maven/pom-default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/css/base-style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/js/report.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/cose_parameters.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/receiver_keystore.p12" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/sender_keystore.p12" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/CBORVerification.class.uniqueId0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/CBORVerificationInterface.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/compileTransaction/stash-dir/CBORVerifier.class.uniqueId1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/compileTransaction/stash-dir/CBORVerifyMain.class.uniqueId0" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORSignature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORSignature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORSignatureInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORSignatureInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/javadoc/javadoc.options" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/javadocJar/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/publishMavenPublicationToMavenLocal/module-maven-metadata.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORFileManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORFileManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORVerification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORVerification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/CBORVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/CBORVerifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORVerificationInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORVerificationInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/CBORVerifyMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/CBORVerifyMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -327,7 +391,10 @@
       <workItem from="1772030322788" duration="1834000" />
       <workItem from="1772034194738" duration="5415000" />
       <workItem from="1772550364324" duration="3249000" />
-      <workItem from="1772557518174" duration="1042000" />
+      <workItem from="1772557518174" duration="2543000" />
+      <workItem from="1772643061465" duration="5058000" />
+      <workItem from="1772722033298" duration="1695000" />
+      <workItem from="1772725333155" duration="1210000" />
     </task>
     <servers />
   </component>
@@ -477,68 +544,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORFileManagement.java</url>
-          <line>14</line>
+          <line>15</line>
           <option name="timeStamp" value="93" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORFileManagement.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="108" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORFileManagement.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="109" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORFileManagement.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="110" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORFileManagement.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="111" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORFileManagement.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="112" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORFileManagement.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="113" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORFileManagement.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="114" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORFileManagement.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="115" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORFileManagement.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="116" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORFileManagement.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="117" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORFileManagement.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="118" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORFileManagement.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="119" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/XMLVerification.java</url>

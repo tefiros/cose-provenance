@@ -1,11 +1,13 @@
 package com.telefonica.cose.provenance;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.upokecenter.cbor.*;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -15,7 +17,7 @@ public class CBORFileManagement {
 
     public byte[] canonicalizeCbor(Object input) {
         CBORObject cbor = CBORObject.FromObject(input);
-        return cbor.EncodeToBytes(CBOREncodeOptions.DefaultCtap2Canonical);
+        return cbor.EncodeToBytes(new CBOREncodeOptions("deterministic=true"));
     }
 
 //    public static void main(String[] args) {
@@ -55,14 +57,47 @@ public class CBORFileManagement {
         System.out.println();
     }
 
-    public static void main(String[] args) throws Exception {
-        CBORObject cbor = CBORObject.NewMap()
-                .Add("name", "GigabitEthernet1")
-                .Add("speed", 1000000000)
-                .Add("status", "up");
+//    public static void main(String[] args) throws Exception {
+//        CBORObject cbor = CBORObject.NewMap()
+//                .Add("name", "GigabitEthernet1")
+//                .Add("speed", 1000000000)
+//                .Add("status", "up");
+//
+//        byte[] bytes = cbor.EncodeToBytes();
+//        Files.write(Paths.get("example.cbor"), bytes);
+//        System.out.println("Archivo CBOR generado: example.cbor");
+//    }
 
-        byte[] bytes = cbor.EncodeToBytes();
-        Files.write(Paths.get("example.cbor"), bytes);
-        System.out.println("Archivo CBOR generado: example.cbor");
-    }
+//    public static void main(String[] args) throws Exception {
+//
+//        String json1 =
+//                "{\n" +
+//                        "  \"insa-test:insa-container\": {\n" +
+//                        "    \"computer\": \"a\",\n" +
+//                        "    \"router\": 2,\n" +
+//                        "    \"time\": \"12:04:34\"\n" +
+//                        "  }\n" +
+//                        "}";
+//
+//        String json2 =
+//                "{\n" +
+//                        "  \"insa-test:insa-container\": {\n" +
+//                        "    \"time\": \"12:04:34\",\n" +
+//                        "    \"router\": 2,\n" +
+//                        "    \"computer\": \"a\"\n" +
+//                        "  }\n" +
+//                        "}";
+//
+//        ObjectMapper mapper = new ObjectMapper();
+//
+//        JsonNode node1 = mapper.readTree(json1);
+//        JsonNode node2 = mapper.readTree(json2);
+//
+//        byte[] bytes1 = canonicalizeCbor(node1);
+//        byte[] bytes2 = canonicalizeCbor(node2);
+//
+//        System.out.println("Length 1: " + bytes1.length);
+//        System.out.println("Length 2: " + bytes2.length);
+//        System.out.println("Are equal? -> " + Arrays.equals(bytes1, bytes2));
+//    }
 }

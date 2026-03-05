@@ -48,25 +48,25 @@ public class CBORVerifyMain {
         JsonNode originalJson = mapper.readTree(jsonString);
         JsonNode signedJson = enclose.enclosingMethodJSON(originalJson, signature);
 
-        // Verificación original
-        JsonNode signedCopy1 = signedJson.deepCopy();
-        boolean valid = verifier.verify(signedCopy1);
-        System.out.println("Verification result: " + (valid ? "Valid signature" : "Invalid"));
-
-
-        JsonNode signedCopy2 = signedJson.deepCopy();
-        ObjectNode root = (ObjectNode) signedCopy2.get("ietf-interfaces:interfaces");
-        ObjectNode iface = (ObjectNode) root.get("interface").get(0);
-
-
-        iface.put("speed", iface.get("speed").asInt() + 1);
-
-        System.out.println("JSON modificado:");
-        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(signedCopy2));
-
-
-        boolean validAfterChange = verifier.verify(signedCopy2);
-        System.out.println("Verification after modification: " + (validAfterChange ? "Valid" : "Invalid"));
+//        // Verificación original
+//        JsonNode signedCopy1 = signedJson.deepCopy();
+//        boolean valid = verifier.verify(signedCopy1);
+//        System.out.println("Verification result: " + (valid ? "Valid signature" : "Invalid"));
+//
+//
+//        JsonNode signedCopy2 = signedJson.deepCopy();
+//        ObjectNode root = (ObjectNode) signedCopy2.get("ietf-interfaces:interfaces");
+//        ObjectNode iface = (ObjectNode) root.get("interface").get(0);
+//
+//
+//        iface.put("speed", iface.get("speed").asInt() + 1);
+//
+//        System.out.println("JSON modificado:");
+//        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(signedCopy2));
+//
+//
+//        boolean validAfterChange = verifier.verify(signedCopy2);
+//        System.out.println("Verification after modification: " + (validAfterChange ? "Valid" : "Invalid"));
 
 
     }

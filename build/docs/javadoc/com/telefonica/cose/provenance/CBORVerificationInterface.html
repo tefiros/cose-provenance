@@ -94,7 +94,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#verify(com.fasterxml.jackson.databind.JsonNode)" class="member-name-link">verify</a><wbr>(com.fasterxml.jackson.databind.JsonNode&nbsp;jsonNode)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#verify(com.upokecenter.cbor.CBORObject)" class="member-name-link">verify</a><wbr>(com.upokecenter.cbor.CBORObject&nbsp;signedCbor)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Validates whether the given JSON node meets specific, integrity is preserved.</div>
 </div>
@@ -118,14 +118,14 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="verify(com.fasterxml.jackson.databind.JsonNode)">
+<section class="detail" id="verify(com.upokecenter.cbor.CBORObject)">
 <h3>verify</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">verify</span><wbr><span class="parameters">(com.fasterxml.jackson.databind.JsonNode&nbsp;jsonNode)</span>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">verify</span><wbr><span class="parameters">(com.upokecenter.cbor.CBORObject&nbsp;signedCbor)</span>
         throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></span></div>
 <div class="block">Validates whether the given JSON node meets specific, integrity is preserved.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>jsonNode</code> - The JSON data to verify, represented as a JsonNode</dd>
+<dd><code>signedCbor</code> - The JSON data to verify, represented as a JsonNode</dd>
 <dt>Returns:</dt>
 <dd>true if the JSON is valid, false otherwise</dd>
 <dt>Throws:</dt>
