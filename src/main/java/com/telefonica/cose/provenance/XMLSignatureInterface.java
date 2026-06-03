@@ -1,7 +1,11 @@
 package com.telefonica.cose.provenance;
 
 import java.io.IOException;
+import java.util.List;
 
+import COSE.CoseException;
+import com.telefonica.cose.provenance.exception.COSESignatureException;
+import com.upokecenter.cbor.CBORObject;
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
 
@@ -43,6 +47,18 @@ public interface XMLSignatureInterface {
 	 * @throws IOException If an I/O error occurs while reading the file.
 	 */
 	Document loadXMLDocument(String xmlFilePath)throws JDOMException, IOException ;
+
+	/**
+	 * Multi-Signs the given document using the specified key identifiers (KIDs).
+	 *
+	 * @param document The document to be signed, represented as a String.
+	 * @param kids The key identifier used for signing the document.
+	 * @return A String representing the signature.
+	 * @throws Exception If an error occurs during the signing process.
+	 */
+	public String multiSigning(String document, List<String> kids) throws CoseException, COSESignatureException;
+
+	public String sign(String existingSignature, String document, String kid) throws CoseException, COSESignatureException;
 
 }
 

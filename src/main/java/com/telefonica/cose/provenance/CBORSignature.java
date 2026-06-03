@@ -1,6 +1,7 @@
 package com.telefonica.cose.provenance;
 
 import COSE.*;
+import COSE.Signer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.telefonica.cose.provenance.exception.COSESignatureException;
 import com.upokecenter.cbor.CBORObject;
@@ -12,6 +13,7 @@ import java.io.InputStream;
 import java.security.*;
 import java.security.cert.CertificateException;
 import java.util.Base64;
+import java.util.List;
 
 public class CBORSignature extends CBORFileManagement implements CBORSignatureInterface {
 
@@ -134,9 +136,6 @@ public class CBORSignature extends CBORFileManagement implements CBORSignatureIn
         }
 
         // Set message to sign
-        //document = document.replaceAll(">\\s+<", ">\r\n<");
-        //String content = canonicalizeXML(document);
-        //sign1Message.SetContent(content);
 
         OneKey privateKey;
         Parameters param = new Parameters();
@@ -210,6 +209,47 @@ public class CBORSignature extends CBORFileManagement implements CBORSignatureIn
 
         // Devuelve bytes
         return sign1Message.EncodeToBytes();
+    }
+
+    public byte[] multiSigning(CBORObject cbor, List<String> kids) throws CoseException, COSESignatureException {
+
+        // SignMessage instead of Sign1Message
+        SignMessage signMessage = new SignMessage(true, false);
+
+        byte[] content = canonicalizeCbor(cbor);
+
+        signMessage.SetContent(content);
+
+        Parameters param = new Parameters();
+
+        for (String kid : kids) {
+            OneKey privateKey = privateKey(kid);
+
+            Signer signer = new Signer();
+
+            // Mismo patrón que tienes en signing()
+            if (privateKey.HasAlgorithmID(AlgorithmID.ECDSA_256)) {
+                signer.addAttribute(HeaderKeys.Algorithm, AlgorithmID.ECDSA_256.AsCBOR(), Attribute.PROTECTED);
+            } else if (privateKey.HasAlgorithmID(AlgorithmID.RSA_PSS_512)) {
+                signer.addAttribute(HeaderKeys.Algorithm, AlgorithmID.RSA_PSS_512.AsCBOR(), Attribute.PROTECTED);
+            } else if (privateKey.HasAlgorithmID(AlgorithmID.EDDSA)) {
+                throw new COSESignatureException("EdDSA algorithm is not available");
+            } else {
+                throw new COSESignatureException("No valid algorithm found");
+            }
+
+            signer.addAttribute(HeaderKeys.CONTENT_TYPE,
+                    CBORObject.FromObject(param.getProperty("Content Type")), Attribute.PROTECTED);
+            signer.addAttribute(HeaderKeys.KID, privateKey.get(KeyKeys.KeyId), Attribute.PROTECTED);
+            signer.setKey(privateKey);
+
+            signMessage.AddSigner(signer);
+        }
+
+        // Firma todos los signers de una vez
+        signMessage.sign();
+
+        return signMessage.EncodeToBytes();
     }
 
 }

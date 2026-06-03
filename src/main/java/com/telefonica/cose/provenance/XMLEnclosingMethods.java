@@ -140,4 +140,55 @@ public class XMLEnclosingMethods extends XMLFileManagement implements XMLEnclosi
 
 	}
 
+	/**
+	 * Inserts or replaces the signature element whose name and namespace are
+	 * read from the provided YANG module file.
+	 * <p>
+	 * This is the primary method for progressive multi-sign flows: calling it
+	 * repeatedly with updated signatures will update the same element each time
+	 * rather than appending duplicates.
+	 *
+	 * @param document   JDOM document to update
+	 * @param signature  Base64-encoded COSE signature string
+	 * @param yangModule YANG module file that declares the signature leaf
+	 * @return the updated document (same instance, mutated in place)
+	 */
+	public Document upsertSignatureYANG(Document document, String signature, File yangModule)
+			throws IOException {
+		YANGMetadata metadata = YANGModuleProcessor.extractSignatureMetadata(yangModule);
+		return upsertSignature(document, signature, metadata.getLeafName(), metadata.getNamespace());
+	}
+
+	/**
+	 * Low-level upsert — insert or replace a signature element by explicit name
+	 * and namespace. Prefer {@link #upsertSignatureYANG} when a YANG module is
+	 * available.
+	 *
+	 * @param document         JDOM document to update
+	 * @param signature        Base64-encoded COSE signature string
+	 * @param signatureElement local name of the XML element that holds the signature
+	 * @param signatureNS      namespace URI of that element
+	 * @return the updated document (same instance, mutated in place)
+	 */
+	public Document upsertSignature(Document document, String signature,
+									String signatureElement, String signatureNS) {
+
+		Element root = document.getRootElement();
+		Namespace ns = Namespace.getNamespace(signatureNS);
+
+		Element existing = root.getChild(signatureElement, ns);
+
+		if (existing != null) {
+			// Replace text in-place — position is preserved, no duplicate
+			existing.setText(signature);
+		} else {
+			// First insertion: position 0, before all other children
+			Element sigEl = new Element(signatureElement, ns);
+			sigEl.setText(signature);
+			root.addContent(0, sigEl);
+		}
+		System.out.println("upsert — existing found: " + (existing != null) + " ns=" + ns.getURI());
+		return document;
+	}
+
 }

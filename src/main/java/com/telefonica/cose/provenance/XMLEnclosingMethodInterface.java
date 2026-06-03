@@ -80,4 +80,18 @@ public interface XMLEnclosingMethodInterface {
 	 *         integrated
 	 */
 	Document enclosingMethod4(Document YANGprovenance, String signature);
+
+	/**
+	 * Low-level upsert — insert or replace a signature element by explicit name
+	 * and namespace.
+	 *
+	 * @param document         JDOM document to update
+	 * @param signature        Base64-encoded COSE signature string
+	 * @param signatureElement local name of the XML element that holds the signature
+	 * @param signatureNS      namespace URI of that element
+	 * @return the updated document (same instance, mutated in place)
+	 */
+	public Document upsertSignature(Document document, String signature, String signatureElement, String signatureNS);
+
+
 }

@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
+import java.util.ArrayList;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -96,6 +98,12 @@ public class Signer {
 		//Document doc = ver.loadXMLDocument(filepath);
 		String signature = sign.signing(xmlString, param.getProperty("kid"));
 
+
+		List<String> kids = new ArrayList<>();
+		kids.add("ec2.key");
+		kids.add("ec2.key");
+		String multiSignature = sign.multiSigning(xmlString, kids);
+
 		// Enclose the previously generated signature into a YANG data provenance xml
 		// Document doc = sign.loadXMLDocument(filepath);
 		//Document provenanceXML = enclose.enclosingMethod2(doc, signature);
@@ -105,20 +113,22 @@ public class Signer {
 		File yangModule = new File("./interfaces-provenance-augmented.yang");
 		//JsonNode doc = objectMapper.readTree(file);
 		//JsonNode provenanceJSON = enclose.enclosingMethodJSON(doc, signature);
-		Document provenanceXML = enclose.enclosingMethodYANG(file, signature, yangModule);
+		Document provenanceXML = enclose.enclosingMethodYANG(file, multiSignature, yangModule);
+
+
 
 
 		XMLOutputter xmlOutputter = new XMLOutputter();
 		System.out.println("Document was correctly saved in: " + xmlOutputter.outputString(provenanceXML));
-
-		// Guarda el documento XML en un archivo
-		try (FileOutputStream fos = new FileOutputStream("provenance_output2.xml")) {
-			xmlOutputter.output(provenanceXML, fos);
-			System.out.println("Documento guardado en provenance_output.xml");
-		} catch (IOException e) {
-			System.err.println("Error al guardar el XML: " + e.getMessage());
-			e.printStackTrace();
-		}
+//
+//		// Guarda el documento XML en un archivo
+//		try (FileOutputStream fos = new FileOutputStream("provenance_output2.xml")) {
+//			xmlOutputter.output(provenanceXML, fos);
+//			System.out.println("Documento guardado en provenance_output.xml");
+//		} catch (IOException e) {
+//			System.err.println("Error al guardar el XML: " + e.getMessage());
+//			e.printStackTrace();
+//		}
 
 	}
 

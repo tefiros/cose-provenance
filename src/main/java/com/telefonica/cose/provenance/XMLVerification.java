@@ -13,6 +13,7 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.util.Base64;
 
+import COSE.*;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -20,15 +21,6 @@ import org.jdom2.Namespace;
 
 import com.telefonica.cose.provenance.exception.COSESignatureException;
 import com.upokecenter.cbor.CBORObject;
-
-import COSE.AlgorithmID;
-import COSE.Attribute;
-import COSE.CoseException;
-import COSE.HeaderKeys;
-import COSE.KeyKeys;
-import COSE.MessageTag;
-import COSE.OneKey;
-import COSE.Sign1Message;
 
 /**
  * This class implements the method for verifying a signature created with COSE.
@@ -268,11 +260,127 @@ public class XMLVerification extends XMLFileManagement implements XMLVerificatio
 		byte[] signature = readSignatureYANG(YANGfile, signatureElement, signatureNS);
 		String message = readYANGFileYANG(YANGfile, signatureElement, signatureNS);
 
+		System.out.println(">>> message antes de canonicalizar:\n" + message);
+
 		Sign1Message verificator = (Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
+
+
+		try {
+			java.lang.reflect.Field f = COSE.Attribute.class.getDeclaredField("rgbProtected");
+			f.setAccessible(true);
+			byte[] rgbProt = (byte[]) f.get(verificator);
+
+			System.out.println(">>> rgbProtected hex (Sign1): "
+					+ java.util.HexFormat.of().formatHex(rgbProt));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+
 		String content = canonicalizeXML(message);
+
+		System.out.println(">>> content canonicalizado:\n" + content);
+
 		verificator.SetContent(content);
+
 
 		OneKey publicOnlyKey = publicKey(verificator.findAttribute(HeaderKeys.KID, Attribute.PROTECTED).AsString());
 		return verificator.validate(publicOnlyKey);
+	}
+
+
+	public boolean verifyYANGWithCountersigns(Document YANGfile, String signatureElement, String signatureNS)
+			throws CoseException, COSESignatureException {
+
+		byte[] signature = readSignatureYANG(YANGfile, signatureElement, signatureNS);
+		String message = readYANGFileYANG(YANGfile, signatureElement, signatureNS);
+
+		Sign1Message verificator =
+				(Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
+
+		String content = canonicalizeXML(message);
+		verificator.SetContent(content);
+
+		// 1) Firma principal
+		String mainKid = verificator.findAttribute(HeaderKeys.KID, Attribute.PROTECTED).AsString();
+		OneKey mainKey = publicKey(mainKid);
+
+		boolean validMain = verificator.validate(mainKey);
+		System.out.println("Firma principal (" + mainKid + "): " + validMain);
+
+		if (!validMain) {
+			return false;
+		}
+
+		// 2) Countersigns ya parseadas por la librería
+		java.util.List<CounterSign> counters = verificator.getCountersignerList();
+
+		if (counters == null || counters.isEmpty()) {
+			System.out.println("No hay countersignatures");
+			return true;
+		}
+
+		boolean allValid = true;
+
+		for (CounterSign cs : counters) {
+			CBORObject kidObj = cs.findAttribute(HeaderKeys.KID, Attribute.PROTECTED);
+
+			if (kidObj == null) {
+				System.out.println("Countersign sin KID → inválida");
+				allValid = false;
+				continue;
+			}
+
+			String kid = kidObj.AsString();
+			System.out.println("Verificando countersign de: " + kid);
+
+			OneKey pubKey = publicKey(kid);
+			cs.setKey(pubKey);
+
+			boolean valid = verificator.validate(cs);
+			System.out.println("Resultado countersign (" + kid + "): " + valid);
+
+			allValid &= valid;
+		}
+
+		return allValid;
+	}
+
+	private boolean verifySingleCounterSign(CBORObject csObj, Sign1Message sign1)
+			throws CoseException {
+
+		CounterSign cs = new CounterSign(csObj);
+		System.out.println(">>> sign1.rgbContent en verifySingleCounterSign: " +
+				(sign1.GetContent() != null ? "tiene contenido" : "NULL"));
+
+		try {
+			java.lang.reflect.Field f = COSE.Attribute.class.getDeclaredField("rgbProtected");
+			f.setAccessible(true);
+			byte[] rgbProt = (byte[]) f.get(sign1);
+
+			System.out.println(">>> rgbProtected hex: " + java.util.HexFormat.of().formatHex(rgbProt));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		CBORObject kidObj = cs.findAttribute(HeaderKeys.KID, Attribute.PROTECTED);
+
+		if (kidObj == null) {
+			System.out.println("Countersign sin KID → inválida");
+			return false;
+		}
+
+		String kid = kidObj.AsString();
+		System.out.println("Verificando countersign de: " + kid);
+
+		OneKey pubKey = publicKey(kid);
+		cs.setKey(pubKey);
+
+		System.out.println(">>> USANDO sign1.validate(cs)");
+		boolean valid = sign1.validate(cs);
+
+		System.out.println("Resultado countersign (" + kid + "): " + valid);
+
+		return valid;
 	}
 }

@@ -7,6 +7,7 @@ import org.jdom2.Document;
 import org.jdom2.JDOMException;
 
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -44,6 +45,15 @@ public interface CBORSignatureInterface {
 
     byte[] signingCBOR(CBORObject cbor, String kid) throws COSESignatureException, CoseException;
 
+    /**
+     * Multi-Signs the given document using the specified key identifiers (KIDs).
+     *
+     * @param cbor The document to be signed, represented as a String.
+     * @param kids The key identifier used for signing the document.
+     * @return A String representing the signature.
+     * @throws Exception If an error occurs during the signing process.
+     */
+    public byte[] multiSigning(CBORObject cbor, List<String> kids) throws CoseException, COSESignatureException;
 
 
 }

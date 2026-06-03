@@ -12,6 +12,7 @@ import java.security.Security;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 import java.util.Base64;
+import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
@@ -159,6 +160,46 @@ public class JSONSignature extends JSONFileManagement implements JSONSignatureIn
         String signatureString = Base64.getEncoder().encodeToString(sign1Message.EncodeToBytes());
 
         return signatureString;
+    }
+
+    public String multiSigning(String document, List<String> kids) throws CoseException, COSESignatureException {
+
+        // SignMessage instead of Sign1Message
+        SignMessage signMessage = new SignMessage(true, false);
+
+        String content = canonicalizeJSON(document);
+        signMessage.SetContent(content);
+
+        Parameters param = new Parameters();
+
+        for (String kid : kids) {
+            OneKey privateKey = privateKey(kid);
+
+            Signer signer = new Signer();
+
+            // Mismo patrón que tienes en signing()
+            if (privateKey.HasAlgorithmID(AlgorithmID.ECDSA_256)) {
+                signer.addAttribute(HeaderKeys.Algorithm, AlgorithmID.ECDSA_256.AsCBOR(), Attribute.PROTECTED);
+            } else if (privateKey.HasAlgorithmID(AlgorithmID.RSA_PSS_512)) {
+                signer.addAttribute(HeaderKeys.Algorithm, AlgorithmID.RSA_PSS_512.AsCBOR(), Attribute.PROTECTED);
+            } else if (privateKey.HasAlgorithmID(AlgorithmID.EDDSA)) {
+                throw new COSESignatureException("EdDSA algorithm is not available");
+            } else {
+                throw new COSESignatureException("No valid algorithm found");
+            }
+
+            signer.addAttribute(HeaderKeys.CONTENT_TYPE,
+                    CBORObject.FromObject(param.getProperty("Content Type")), Attribute.PROTECTED);
+            signer.addAttribute(HeaderKeys.KID, privateKey.get(KeyKeys.KeyId), Attribute.PROTECTED);
+            signer.setKey(privateKey);
+
+            signMessage.AddSigner(signer);
+        }
+
+        // Firma todos los signers de una vez
+        signMessage.sign();
+
+        return Base64.getEncoder().encodeToString(signMessage.EncodeToBytes());
     }
 
 }
