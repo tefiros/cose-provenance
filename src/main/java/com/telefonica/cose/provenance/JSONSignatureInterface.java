@@ -1,7 +1,9 @@
 package com.telefonica.cose.provenance;
 
+import COSE.CoseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.telefonica.cose.provenance.exception.COSESignatureException;
 
 import java.io.IOException;
 
@@ -44,6 +46,8 @@ public interface JSONSignatureInterface {
 	 */
 
 	void saveJSONnode(JsonNode jsonNode, String fileName) throws Exception;
+
+	public String addCounterSign(String document, String kid, String signatureElement) throws CoseException, COSESignatureException, JsonProcessingException;
 
 
 }

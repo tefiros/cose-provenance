@@ -20,6 +20,15 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import com.telefonica.cose.provenance.exception.COSESignatureException;
 import com.upokecenter.cbor.CBORObject;
 
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import java.io.StringWriter;
+import java.util.ArrayList;
+
+
 import COSE.*;
 import COSE.Attribute;
 
@@ -201,5 +210,184 @@ public class JSONSignature extends JSONFileManagement implements JSONSignatureIn
 
         return Base64.getEncoder().encodeToString(signMessage.EncodeToBytes());
     }
+
+
+
+
+
+    public String addCounterSign(String document, String kid, String signatureElement)
+            throws CoseException, COSESignatureException, JsonProcessingException {
+
+        // 1. Extraer la firma existente del documento JSON
+        String existingSignature = extractSignatureFromJSONDocument(document, signatureElement);
+        if (existingSignature == null) {
+            throw new COSESignatureException("No existing signature found in element: " + signatureElement);
+        }
+
+        // 2. Decodificar el Sign1 existente
+        byte[] signatureBytes = Base64.getDecoder().decode(existingSignature);
+        Sign1Message sign1 = (Sign1Message) Message.DecodeFromBytes(signatureBytes);
+
+        System.out.println(">>> counterSignList AFTER DECODE: " + sign1.getCountersignerList().size());
+
+        // Recuperar countersigns existentes manualmente del header no protegido
+        if (sign1.getCountersignerList().isEmpty()) {
+            CBORObject existingCS = sign1.findAttribute(HeaderKeys.CounterSignature, Attribute.UNPROTECTED);
+            if (existingCS != null) {
+                if (existingCS.getType() == com.upokecenter.cbor.CBORType.Array &&
+                        existingCS.size() > 0 &&
+                        existingCS.get(0).getType() == com.upokecenter.cbor.CBORType.Array) {
+
+                    for (CBORObject obj : existingCS.getValues()) {
+                        sign1.addCountersignature(new CounterSign(obj));
+                    }
+                } else {
+                    sign1.addCountersignature(new CounterSign(existingCS));
+                }
+            }
+        }
+
+        System.out.println(">>> counterSignList AFTER MANUAL LOAD: " + sign1.getCountersignerList().size());
+        System.out.println(">>> CounterSignature attr (unprotected=2): "
+                + sign1.findAttribute(HeaderKeys.CounterSignature, Attribute.UNPROTECTED));
+
+        // 3. Marcar payload detached
+        try {
+            java.lang.reflect.Field f = COSE.Message.class.getDeclaredField("emitContent");
+            f.setAccessible(true);
+            f.set(sign1, false);
+        } catch (Exception e) {
+            throw new COSESignatureException("Failed to set detached payload: " + e.getMessage());
+        }
+
+        // 4. Extraer documento limpio (sin el campo firma) y reponer payload canonizado
+        try {
+            String cleanDocument = extractJSONDocumentContent(document, signatureElement);
+            String canonical = canonicalizeJSON(cleanDocument);
+
+            System.out.println(">>> canonicalized JSON content for countersign (" + kid + "): " + canonical);
+
+            sign1.SetContent(canonical);
+        } catch (Exception e) {
+            throw new COSESignatureException("Failed to strip signature element: " + e.getMessage());
+        }
+
+        // 5. Construir countersign
+        OneKey privateKey = privateKey(kid);
+        CounterSign cs = new CounterSign();
+
+        if (privateKey.HasAlgorithmID(AlgorithmID.ECDSA_256)) {
+            cs.addAttribute(HeaderKeys.Algorithm, AlgorithmID.ECDSA_256.AsCBOR(), Attribute.PROTECTED);
+        } else if (privateKey.HasAlgorithmID(AlgorithmID.RSA_PSS_512)) {
+            cs.addAttribute(HeaderKeys.Algorithm, AlgorithmID.RSA_PSS_512.AsCBOR(), Attribute.PROTECTED);
+        } else if (privateKey.HasAlgorithmID(AlgorithmID.EDDSA)) {
+            throw new COSESignatureException("EdDSA algorithm is not available for the cose library version used");
+        } else {
+            throw new COSESignatureException("No valid algorithm found for kid: " + kid);
+        }
+
+        cs.addAttribute(HeaderKeys.KID, privateKey.get(KeyKeys.KeyId), Attribute.PROTECTED);
+        cs.setKey(privateKey);
+
+        // 6. Firmar countersign con rgbProtected crudo del Sign1
+        try {
+            java.lang.reflect.Field f = COSE.Attribute.class.getDeclaredField("rgbProtected");
+            f.setAccessible(true);
+            byte[] rgbProt = (byte[]) f.get(sign1);
+
+            System.out.println(">>> SIGNING JSON countersign with rgbProtected: "
+                    + java.util.HexFormat.of().formatHex(rgbProt));
+
+            java.lang.reflect.Method m = COSE.Signer.class
+                    .getDeclaredMethod("sign", byte[].class, byte[].class);
+            m.setAccessible(true);
+
+            m.invoke(cs, rgbProt, sign1.GetContent());
+        } catch (Exception e) {
+            throw new COSESignatureException(
+                    "Failed to sign countersign with raw rgbProtected: " + e.getMessage());
+        }
+
+        sign1.addCountersignature(cs);
+
+        // 7. Forzar serialización del array de countersigns en el header no protegido
+        try {
+            List<CounterSign> allCS = sign1.getCountersignerList();
+
+            java.lang.reflect.Method encodeMethod = COSE.Signer.class.getDeclaredMethod("EncodeToCBORObject");
+            encodeMethod.setAccessible(true);
+
+            CBORObject csArray = CBORObject.NewArray();
+            for (CounterSign c : allCS) {
+                csArray.Add((CBORObject) encodeMethod.invoke(c));
+            }
+
+            sign1.addAttribute(HeaderKeys.CounterSignature, csArray, Attribute.UNPROTECTED);
+
+        } catch (Exception e) {
+            throw new COSESignatureException("Failed to process counter signatures: " + e.getMessage());
+        }
+
+        // Debug
+        CBORObject mainKid = sign1.findAttribute(HeaderKeys.KID);
+        System.out.println("Sign1 JSON firmante principal KID: " +
+                (mainKid != null ? mainKid.toString() : "unknown"));
+
+        System.out.println("Número de JSON countersignatures: " + sign1.getCountersignerList().size());
+        for (int i = 0; i < sign1.getCountersignerList().size(); i++) {
+            CounterSign c = sign1.getCountersignerList().get(i);
+            CBORObject csKid = c.findAttribute(HeaderKeys.KID);
+            System.out.println("  CounterSign[" + i + "] KID: " +
+                    (csKid != null ? csKid.toString() : "unknown"));
+        }
+
+        return Base64.getEncoder().encodeToString(sign1.EncodeToBytes());
+    }
+
+    private String extractSignatureFromJSONDocument(String document, String signatureElement) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(document);
+
+            if (root != null && root.isObject() && root.has(signatureElement)) {
+                JsonNode sigNode = root.get(signatureElement);
+                if (sigNode != null && sigNode.isTextual()) {
+                    String text = sigNode.asText().trim();
+                    return text.isBlank() ? null : text;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    String extractJSONDocumentContent(String jsonDocument, String signatureElement)
+            throws COSESignatureException {
+
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(jsonDocument);
+
+            if (root == null || !root.isObject()) {
+                throw new COSESignatureException("JSON root is not an object");
+            }
+
+            ObjectNode rootObj = (ObjectNode) root;
+
+            if (!rootObj.has(signatureElement)) {
+                throw new COSESignatureException("No signature element found: " + signatureElement);
+            }
+
+            rootObj.remove(signatureElement);
+
+            return mapper.writeValueAsString(rootObj);
+
+        } catch (Exception e) {
+            throw new COSESignatureException("Failed to remove JSON signature element: " + e.getMessage());
+        }
+    }
+
+
 
 }

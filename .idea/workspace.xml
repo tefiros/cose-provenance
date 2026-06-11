@@ -5,137 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fefdd05-3a00-4f6b-8d69-6e24ba5366f8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/CanonicalizationProof.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/MultiSigningTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/MultiVerifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/CBOREnclosingMethods.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/CBOREnclosingMethodsInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/CBORFileManagement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/CBORSignature.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/CBORSignatureInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/CBORVerification.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/CBORVerificationInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/JSONEnclMethodInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/JSONEnclosingMethods.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/JSONFileManagement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/JSONSignature.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/JSONSignatureInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/JSONVerification.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/JSONVerificationInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/Parameters.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/XMLEnclosingMethodInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/XMLEnclosingMethods.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/XMLFileManagement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/XMLSignature.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/XMLSignatureInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/XMLVerification.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/XMLVerificationInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/YANGMetadata.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/YANGModuleProcessor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/exception/COSESignatureException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/telefonica/cose/provenance/example/CBORSigner.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/telefonica/cose/provenance/example/CBORVerifier.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/telefonica/cose/provenance/example/CBORVerifyMain.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/telefonica/cose/provenance/example/JSONSigner.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/telefonica/cose/provenance/example/JSONVerifier.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/telefonica/cose/provenance/example/Signer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/telefonica/cose/provenance/example/Verifier.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/allclasses-index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/allpackages-index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/CBOREnclosingMethods.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/CBOREnclosingMethodsInterface.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/CBORFileManagement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/CBORSignature.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/CBORSignatureInterface.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/CBORVerification.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/CBORVerificationInterface.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/JSONEnclMethodInterface.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/JSONEnclosingMethods.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/JSONFileManagement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/JSONSignature.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/JSONSignatureInterface.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/JSONVerification.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/JSONVerificationInterface.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/Parameters.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/XMLEnclosingMethodInterface.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/XMLEnclosingMethods.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/XMLFileManagement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/XMLSignature.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/XMLSignatureInterface.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/XMLVerification.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/XMLVerificationInterface.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/YANGMetadata.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/YANGModuleProcessor.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/exception/COSESignatureException.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/exception/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/exception/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/com/telefonica/cose/provenance/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/element-list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/help-doc.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/index-all.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/jquery-ui.overrides.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/legal/COPYRIGHT" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/legal/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/legal/jquery.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/legal/jqueryUI.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/member-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/module-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/overview-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/overview-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/package-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/resources/glass.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/resources/x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/script-dir/jquery-3.6.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/script-dir/jquery-ui.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/script-dir/jquery-ui.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/search.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/serialized-form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/stylesheet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/tag-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docs/javadoc/type-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/provenance-api-0.0.6-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/provenance-api-0.0.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/publications/maven/module.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/publications/maven/pom-default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/css/base-style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/js/report.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/cose_parameters.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/receiver_keystore.p12" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/sender_keystore.p12" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/javadoc/javadoc.options" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/javadocJar/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/publishMavenPublicationToMavenLocal/module-maven-metadata.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/provenance_output2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORSignature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORSignature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORSignatureInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORSignatureInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONSignature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONSignature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/XMLEnclosingMethodInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/XMLEnclosingMethodInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/XMLEnclosingMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/XMLEnclosingMethods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/XMLSignature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/XMLSignature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/XMLSignatureInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/XMLSignatureInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/XMLVerification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/XMLVerification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sender_keystore.p12" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sender_keystore.p12" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/Signer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/Signer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,50 +78,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CanonicalizationProof.executor": "Coverage",
-    "Application.JSONFileManagement.executor": "Debug",
-    "Application.MultiSigningTest.executor": "Coverage",
-    "Application.Signer (1).executor": "Run",
-    "Application.Signer.executor": "Run",
-    "Application.Verifier.executor": "Run",
-    "Docker.Dockerfile build.executor": "Run",
-    "Gradle.Build cose-provenance.executor": "Run",
-    "Gradle.cose-provenance [:com.telefonica.cose.provenance.CBORFileManagement.main()].executor": "Run",
-    "Gradle.cose-provenance [:com.telefonica.cose.provenance.JSONFileManagement.main()].executor": "Run",
-    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORSigner.main()].executor": "Run",
-    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORVerifier.main()].executor": "Run",
-    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORVerifierMain.main()].executor": "Run",
-    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORVerifyMain.main()].executor": "Run",
-    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CanonicalizationProof.main()].executor": "Run",
-    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.JSONSigner.main()].executor": "Run",
-    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.JSONVerifier.main()].executor": "Run",
-    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.MultiSigningTest.main()].executor": "Run",
-    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.MultiVerifier.main()].executor": "Run",
-    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.Signer.main()].executor": "Run",
-    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.Verifier.main()].executor": "Run",
-    "JAR Application.gradle-wrapper.jar.executor": "Run",
-    "Maven.provenance-api [clean].executor": "Run",
-    "Maven.provenance-api [compile].executor": "Run",
-    "Maven.provenance-api [install].executor": "Run",
-    "OverrideImplement.generate.javadoc": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "library",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/id05294/OneDrive - Telefonica/Documentos/kafka/project/kafka-provenance",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CanonicalizationProof.executor&quot;: &quot;Coverage&quot;,
+    &quot;Application.JSONFileManagement.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.MultiSigningTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;Application.Signer (1).executor&quot;: &quot;Run&quot;,
+    &quot;Application.Signer.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Verifier.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Dockerfile build.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build cose-provenance.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.CBORFileManagement.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.JSONFileManagement.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORSigner.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORVerifier.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORVerifierMain.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORVerifyMain.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CanonicalizationProof.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.JSONSigner.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.JSONVerifier.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.MultiSigningTest.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.MultiVerifier.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.Signer.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.Verifier.main()].executor&quot;: &quot;Run&quot;,
+    &quot;JAR Application.gradle-wrapper.jar.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.provenance-api [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.provenance-api [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.provenance-api [install].executor&quot;: &quot;Run&quot;,
+    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;library&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/id05294/OneDrive - Telefonica/Documentos/kafka/project/kafka-provenance&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\id05294\OneDrive - Telefonica\Documentos\Serverless\firmas\cose-provenance" />
@@ -264,7 +134,7 @@
       <recent name="com.telefonica.cose.provenance.example" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.CBORFileManagement">
     <configuration name="CBORFileManagement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.telefonica.cose.provenance.CBORFileManagement" />
       <module name="provenance-api.main" />
@@ -417,7 +287,9 @@
       <workItem from="1774613995844" duration="2490000" />
       <workItem from="1777988719083" duration="79905000" />
       <workItem from="1780038878942" duration="1240000" />
-      <workItem from="1780052732218" duration="18855000" />
+      <workItem from="1780052732218" duration="25394000" />
+      <workItem from="1781078741583" duration="5926000" />
+      <workItem from="1781188638463" duration="502000" />
     </task>
     <servers />
   </component>
@@ -859,6 +731,10 @@
       </configuration>
     </watches-manager>
   </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/provenance_api$MultiSigningTest.ic" NAME="MultiSigningTest Coverage Results" MODIFIED="1779719553427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>com.telefonica.cose.provenance.example.*</FILTER>
@@ -866,5 +742,14 @@
     <SUITE FILE_PATH="coverage/provenance_api$CanonicalizationProof.ic" NAME="CanonicalizationProof Coverage Results" MODIFIED="1780384990317" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>com.telefonica.cose.provenance.example.*</FILTER>
     </SUITE>
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>
