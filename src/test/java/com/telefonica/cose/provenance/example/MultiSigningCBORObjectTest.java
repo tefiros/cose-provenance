@@ -9,6 +9,8 @@ import com.upokecenter.cbor.CBORType;
 
 import java.io.File;
 import java.util.Base64;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class MultiSigningCBORObjectTest {
 
@@ -96,6 +98,17 @@ public class MultiSigningCBORObjectTest {
 
         System.out.println("\n=== ESTRUCTURA COSE FINAL ===");
         printCoseStructure(sig3);
+
+        // =========================================================
+        // 7. Guardar documento CBOR final a fichero (.cbor)
+        // =========================================================
+        byte[] finalDocBytes = doc3.EncodeToBytes();
+
+        Files.write(Paths.get("provenance_output_multisign.cbor"), finalDocBytes);
+
+        System.out.println("\nDocumento CBOR final guardado en provenance_output_multisign.cbor");
+
+
     }
 
     /**

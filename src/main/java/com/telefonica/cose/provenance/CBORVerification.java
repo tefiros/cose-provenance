@@ -10,6 +10,7 @@ import com.upokecenter.cbor.CBORObject;
 import com.upokecenter.cbor.CBORType;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -271,6 +272,178 @@ public class CBORVerification  extends  CBORFileManagement implements  CBORVerif
             throw new COSESignatureException("Invalid YANG CBOR input", e);
         }
     }
+
+    byte[] readSignatureYANG(CBORObject YANGFile, String signatureField)
+            throws COSESignatureException {
+
+        if (YANGFile.getType() != CBORType.Map) {
+            throw new COSESignatureException("Root CBOR must be a map");
+        }
+
+        CBORObject sigKey = CBORObject.FromObject(signatureField);
+
+        for (CBORObject key : YANGFile.getKeys()) {
+            CBORObject value = YANGFile.get(key);
+
+            if (value.getType() == CBORType.Map && value.ContainsKey(sigKey)) {
+                byte[] signature = value.get(sigKey).GetByteString();
+
+                System.out.println("Found CBOR YANG signature field: " + signatureField);
+                System.out.println("Signature Base64: " + Base64.getEncoder().encodeToString(signature));
+
+                return signature;
+            }
+        }
+
+        throw new COSESignatureException("No signature field found: " + signatureField);
+    }
+
+    CBORObject readCBORFileYANG(CBORObject YANGFile, String signatureField)
+            throws COSESignatureException {
+
+        CBORObject copy = CBORObject.DecodeFromBytes(YANGFile.EncodeToBytes());
+        CBORObject sigKey = CBORObject.FromObject(signatureField);
+
+        if (copy.getType() != CBORType.Map) {
+            throw new COSESignatureException("Root CBOR must be a map");
+        }
+
+        for (CBORObject key : copy.getKeys()) {
+            CBORObject value = copy.get(key);
+
+            if (value.getType() == CBORType.Map && value.ContainsKey(sigKey)) {
+                value.Remove(sigKey);
+                return copy;
+            }
+        }
+
+        throw new COSESignatureException("No signature field found to remove: " + signatureField);
+    }
+
+
+    public boolean verifyYANG(CBORObject YANGfile, String signatureField)
+            throws CoseException, COSESignatureException {
+
+        byte[] signature = readSignatureYANG(YANGfile, signatureField);
+        CBORObject cleanCBOR = readCBORFileYANG(YANGfile, signatureField);
+
+        Sign1Message verificator =
+                (Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
+
+        byte[] content = canonicalizeCbor(cleanCBOR);
+
+        System.out.println(">>> canonicalized CBOR content length: " + content.length);
+
+        verificator.SetContent(content);
+
+        String kid = verificator.findAttribute(HeaderKeys.KID, Attribute.PROTECTED).AsString();
+        OneKey publicOnlyKey = publicKey(kid);
+
+        return verificator.validate(publicOnlyKey);
+    }
+
+    public boolean verifyYANGWithCountersigns(CBORObject YANGfile, String signatureField)
+            throws CoseException, COSESignatureException {
+
+        byte[] signature = readSignatureYANG(YANGfile, signatureField);
+        CBORObject cleanCBOR = readCBORFileYANG(YANGfile, signatureField);
+
+        Sign1Message verificator =
+                (Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
+
+        byte[] content = canonicalizeCbor(cleanCBOR);
+
+        System.out.println(">>> canonicalized CBOR content length: " + content.length);
+
+        verificator.SetContent(content);
+
+        // Debug opcional
+        try {
+            java.lang.reflect.Field f = COSE.Attribute.class.getDeclaredField("rgbProtected");
+            f.setAccessible(true);
+            byte[] rgbProt = (byte[]) f.get(verificator);
+
+            System.out.println(">>> rgbProtected hex (CBOR Sign1): "
+                    + java.util.HexFormat.of().formatHex(rgbProt));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // ===============================
+        // 1. Firma principal
+        // ===============================
+        String mainKid = verificator.findAttribute(HeaderKeys.KID, Attribute.PROTECTED).AsString();
+        OneKey mainKey = publicKey(mainKid);
+
+        boolean validMain = verificator.validate(mainKey);
+        System.out.println("Firma principal CBOR (" + mainKid + "): " + validMain);
+
+        if (!validMain) {
+            return false;
+        }
+
+        // ===============================
+        // 2. Countersignatures
+        // ===============================
+        java.util.List<CounterSign> counters = verificator.getCountersignerList();
+
+        if (counters == null || counters.isEmpty()) {
+            System.out.println("No hay CBOR countersignatures");
+            return true;
+        }
+
+        boolean allValid = true;
+
+        for (CounterSign cs : counters) {
+            CBORObject kidObj = cs.findAttribute(HeaderKeys.KID, Attribute.PROTECTED);
+
+            if (kidObj == null) {
+                System.out.println("CBOR countersign sin KID → inválida");
+                allValid = false;
+                continue;
+            }
+
+            String kid = kidObj.AsString();
+            System.out.println("Verificando CBOR countersign de: " + kid);
+
+            OneKey pubKey = publicKey(kid);
+            cs.setKey(pubKey);
+
+            // igual que XML/JSON
+            boolean valid = verificator.validate(cs);
+
+            System.out.println("Resultado CBOR countersign (" + kid + "): " + valid);
+
+            allValid &= valid;
+        }
+
+        return allValid;
+    }
+
+    public boolean verifyYANG(CBORObject YANGfile, File yangModule)
+            throws CoseException, COSESignatureException, IOException {
+
+        YANGMetadata metadata = YANGModuleProcessor.extractSignatureMetadata(yangModule);
+        String moduleName = YANGModuleProcessor.extractModuleName(yangModule);
+        String signatureField = moduleName + ":" + metadata.getLeafName();
+
+        System.out.println("CBOR signature field from YANG: " + signatureField);
+
+        return verifyYANG(YANGfile, signatureField);
+    }
+
+    public boolean verifyYANGWithCountersigns(CBORObject YANGfile, File yangModule)
+            throws CoseException, COSESignatureException, IOException {
+
+        YANGMetadata metadata = YANGModuleProcessor.extractSignatureMetadata(yangModule);
+        String moduleName = YANGModuleProcessor.extractModuleName(yangModule);
+        String signatureField = moduleName + ":" + metadata.getLeafName();
+
+        System.out.println("CBOR signature field from YANG: " + signatureField);
+
+        return verifyYANGWithCountersigns(YANGfile, signatureField);
+    }
+
 
 
 }

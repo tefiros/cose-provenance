@@ -5,29 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fefdd05-3a00-4f6b-8d69-6e24ba5366f8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/MultiSigningCBORObjectTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/MultiVerifierJSONTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/YangFingerprint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/MultiVerifierCBORTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/JSONVerification.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/JSONVerification.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/telefonica/cose/provenance/example/CanonicalizationProof.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/com/telefonica/cose/provenance/example/CanonicalizationProof.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/JSONSignature.class.uniqueId0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/JSONSignatureInterface.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/CBORVerification.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/CBORVerification.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/telefonica/cose/provenance/example/MultiSigningCBORObjectTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/com/telefonica/cose/provenance/example/MultiSigningCBORObjectTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/CBORSignature.class.uniqueId0" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/compileTransaction/stash-dir/JSONSigner.class.uniqueId1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/compileTransaction/stash-dir/MultiVerifier.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/compileTransaction/stash-dir/MultiSigningCBORObjectTest.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/compileTransaction/stash-dir/MultiSigningCBORObjectTest.class.uniqueId0" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORSignature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORSignature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/CanonicalizationProof.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/CanonicalizationProof.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORVerification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORVerification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/MultiSigningCBORObjectTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/MultiSigningCBORObjectTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -315,7 +308,7 @@
       <workItem from="1780052732218" duration="25394000" />
       <workItem from="1781078741583" duration="5926000" />
       <workItem from="1781188638463" duration="502000" />
-      <workItem from="1782138332019" duration="11753000" />
+      <workItem from="1782138332019" duration="16541000" />
     </task>
     <servers />
   </component>
