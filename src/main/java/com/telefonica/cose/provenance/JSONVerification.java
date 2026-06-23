@@ -27,14 +27,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.telefonica.cose.provenance.exception.COSESignatureException;
 import com.upokecenter.cbor.CBORObject;
 
-import COSE.AlgorithmID;
-import COSE.Attribute;
-import COSE.CoseException;
-import COSE.HeaderKeys;
-import COSE.KeyKeys;
-import COSE.MessageTag;
-import COSE.OneKey;
-import COSE.Sign1Message;
+
+import COSE.*;
 
 /**
  * This class implements the method for verifying a signature created with COSE.
@@ -355,6 +349,75 @@ public class JSONVerification extends JSONFileManagement implements JSONVerifica
         OneKey publicOnlyKey = publicKey(
                 verificator.findAttribute(HeaderKeys.KID, Attribute.PROTECTED).AsString());
         return verificator.validate(publicOnlyKey);
+    }
+
+    public boolean verifyJSONWithCountersigns(JsonNode YANGfile)
+            throws CoseException, COSESignatureException, JsonProcessingException {
+
+        byte[] signature = readSignature(YANGfile);
+        String message = readYANGFile(YANGfile);
+
+        Sign1Message verificator =
+                (Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
+
+        String content = canonicalizeJSON(message);
+
+        System.out.println(">>> content canonicalizado JSON:\n" + content);
+
+        verificator.SetContent(content);
+
+        // ===============================
+        // ✅ 1. Firma principal
+        // ===============================
+        String mainKid = verificator.findAttribute(HeaderKeys.KID, Attribute.PROTECTED).AsString();
+        OneKey mainKey = publicKey(mainKid);
+
+        boolean validMain = verificator.validate(mainKey);
+        System.out.println("Firma principal JSON (" + mainKid + "): " + validMain);
+
+        if (!validMain) {
+            return false;
+        }
+
+        // ===============================
+        // ✅ 2. Countersigns
+        // ===============================
+
+        // ✅ igual que XML: usar lista interna, NO atributo manual
+        java.util.List<CounterSign> counters = verificator.getCountersignerList();
+
+        if (counters == null || counters.isEmpty()) {
+            System.out.println("No hay JSON countersignatures");
+            return true;
+        }
+
+        boolean allValid = true;
+
+        for (CounterSign cs : counters) {
+
+            CBORObject kidObj = cs.findAttribute(HeaderKeys.KID, Attribute.PROTECTED);
+
+            if (kidObj == null) {
+                System.out.println("Countersign sin KID → inválida");
+                allValid = false;
+                continue;
+            }
+
+            String kid = kidObj.AsString();
+            System.out.println("Verificando JSON countersign de: " + kid);
+
+            OneKey pubKey = publicKey(kid);
+            cs.setKey(pubKey);
+
+            // ✅ CLAVE → IGUAL QUE XML
+            boolean valid = verificator.validate(cs);
+
+            System.out.println("Resultado countersign JSON (" + kid + "): " + valid);
+
+            allValid &= valid;
+        }
+
+        return allValid;
     }
 
 }

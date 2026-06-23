@@ -252,4 +252,125 @@ public class CBORSignature extends CBORFileManagement implements CBORSignatureIn
         return signMessage.EncodeToBytes();
     }
 
+    public byte[] addCounterSign(CBORObject cbor, byte[] existingSignature, String kid)
+            throws CoseException, COSESignatureException {
+
+        if (existingSignature == null || existingSignature.length == 0) {
+            throw new COSESignatureException("No existing signature provided");
+        }
+
+        // 1. Decodificar el Sign1 existente
+        Sign1Message sign1 = (Sign1Message) Message.DecodeFromBytes(existingSignature);
+
+        System.out.println(">>> counterSignList AFTER DECODE: " + sign1.getCountersignerList().size());
+
+        // 2. Recuperar countersigns existentes manualmente del header no protegido
+        if (sign1.getCountersignerList().isEmpty()) {
+            CBORObject existingCS = sign1.findAttribute(HeaderKeys.CounterSignature, Attribute.UNPROTECTED);
+            if (existingCS != null) {
+                if (existingCS.getType() == com.upokecenter.cbor.CBORType.Array
+                        && existingCS.size() > 0
+                        && existingCS.get(0).getType() == com.upokecenter.cbor.CBORType.Array) {
+
+                    for (CBORObject obj : existingCS.getValues()) {
+                        sign1.addCountersignature(new CounterSign(obj));
+                    }
+                } else {
+                    sign1.addCountersignature(new CounterSign(existingCS));
+                }
+            }
+        }
+
+        System.out.println(">>> counterSignList AFTER MANUAL LOAD: " + sign1.getCountersignerList().size());
+        System.out.println(">>> CounterSignature attr (unprotected=2): "
+                + sign1.findAttribute(HeaderKeys.CounterSignature, Attribute.UNPROTECTED));
+
+        // 3. Forzar payload detached
+        try {
+            java.lang.reflect.Field f = COSE.Message.class.getDeclaredField("emitContent");
+            f.setAccessible(true);
+            f.set(sign1, false);
+        } catch (Exception e) {
+            throw new COSESignatureException("Failed to set detached payload: " + e.getMessage());
+        }
+
+        // 4. Reponer payload canonicalizado (deterministic CBOR)
+        byte[] canonicalCbor = canonicalizeCbor(cbor);
+        sign1.SetContent(canonicalCbor);
+
+        System.out.println(">>> canonicalized CBOR payload length: " + canonicalCbor.length);
+
+        // 5. Construir countersign
+        OneKey privateKey = privateKey(kid);
+        CounterSign cs = new CounterSign();
+
+        if (privateKey.HasAlgorithmID(AlgorithmID.ECDSA_256)) {
+            cs.addAttribute(HeaderKeys.Algorithm, AlgorithmID.ECDSA_256.AsCBOR(), Attribute.PROTECTED);
+        } else if (privateKey.HasAlgorithmID(AlgorithmID.RSA_PSS_512)) {
+            cs.addAttribute(HeaderKeys.Algorithm, AlgorithmID.RSA_PSS_512.AsCBOR(), Attribute.PROTECTED);
+        } else if (privateKey.HasAlgorithmID(AlgorithmID.EDDSA)) {
+            throw new COSESignatureException("EdDSA algorithm is not available for the cose library version used");
+        } else {
+            throw new COSESignatureException("No valid algorithm found for kid: " + kid);
+        }
+
+        cs.addAttribute(HeaderKeys.KID, privateKey.get(KeyKeys.KeyId), Attribute.PROTECTED);
+        cs.setKey(privateKey);
+
+        // 6. Firmar countersign con rgbProtected crudo del Sign1
+        try {
+            java.lang.reflect.Field f = COSE.Attribute.class.getDeclaredField("rgbProtected");
+            f.setAccessible(true);
+            byte[] rgbProt = (byte[]) f.get(sign1);
+
+            System.out.println(">>> SIGNING CBOR countersign with rgbProtected: "
+                    + java.util.HexFormat.of().formatHex(rgbProt));
+
+            java.lang.reflect.Method m = COSE.Signer.class
+                    .getDeclaredMethod("sign", byte[].class, byte[].class);
+            m.setAccessible(true);
+
+            m.invoke(cs, rgbProt, sign1.GetContent());
+
+        } catch (Exception e) {
+            throw new COSESignatureException(
+                    "Failed to sign countersign with raw rgbProtected: " + e.getMessage());
+        }
+
+        sign1.addCountersignature(cs);
+
+        // 7. Forzar serialización del array de countersigns en el header no protegido
+        try {
+            List<CounterSign> allCS = sign1.getCountersignerList();
+
+            java.lang.reflect.Method encodeMethod = COSE.Signer.class.getDeclaredMethod("EncodeToCBORObject");
+            encodeMethod.setAccessible(true);
+
+            CBORObject csArray = CBORObject.NewArray();
+            for (CounterSign c : allCS) {
+                csArray.Add((CBORObject) encodeMethod.invoke(c));
+            }
+
+            sign1.addAttribute(HeaderKeys.CounterSignature, csArray, Attribute.UNPROTECTED);
+
+        } catch (Exception e) {
+            throw new COSESignatureException("Failed to process counter signatures: " + e.getMessage());
+        }
+
+        // Debug
+        CBORObject mainKid = sign1.findAttribute(HeaderKeys.KID);
+        System.out.println("Sign1 CBOR firmante principal KID: " +
+                (mainKid != null ? mainKid.toString() : "unknown"));
+
+        System.out.println("Número de CBOR countersignatures: " + sign1.getCountersignerList().size());
+        for (int i = 0; i < sign1.getCountersignerList().size(); i++) {
+            CounterSign c = sign1.getCountersignerList().get(i);
+            CBORObject csKid = c.findAttribute(HeaderKeys.KID);
+            System.out.println("  CounterSign[" + i + "] KID: " +
+                    (csKid != null ? csKid.toString() : "unknown"));
+        }
+
+        return sign1.EncodeToBytes();
+    }
+
 }

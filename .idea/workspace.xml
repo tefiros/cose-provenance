@@ -5,7 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fefdd05-3a00-4f6b-8d69-6e24ba5366f8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/MultiSigningCBORObjectTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/MultiVerifierJSONTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/YangFingerprint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/JSONVerification.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/telefonica/cose/provenance/JSONVerification.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/telefonica/cose/provenance/example/CanonicalizationProof.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/com/telefonica/cose/provenance/example/CanonicalizationProof.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/JSONSignature.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/JSONSignatureInterface.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/compileTransaction/stash-dir/JSONSigner.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/compileTransaction/stash-dir/MultiVerifier.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORSignature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/CBORSignature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/CanonicalizationProof.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/telefonica/cose/provenance/example/CanonicalizationProof.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,50 +100,53 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.CanonicalizationProof.executor&quot;: &quot;Coverage&quot;,
-    &quot;Application.JSONFileManagement.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.MultiSigningTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;Application.Signer (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.Signer.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Verifier.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Dockerfile build.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build cose-provenance.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.CBORFileManagement.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.JSONFileManagement.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORSigner.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORVerifier.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORVerifierMain.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORVerifyMain.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CanonicalizationProof.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.JSONSigner.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.JSONVerifier.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.MultiSigningTest.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.MultiVerifier.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.Signer.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.cose-provenance [:com.telefonica.cose.provenance.example.Verifier.main()].executor&quot;: &quot;Run&quot;,
-    &quot;JAR Application.gradle-wrapper.jar.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.provenance-api [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.provenance-api [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.provenance-api [install].executor&quot;: &quot;Run&quot;,
-    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;library&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/id05294/OneDrive - Telefonica/Documentos/kafka/project/kafka-provenance&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CanonicalizationProof.executor": "Coverage",
+    "Application.JSONFileManagement.executor": "Debug",
+    "Application.MultiSigningTest.executor": "Coverage",
+    "Application.Signer (1).executor": "Run",
+    "Application.Signer.executor": "Run",
+    "Application.Verifier.executor": "Run",
+    "Docker.Dockerfile build.executor": "Run",
+    "Gradle.Build cose-provenance.executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.CBORFileManagement.main()].executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.JSONFileManagement.main()].executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORSigner.main()].executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORVerifier.main()].executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORVerifierMain.main()].executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CBORVerifyMain.main()].executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.CanonicalizationProof.main()].executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.JSONSigner.main()].executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.JSONVerifier.main()].executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.MultiSigningCBORObjectTest.main()].executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.MultiSigningJSONTest.main()].executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.MultiSigningTest.main()].executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.MultiVerifier.main()].executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.MultiVerifierJSONTest.main()].executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.Signer.main()].executor": "Run",
+    "Gradle.cose-provenance [:com.telefonica.cose.provenance.example.Verifier.main()].executor": "Run",
+    "JAR Application.gradle-wrapper.jar.executor": "Run",
+    "Maven.provenance-api [clean].executor": "Run",
+    "Maven.provenance-api [compile].executor": "Run",
+    "Maven.provenance-api [install].executor": "Run",
+    "OverrideImplement.generate.javadoc": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "library",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/id05294/OneDrive - Telefonica/Documentos/kafka/project/kafka-provenance",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\id05294\OneDrive - Telefonica\Documentos\Serverless\firmas\cose-provenance" />
@@ -134,7 +159,7 @@
       <recent name="com.telefonica.cose.provenance.example" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CBORFileManagement">
+  <component name="RunManager">
     <configuration name="CBORFileManagement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.telefonica.cose.provenance.CBORFileManagement" />
       <module name="provenance-api.main" />
@@ -290,6 +315,7 @@
       <workItem from="1780052732218" duration="25394000" />
       <workItem from="1781078741583" duration="5926000" />
       <workItem from="1781188638463" duration="502000" />
+      <workItem from="1782138332019" duration="11753000" />
     </task>
     <servers />
   </component>
@@ -529,42 +555,42 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
-          <line>137</line>
+          <line>131</line>
           <option name="timeStamp" value="143" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
-          <line>223</line>
+          <line>217</line>
           <option name="timeStamp" value="144" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
-          <line>225</line>
+          <line>219</line>
           <option name="timeStamp" value="145" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
-          <line>229</line>
+          <line>223</line>
           <option name="timeStamp" value="146" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
-          <line>231</line>
+          <line>225</line>
           <option name="timeStamp" value="147" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
-          <line>232</line>
+          <line>226</line>
           <option name="timeStamp" value="148" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
-          <line>236</line>
+          <line>230</line>
           <option name="timeStamp" value="149" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
-          <line>239</line>
+          <line>233</line>
           <option name="timeStamp" value="150" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -574,42 +600,42 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
-          <line>347</line>
+          <line>341</line>
           <option name="timeStamp" value="152" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
-          <line>348</line>
+          <line>342</line>
           <option name="timeStamp" value="153" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
-          <line>350</line>
+          <line>344</line>
           <option name="timeStamp" value="154" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
-          <line>351</line>
+          <line>345</line>
           <option name="timeStamp" value="155" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
-          <line>352</line>
+          <line>346</line>
           <option name="timeStamp" value="156" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
-          <line>354</line>
+          <line>348</line>
           <option name="timeStamp" value="157" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
-          <line>355</line>
+          <line>349</line>
           <option name="timeStamp" value="158" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/telefonica/cose/provenance/JSONVerification.java</url>
-          <line>356</line>
+          <line>350</line>
           <option name="timeStamp" value="159" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

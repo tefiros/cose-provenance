@@ -6,11 +6,13 @@ import org.xml.sax.InputSource;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.zip.CRC32;
 
-public class CanonicalizationProof {
+public class YangFingerprint {
 
     // =======================
     // Node estructural
@@ -28,25 +30,38 @@ public class CanonicalizationProof {
     }
 
     // =======================
-    // CANONICAL (UNORDERED)
+    // CRC32 (igual que Python)
     // =======================
-    static String canonicalize(Object... args) {
+    static String crc32(String s) {
+        CRC32 crc = new CRC32();
+        crc.update(s.getBytes(StandardCharsets.UTF_8));
+        return Long.toString(crc.getValue() & 0xFFFFFFFFL);
+    }
+
+    static String fingerprintValue(Object value) {
+        return crc32(String.valueOf(value));
+    }
+
+    // =======================
+    // FINGERPRINT UNORDERED
+    // =======================
+    static String fingerprint(Object... args) {
 
         if (args.length == 1) {
             Object v = args[0];
 
             if (v instanceof Node) {
                 Node n = (Node) v;
-                return canonicalize(n.tag, n.value, n.children);
+                return fingerprint(n.tag, n.value, n.children);
             }
-            return String.valueOf(v);
+            return fingerprintValue(v);
         }
 
         if (args.length == 2) {
             String tag = String.valueOf(args[0]);
             Object value = args[1];
 
-            return "!TAG" + tag + ":" + canonicalize(value);
+            return fingerprint("!TAG" + tag + ":" + fingerprint(value));
         }
 
         if (args.length == 3) {
@@ -55,47 +70,47 @@ public class CanonicalizationProof {
             @SuppressWarnings("unchecked")
             List<Node> children = (List<Node>) args[2];
 
-            List<String> childStrings = new ArrayList<>();
+            List<String> childFPs = new ArrayList<>();
             for (Node child : children) {
-                childStrings.add(canonicalize(child));
+                childFPs.add(fingerprint(child));
             }
 
-            Collections.sort(childStrings); // 🔥 ignora orden
+            Collections.sort(childFPs); // 🔥 aquí ignora orden
 
             StringBuilder payload = new StringBuilder();
             payload.append("!TAG").append(tag)
-                    .append(":").append(canonicalize(value));
+                    .append(":").append(fingerprint(value));
 
-            for (String s : childStrings) {
-                payload.append(":").append(s);
+            for (String fp : childFPs) {
+                payload.append(":").append(fp);
             }
 
-            return payload.toString();
+            return fingerprint(payload.toString());
         }
 
         throw new IllegalArgumentException("Invalid args");
     }
 
     // =======================
-    // CANONICAL ORDERED
+    // FINGERPRINT ORDERED
     // =======================
-    static String canonicalizeOrdered(Object... args) {
+    static String fingerprintOrdered(Object... args) {
 
         if (args.length == 1) {
             Object v = args[0];
 
             if (v instanceof Node) {
                 Node n = (Node) v;
-                return canonicalizeOrdered(n.tag, n.value, n.children);
+                return fingerprintOrdered(n.tag, n.value, n.children);
             }
-            return String.valueOf(v);
+            return fingerprintValue(v);
         }
 
         if (args.length == 2) {
             String tag = String.valueOf(args[0]);
             Object value = args[1];
 
-            return "!TAG" + tag + ":" + canonicalizeOrdered(value);
+            return fingerprintOrdered("!TAG" + tag + ":" + fingerprintOrdered(value));
         }
 
         if (args.length == 3) {
@@ -104,20 +119,20 @@ public class CanonicalizationProof {
             @SuppressWarnings("unchecked")
             List<Node> children = (List<Node>) args[2];
 
-            List<String> childStrings = new ArrayList<>();
+            List<String> childFPs = new ArrayList<>();
             for (Node child : children) {
-                childStrings.add(canonicalizeOrdered(child));
+                childFPs.add(fingerprintOrdered(child));
             }
 
             StringBuilder payload = new StringBuilder();
             payload.append("!TAG").append(tag)
-                    .append(":").append(canonicalizeOrdered(value));
+                    .append(":").append(fingerprintOrdered(value));
 
-            for (String s : childStrings) {
-                payload.append(":").append(s);
+            for (String fp : childFPs) {
+                payload.append(":").append(fp);
             }
 
-            return payload.toString();
+            return fingerprintOrdered(payload.toString());
         }
 
         throw new IllegalArgumentException("Invalid args");
@@ -159,7 +174,7 @@ public class CanonicalizationProof {
     }
 
     // =======================
-    // MAIN TEST
+    // MAIN DE PRUEBA
     // =======================
     public static void main(String[] args) throws Exception {
 
@@ -198,20 +213,20 @@ public class CanonicalizationProof {
         Node n1 = parseXML(xml1);
         Node n2 = parseXML(xml2);
 
-        String c1 = canonicalize(n1);
-        String c2 = canonicalize(n2);
+        String fp1 = fingerprint(n1);
+        String fp2 = fingerprint(n2);
 
-        String o1 = canonicalizeOrdered(n1);
-        String o2 = canonicalizeOrdered(n2);
+        String fp1Ordered = fingerprintOrdered(n1);
+        String fp2Ordered = fingerprintOrdered(n2);
 
-        System.out.println("=== CANONICAL (UNORDERED) ===");
-        System.out.println(c1);
-        System.out.println(c2);
-        System.out.println("Match: " + c1.equals(c2));
+        System.out.println("=== UNORDERED ===");
+        System.out.println(fp1);
+        System.out.println(fp2);
+        System.out.println("Match: " + fp1.equals(fp2));
 
-        System.out.println("\n=== CANONICAL (ORDERED) ===");
-        System.out.println(o1);
-        System.out.println(o2);
-        System.out.println("Match: " + o1.equals(o2));
+        System.out.println("\n=== ORDERED ===");
+        System.out.println(fp1Ordered);
+        System.out.println(fp2Ordered);
+        System.out.println("Match: " + fp1Ordered.equals(fp2Ordered));
     }
 }
