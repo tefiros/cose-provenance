@@ -1,0 +1,189 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.telefonica.api",
+    "module": "provenance-api",
+    "version": "0.0.7",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.augustcellars.cose",
+          "module": "cose-java",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "org.bouncycastle",
+          "module": "bcpkix-jdk18on",
+          "version": {
+            "requires": "1.77"
+          }
+        },
+        {
+          "group": "org.apache.santuario",
+          "module": "xmlsec",
+          "version": {
+            "requires": "4.0.2"
+          }
+        },
+        {
+          "group": "org.jdom",
+          "module": "jdom2",
+          "version": {
+            "requires": "2.0.6.1"
+          }
+        },
+        {
+          "group": "com.google.code.gson",
+          "module": "gson",
+          "version": {
+            "requires": "2.10.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "provenance-api-0.0.7.jar",
+          "url": "provenance-api-0.0.7.jar",
+          "size": 68493,
+          "sha512": "fd5cef0bc076fb0fa136d776b3fda883fd46c2b25f7ff6455074b8145e01c659c1cf5fbe77ad0ff598de56047b3cdd86646a745db2dd722e194dd08f178d02c6",
+          "sha256": "f5167f891526f5a3f9aaa7795882ec37f17ca7a868b1c5d0d590907d0f59469c",
+          "sha1": "feb878750d2f4e4eeb538c532f3981ce7c1045e9",
+          "md5": "e195b1b96dbc910a5d893d2a43df5ae2"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.fasterxml.jackson.core",
+          "module": "jackson-databind",
+          "version": {
+            "requires": "2.15.2"
+          }
+        },
+        {
+          "group": "com.fasterxml.jackson.core",
+          "module": "jackson-core",
+          "version": {
+            "requires": "2.15.2"
+          }
+        },
+        {
+          "group": "com.fasterxml.jackson.core",
+          "module": "jackson-annotations",
+          "version": {
+            "requires": "2.15.2"
+          }
+        },
+        {
+          "group": "io.github.erdtman",
+          "module": "java-json-canonicalization",
+          "version": {
+            "requires": "1.1"
+          }
+        },
+        {
+          "group": "com.upokecenter",
+          "module": "cbor",
+          "version": {
+            "requires": "4.5.6"
+          }
+        },
+        {
+          "group": "com.augustcellars.cose",
+          "module": "cose-java",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "org.bouncycastle",
+          "module": "bcpkix-jdk18on",
+          "version": {
+            "requires": "1.77"
+          }
+        },
+        {
+          "group": "org.apache.santuario",
+          "module": "xmlsec",
+          "version": {
+            "requires": "4.0.2"
+          }
+        },
+        {
+          "group": "org.jdom",
+          "module": "jdom2",
+          "version": {
+            "requires": "2.0.6.1"
+          }
+        },
+        {
+          "group": "com.google.code.gson",
+          "module": "gson",
+          "version": {
+            "requires": "2.10.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "provenance-api-0.0.7.jar",
+          "url": "provenance-api-0.0.7.jar",
+          "size": 68493,
+          "sha512": "fd5cef0bc076fb0fa136d776b3fda883fd46c2b25f7ff6455074b8145e01c659c1cf5fbe77ad0ff598de56047b3cdd86646a745db2dd722e194dd08f178d02c6",
+          "sha256": "f5167f891526f5a3f9aaa7795882ec37f17ca7a868b1c5d0d590907d0f59469c",
+          "sha1": "feb878750d2f4e4eeb538c532f3981ce7c1045e9",
+          "md5": "e195b1b96dbc910a5d893d2a43df5ae2"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "provenance-api-0.0.7-javadoc.jar",
+          "url": "provenance-api-0.0.7-javadoc.jar",
+          "size": 159230,
+          "sha512": "2ff995f06736c45300bfa904b3f5916478c0d54e198c1ee4f501275e948be85c60c1366351b661b34acf35e9159d4b1860804e688a6b5e59cef0713b4eac2157",
+          "sha256": "dacd64c1b970a5ae495cf6359e97357ed7cc2df1364784bd5c7999a363c3f991",
+          "sha1": "64cd100e5a480b77d4cd8a4de6562f89407a7b11",
+          "md5": "e417b3ff3f4c9dab19da76ebc6d282a8"
+        }
+      ]
+    }
+  ]
+}

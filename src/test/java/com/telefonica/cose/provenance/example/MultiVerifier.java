@@ -62,9 +62,9 @@ public class MultiVerifier {
             // así que trabajamos con una copia
             Document docCopy = builder.build(new StringReader(xmlWithSignatures));
             if (verifier.verifyYANG(docCopy, SIG_EL, SIG_NS)) {
-                System.out.println("✓ Sign1 original VÁLIDO");
+                System.out.println("✓ Sign1 original VALIDO");
             } else {
-                System.out.println("✗ Sign1 original INVÁLIDO");
+                System.out.println("✗ Sign1 original INVALIDO");
             }
         } catch (CoseException e) {
             System.err.println("Error verificando Sign1: " + e.getMessage());

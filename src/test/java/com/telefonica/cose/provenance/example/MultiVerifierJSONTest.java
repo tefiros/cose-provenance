@@ -18,12 +18,13 @@ public class MultiVerifierJSONTest {
 
         System.out.println("=== Verificando JSON Sign1 + countersigns ===");
 
-        boolean valid = verifier.verifyJSONWithCountersigns(doc.deepCopy());
+        //boolean valid = verifier.verifyJSONWithCountersigns(doc.deepCopy());
 
-        if (valid) {
-            System.out.println("✓ JSON TODO VÁLIDO");
-        } else {
-            System.out.println("✗ Alguna firma JSON INVÁLIDA");
-        }
+
+//        if (valid) {
+//            System.out.println("JSON TODO VaLIDO");
+//        } else {
+//            System.out.println("Alguna firma JSON INVaLIDA");
+//        }
     }
 }

@@ -11,8 +11,7 @@ import java.security.PrivateKey;
 import java.security.Security;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
-import java.util.Base64;
-import java.util.List;
+import java.util.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
@@ -26,7 +25,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.StringWriter;
-import java.util.ArrayList;
 
 
 import COSE.*;
@@ -349,13 +347,12 @@ public class JSONSignature extends JSONFileManagement implements JSONSignatureIn
             ObjectMapper mapper = new ObjectMapper();
             JsonNode root = mapper.readTree(document);
 
-            if (root != null && root.isObject() && root.has(signatureElement)) {
-                JsonNode sigNode = root.get(signatureElement);
-                if (sigNode != null && sigNode.isTextual()) {
-                    String text = sigNode.asText().trim();
-                    return text.isBlank() ? null : text;
-                }
+            JsonNode sigNode = findSignatureNode(root, signatureElement);
+            if (sigNode != null && sigNode.isTextual()) {
+                String text = sigNode.asText().trim();
+                return text.isBlank() ? null : text;
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -373,19 +370,92 @@ public class JSONSignature extends JSONFileManagement implements JSONSignatureIn
                 throw new COSESignatureException("JSON root is not an object");
             }
 
-            ObjectNode rootObj = (ObjectNode) root;
+            ObjectNode rootObj = (ObjectNode) root.deepCopy();
 
-            if (!rootObj.has(signatureElement)) {
+            boolean removed = removeSignatureNode(rootObj, signatureElement);
+
+            if (!removed) {
                 throw new COSESignatureException("No signature element found: " + signatureElement);
             }
-
-            rootObj.remove(signatureElement);
 
             return mapper.writeValueAsString(rootObj);
 
         } catch (Exception e) {
             throw new COSESignatureException("Failed to remove JSON signature element: " + e.getMessage());
         }
+    }
+
+
+    private JsonNode findSignatureNode(JsonNode node, String signatureElement) {
+        if (node == null) {
+            return null;
+        }
+
+        // Si el nodo actual es objeto, primero miramos si tiene directamente el campo
+        if (node.isObject()) {
+            ObjectNode obj = (ObjectNode) node;
+
+            if (obj.has(signatureElement)) {
+                return obj.get(signatureElement);
+            }
+
+            // Si no, buscamos recursivamente en los hijos
+            Iterator<Map.Entry<String, JsonNode>> fields = obj.fields();
+            while (fields.hasNext()) {
+                Map.Entry<String, JsonNode> entry = fields.next();
+                JsonNode found = findSignatureNode(entry.getValue(), signatureElement);
+                if (found != null) {
+                    return found;
+                }
+            }
+        }
+
+        // Si es array, buscamos en cada elemento
+        if (node.isArray()) {
+            for (JsonNode item : node) {
+                JsonNode found = findSignatureNode(item, signatureElement);
+                if (found != null) {
+                    return found;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private boolean removeSignatureNode(JsonNode node, String signatureElement) {
+        if (node == null) {
+            return false;
+        }
+
+        if (node.isObject()) {
+            ObjectNode obj = (ObjectNode) node;
+
+            // Si está directamente aquí, lo quitamos
+            if (obj.has(signatureElement)) {
+                obj.remove(signatureElement);
+                return true;
+            }
+
+            // Si no, buscamos recursivamente en hijos
+            Iterator<Map.Entry<String, JsonNode>> fields = obj.fields();
+            while (fields.hasNext()) {
+                Map.Entry<String, JsonNode> entry = fields.next();
+                if (removeSignatureNode(entry.getValue(), signatureElement)) {
+                    return true;
+                }
+            }
+        }
+
+        if (node.isArray()) {
+            for (JsonNode item : node) {
+                if (removeSignatureNode(item, signatureElement)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
 

@@ -257,46 +257,46 @@ public class XMLSignature extends XMLFileManagement implements XMLSignatureInter
 	 * @param kid               key ID of the signer being added
 	 * @return Base64-encoded COSE_Sign with the new signature appended
 	 */
-	public String sign(String document, String kid, String signatureElement)
-			throws CoseException, COSESignatureException {
-
-		SignMessage signMessage;
-		String content;
-
-		String existingSignature = extractSignatureFromDocument(document, signatureElement);
-
-		if (existingSignature == null) {
-			content = canonicalizeXML(document);
-			signMessage = new SignMessage(true, false);
-			signMessage.SetContent(content);
-			signMessage.AddSigner(buildSigner(kid));
-			signMessage.sign();
-		} else {
-			// Decodificar COSE_Sign existente
-			byte[] signatureBytes = Base64.getDecoder().decode(existingSignature);
-			signMessage = (SignMessage) Message.DecodeFromBytes(signatureBytes);
-
-			// Obtener contenido sin el elemento firma
-			try {
-				org.jdom2.input.SAXBuilder saxBuilder = new org.jdom2.input.SAXBuilder();
-				org.jdom2.Document jdomDoc = saxBuilder.build(new java.io.StringReader(document));
-				content = canonicalizeXML(extractDocumentContent(jdomDoc, signatureElement));
-			} catch (Exception e) {
-				throw new COSESignatureException("Failed to strip signature element: " + e.getMessage());
-			}
-
-			signMessage.SetContent(content);
-
-			// Apartar signers ya firmados, firmar solo el nuevo, reincorporar
-			List<Signer> existingSigners = new ArrayList<>(signMessage.getSignerList());
-			signMessage.getSignerList().clear();
-			signMessage.AddSigner(buildSigner(kid));
-			signMessage.sign();
-			signMessage.getSignerList().addAll(0, existingSigners);
-		}
-
-		return Base64.getEncoder().encodeToString(signMessage.EncodeToBytes());
-	}
+//	public String sign(String document, String kid, String signatureElement)
+//			throws CoseException, COSESignatureException {
+//
+//		SignMessage signMessage;
+//		String content;
+//
+//		String existingSignature = extractSignatureFromDocument(document, signatureElement);
+//
+//		if (existingSignature == null) {
+//			content = canonicalizeXML(document);
+//			signMessage = new SignMessage(true, false);
+//			signMessage.SetContent(content);
+//			signMessage.AddSigner(buildSigner(kid));
+//			signMessage.sign();
+//		} else {
+//			// Decodificar COSE_Sign existente
+//			byte[] signatureBytes = Base64.getDecoder().decode(existingSignature);
+//			signMessage = (SignMessage) Message.DecodeFromBytes(signatureBytes);
+//
+//			// Obtener contenido sin el elemento firma
+//			try {
+//				org.jdom2.input.SAXBuilder saxBuilder = new org.jdom2.input.SAXBuilder();
+//				org.jdom2.Document jdomDoc = saxBuilder.build(new java.io.StringReader(document));
+//				content = canonicalizeXML(extractDocumentContent(jdomDoc, signatureElement));
+//			} catch (Exception e) {
+//				throw new COSESignatureException("Failed to strip signature element: " + e.getMessage());
+//			}
+//
+//			signMessage.SetContent(content);
+//
+//			// Apartar signers ya firmados, firmar solo el nuevo, reincorporar
+//			List<Signer> existingSigners = new ArrayList<>(signMessage.getSignerList());
+//			signMessage.getSignerList().clear();
+//			signMessage.AddSigner(buildSigner(kid));
+//			signMessage.sign();
+//			signMessage.getSignerList().addAll(0, existingSigners);
+//		}
+//
+//		return Base64.getEncoder().encodeToString(signMessage.EncodeToBytes());
+//	}
 
 
 

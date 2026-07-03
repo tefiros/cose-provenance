@@ -19,15 +19,18 @@ import org.jdom2.JDOMException;
 
 public interface XMLSignatureInterface {
 
+
 	/**
-	 * Signs the given document using the specified key identifier (KID).
+	 * Signs a document using a single key identifier (KID).
 	 *
-	 * @param document The document to be signed, represented as a String.
-	 * @param kid The key identifier used for signing the document.
-	 * @return A String representing the signature.
-	 * @throws Exception If an error occurs during the signing process.
+	 * @param document The XML document to be signed, represented as a String.
+	 * @param kid The key identifier used for signing.
+	 * @return A signed representation of the document.
+	 * @throws CoseException If an error occurs during COSE processing.
+	 * @throws COSESignatureException If the signature process fails.
 	 */
-	String signing(String document, String kid) throws Exception;
+	String signing(String document, String kid)
+			throws CoseException, COSESignatureException;
 
 	/**
 	 * Saves the given XML document to a file with the specified file name.
@@ -54,11 +57,25 @@ public interface XMLSignatureInterface {
 	 * @param document The document to be signed, represented as a String.
 	 * @param kids The key identifier used for signing the document.
 	 * @return A String representing the signature.
-	 * @throws Exception If an error occurs during the signing process.
 	 */
 	public String multiSigning(String document, List<String> kids) throws CoseException, COSESignatureException;
 
-	public String sign(String existingSignature, String document, String kid) throws CoseException, COSESignatureException;
+
+
+	/**
+	 * Adds a countersignature to an already signed XML document.
+	 *
+	 * @param document The original XML document.
+	 * @param kid The key identifier used to generate the countersignature.
+	 * @param signatureElement The XML element containing the original signature.
+	 * @return The updated document including the countersignature.
+	 * @throws CoseException If an error occurs during COSE processing.
+	 * @throws COSESignatureException If the countersignature process fails.
+	 */
+	String addCounterSign(String document, String kid, String signatureElement)
+			throws CoseException, COSESignatureException;
+
+
 
 }
 

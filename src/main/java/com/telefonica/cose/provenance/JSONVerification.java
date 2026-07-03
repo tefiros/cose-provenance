@@ -351,23 +351,24 @@ public class JSONVerification extends JSONFileManagement implements JSONVerifica
         return verificator.validate(publicOnlyKey);
     }
 
-    public boolean verifyJSONWithCountersigns(JsonNode YANGfile)
+    public boolean verifyJSONWithCountersigns(
+            JsonNode YANGfile,
+            String moduleName,
+            String signatureField)
             throws CoseException, COSESignatureException, JsonProcessingException {
 
-        byte[] signature = readSignature(YANGfile);
-        String message = readYANGFile(YANGfile);
+        byte[] signature = readSignatureYANG(YANGfile, moduleName, signatureField);
+
+        String message = new ObjectMapper().writeValueAsString(YANGfile);
+        String content = canonicalizeJSON(message);
 
         Sign1Message verificator =
                 (Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
 
-        String content = canonicalizeJSON(message);
-
-        System.out.println(">>> content canonicalizado JSON:\n" + content);
-
         verificator.SetContent(content);
 
         // ===============================
-        // ✅ 1. Firma principal
+        // Firma principal
         // ===============================
         String mainKid = verificator.findAttribute(HeaderKeys.KID, Attribute.PROTECTED).AsString();
         OneKey mainKey = publicKey(mainKid);
@@ -380,10 +381,8 @@ public class JSONVerification extends JSONFileManagement implements JSONVerifica
         }
 
         // ===============================
-        // ✅ 2. Countersigns
+        // Countersigns
         // ===============================
-
-        // ✅ igual que XML: usar lista interna, NO atributo manual
         java.util.List<CounterSign> counters = verificator.getCountersignerList();
 
         if (counters == null || counters.isEmpty()) {
@@ -398,7 +397,6 @@ public class JSONVerification extends JSONFileManagement implements JSONVerifica
             CBORObject kidObj = cs.findAttribute(HeaderKeys.KID, Attribute.PROTECTED);
 
             if (kidObj == null) {
-                System.out.println("Countersign sin KID → inválida");
                 allValid = false;
                 continue;
             }
@@ -409,7 +407,6 @@ public class JSONVerification extends JSONFileManagement implements JSONVerifica
             OneKey pubKey = publicKey(kid);
             cs.setKey(pubKey);
 
-            // ✅ CLAVE → IGUAL QUE XML
             boolean valid = verificator.validate(cs);
 
             System.out.println("Resultado countersign JSON (" + kid + "): " + valid);
@@ -419,5 +416,57 @@ public class JSONVerification extends JSONFileManagement implements JSONVerifica
 
         return allValid;
     }
+
+    public boolean verifyJSONCounterSignByKid(
+            JsonNode YANGfile,
+            String moduleName,
+            String signatureField,
+            String targetKid)
+            throws CoseException, COSESignatureException, JsonProcessingException {
+
+        byte[] signature = readSignatureYANG(YANGfile, moduleName, signatureField);
+
+        String message = new ObjectMapper().writeValueAsString(YANGfile);
+        String content = canonicalizeJSON(message);
+
+        Sign1Message verificator =
+                (Sign1Message) Sign1Message.DecodeFromBytes(signature, MessageTag.Sign1);
+
+        verificator.SetContent(content);
+
+        java.util.List<CounterSign> counters = verificator.getCountersignerList();
+
+        if (counters == null || counters.isEmpty()) {
+            System.out.println("No hay JSON countersignatures");
+            return false;
+        }
+
+        for (CounterSign cs : counters) {
+
+            CBORObject kidObj = cs.findAttribute(HeaderKeys.KID, Attribute.PROTECTED);
+
+            if (kidObj == null) continue;
+
+            String kid = kidObj.AsString();
+
+            if (!kid.equals(targetKid)) continue;
+
+            System.out.println("Verificando SOLO countersign JSON de: " + kid);
+
+            OneKey pubKey = publicKey(kid);
+            cs.setKey(pubKey);
+
+            boolean valid = verificator.validate(cs);
+
+            System.out.println("Resultado countersign JSON (" + kid + "): " + valid);
+
+            return valid;
+        }
+
+        System.out.println("No se encontró countersign para kid: " + targetKid);
+        return false;
+    }
+
+
 
 }
